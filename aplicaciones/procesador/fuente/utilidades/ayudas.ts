@@ -35,13 +35,15 @@ export const guardarJSON = (json: object, nombre: string): void => {
  * @param {number} maximo El máximo de decimales que debe tener el resultado.
  * @returns {number} Número con decimales reducidos.
  */
-export const redondearDecimal = (num: number, minimo: number, maximo: number): number =>
-  Number(
-    new Intl.NumberFormat('en-US', {
-      minimumFractionDigits: minimo,
-      maximumFractionDigits: maximo,
-    }).format(num)
-  );
+export const redondearDecimal = (num: number, minimo: number, maximo: number): number => {
+  return +(Math.round(+`${num + 'e+2'}`) + 'e-2');
+};
+// Number(
+//   new Intl.NumberFormat('en-US', {
+//     minimumFractionDigits: minimo,
+//     maximumFractionDigits: maximo,
+//   }).format(num)
+// );
 
 export const extraerNombreCodigo = (texto: string): NombreCodigo => {
   if (texto) {
