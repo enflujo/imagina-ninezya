@@ -3,6 +3,7 @@ import type { FeatureCollection } from 'geojson';
 import type { DatosIndicador, DatosIndicadorNal, DatosPorAñoOrdenado, FuncionColor } from '@/tipos';
 import { escalaColores, pedirDatos } from './ayudas';
 import { colorNegativo, colorNeutro, colorPositivo } from './constantes';
+import pruebaGeo  from '../datosVisibles/colombia-con-archipielago.json';
 
 export const listaAños = atom<DatosPorAñoOrdenado>([]);
 export const datosDep = map<DatosIndicador>(null);
@@ -78,7 +79,8 @@ export async function cargarDatos() {
   }, 150);
 
   // Cargar datos departamentos
-  const deps = await pedirDatos<FeatureCollection>('https://enflujo.com/bodega/colombia/departamentos.json');
+  //const deps = await pedirDatos<FeatureCollection>('https://enflujo.com/bodega/colombia/departamentos.json');
+  const deps = pruebaGeo;  
   datosColombia.setKey('dep', deps);
 
   try {
