@@ -51,7 +51,7 @@ export const ya8: DatosYa = {
         'Un valor de 19 indica que en 19 de cada 100,000 delitos participaron menores de edad. <br/><br/>Más información: https://www.corteidh.or.cr/tablas/r25958.pdf',
     },
     {
-      nombre: 'Homicidios a menores',
+      nombre: 'Homicidios a menores de edad',
       ruta: 'homicidios-menores',
       archivo: 'ya8-4',
       hay_datos: true,

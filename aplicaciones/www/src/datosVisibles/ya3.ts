@@ -1,9 +1,9 @@
 import type { DatosYa } from '@/tipos';
 
 export const ya3: DatosYa = {
-  nombre: 'Educación preescolar, básica y media',
+  nombre: 'Educación básica y media',
   imagen: 'ya3',
-  ruta: 'educacion-preescolar-a-media',
+  ruta: 'educacion-basica-y-media',
   definicion:
     'Es crucial garantizar una educación de calidad en Colombia, superando barreras de inequidad desde el preescolar hasta la media. La presencia en la escuela no garantiza plenamente el derecho a la educación, y las inequidades arraigadas relacionadas con factores geográficos, socioeconómicos, étnicos y de género deben abordarse con enfoques multidimensionales. Atender a la infraestructura escolar y la formación docente es esencial para establecer un sistema educativo que promueva la igualdad, la transformación y la inclusión en todas las etapas.',
   hay_datos: true,

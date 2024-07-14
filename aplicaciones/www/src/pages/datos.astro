@@ -5,20 +5,16 @@ import Plantilla from '@/plantillas/Principal.astro';
 import pesos from '@/datosVisibles/pesosArchivos.json';
 ---
 
-<Plantilla
-  titulo="Datos"
-  descripcion="Aquí se encuentran los datos para descarga directa de todos los indicadores utilizados en SIYA."
-  conMenu={false}
->
+<Plantilla titulo="Datos" descripcion=" Aquí se encuentran los datos en bruto para descarga directa." conMenu={false}>
   <section class="contenedorDatos">
     <h1 id="tituloPagina">Datos</h1>
 
     <div id="datos">
       <div class="textoDatos">
         <p>
-          Aquí se encuentran los datos en bruto para descarga directa. A través del menú selecciona el <span
-            class="negrita">YA</span
-          > del cual quieres obtener datos. Los datos están disponibles en <span class="negrita">.xlsx</span>.
+          Aquí se encuentran los datos en bruto para descarga directa en formato <span class="negrita">.xlsx</span>. En
+          el menú selecciona el <span class="negrita">YA</span> del cual quieres obtener datos. Cada archivo incluye información
+          de distintos años.
         </p>
       </div>
 
