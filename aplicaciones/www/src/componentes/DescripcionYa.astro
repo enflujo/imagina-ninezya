@@ -189,13 +189,17 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     top: $altoMenuSuperior;
     width: 90%;
     height: calc(100% - $altoMenuSuperior);
-    background-color: var(--uvaNinezYa);
-    color: var(--blancoMarfil);
+    background-color: var(--moradoPandito);
+    color: var(--negroCasi);
     z-index: 8;
     right: 0;
     transition: all 0.25s ease-in-out;
     overflow: auto;
     opacity: 0.95;
+
+    h2 {
+      color: var(--uvaNinezYa);
+    }
 
     &.cerrado {
       right: -90%;
@@ -272,6 +276,7 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     display: flex;
     flex-wrap: wrap;
     margin-left: 4em;
+    background-color: var(--uvaNinezYa);
   }
 
   .descContenedorIndicador {
