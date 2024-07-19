@@ -123,9 +123,9 @@ export const ya1: DatosYa = {
       umbral: 2.6,
       explicacion_umbral:
         'De acuerdo al Plan Decenal de Salud Pública del año 2021 se busca reducir a 2.6% la prevalencia de desnutrición en niños y niñas menores de 5 años.',
-      explicacion: 'Indica la proporción de nacidos vivos con bajo peso.',
+      explicacion: 'Indica la proporción de nacidos vivos con bajo peso al nacer.',
       definicion:
-        'Indica la proporción de nacidos vivos a término (37 semanas o más) que nacieron con peso inferior a 2499 gramos en un momento y territorio determinado, con respecto al total de nacidos vivos en el mismo periodo y lugar.',
+        'Indica la proporción de nacidos vivos a término (37 semanas o más) que nacieron con peso inferior a 2.499 gramos en un momento y territorio específicos, con respecto al total de nacidos vivos en el mismo periodo y lugar.',
       metodologia:
         'Se desconoce, metodología propia del Centro de Estudios sobre Desarrollo Económico de la Facultad de Economía de la Universidad de los Andes (CEDE)',
       unidad: 'Porcentaje',
