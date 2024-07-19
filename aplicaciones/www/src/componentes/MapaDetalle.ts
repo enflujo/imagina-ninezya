@@ -236,6 +236,7 @@ export default class MapaDetalle extends HTMLElement {
   }
 
   definirColor(color: string) {
+    // color del borde del recuadro del mapa pequeño
     this.style.borderColor = color;
   }
 }
