@@ -220,7 +220,6 @@ const { ancho, alto } = Astro.props;
       }
 
       datosParaPintar.features.forEach((lugar) => {
-        console.log(lugar);
         if (lugar.geometry.type === 'Polygon' || lugar.geometry.type === 'MultiPolygon') {
           const escalaDims = lugar.properties.codigo === '88' ? 12 : 1;
           const linea = crearLinea(lugar.geometry, mapearCoordenadas, ancho * escalaDims, alto * escalaDims);
