@@ -11,8 +11,9 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
 
 <div id="descripcionYa">
   <div class="cerrarDescripcion">X</div>
-  <div id="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/${img}.svg)`}></div>
-
+  <div class="seccionSuperior">
+    <div id="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/${img}.svg)`}></div>
+  </div>
   <section class="definicion">
     <h2>{titulo}</h2>
     <p>{definicion}</p>
@@ -215,6 +216,10 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     }
   }
 
+  .seccionSuperior {
+    background-color: var(--uvaNinezYa);
+  }
+
   #iconoYa {
     background-repeat: no-repeat;
     width: 200px;
@@ -228,7 +233,7 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     text-align: center;
     width: 100%;
     font-size: 3em;
-    margin-top: 0;
+    margin-top: 1em;
   }
 
   h3 {
@@ -263,9 +268,11 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     display: inline-block;
     transition: transform 0.2s ease-out;
     padding: 0.5em;
-    font-size: 2.5em;
+    font-size: 2em;
     position: absolute;
-    right: 15px;
+    right: 1em;
+    top: 1em;
+    color: var(--moradoPandito);
 
     &:hover {
       transform: rotate(180deg);
