@@ -10,13 +10,17 @@ const { ya, indicador } = Astro.params;
       datos.map((datosYa, i) => {
         return (
           <li class={`ya ${datosYa.imagen}${datosYa.ruta === ya ? ' abierto' : ''}`}>
-            <span
-              class={`iconoYa${datosYa.ruta === ya ? ' actual' : ''}`}
-              style={`background-image: url('${import.meta.env.BASE_URL}/iconos/${datosYa.imagen}.svg')`}
-            />
-            <p class={`nombreYa${datosYa.ruta === ya ? ' ungido' : ''}`}>
-              {i + 1}. {datosYa.nombre}
-            </p>
+            <a href={`${import.meta.env.BASE_URL}/${datosYa.ruta}`}>
+              <span
+                class={`iconoYa${datosYa.ruta === ya ? ' actual' : ''}`}
+                style={`background-image: url('${import.meta.env.BASE_URL}/iconos/${datosYa.imagen}.svg')`}
+              />
+              <p class={`nombreYa${datosYa.ruta === ya ? ' ungido' : ''}`}>
+                {' '}
+                {i + 1}. {datosYa.nombre}
+              </p>
+            </a>
+
             <ul class="indicadores">
               {datosYa.indicadores.map((datosIndicador) => {
                 return (
@@ -43,7 +47,17 @@ const { ya, indicador } = Astro.params;
 
   if (menu) {
     const yas = document.querySelectorAll<HTMLElement>('.ya');
+    const indicadores = document.querySelectorAll<HTMLElement>('.indicador');
+    const descripcionYa = document.getElementById('descripcionYa');
+
     let enCelular = false;
+
+    indicadores.forEach((indicador) => {
+      indicador.addEventListener('click', () => {
+        if (!descripcionYa) return;
+        descripcionYa.classList.add('cerrado');
+      });
+    });
 
     // Abrir sub menú de indicadores al hacer clic en un 'ya'
     yas.forEach((contenedorYa) => {
@@ -128,6 +142,11 @@ const { ya, indicador } = Astro.params;
       position: relative;
       list-style: none;
       height: 50px;
+
+      a {
+        text-decoration: none;
+        color: var(--azulViejo);
+      }
 
       .iconoYa {
         background-repeat: no-repeat;
