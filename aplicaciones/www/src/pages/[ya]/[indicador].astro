@@ -35,6 +35,9 @@ const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: stri
     };
   }
 );
+
+// Muestra la información del YA solo si es el primer indicador del grupo. Podría funcionar mejor pero es lo mejor que he logrado hasta ahora ...
+let descripcionAbierta = indicador === `${datosYa.indicadores[0].ruta}`;
 ---
 
 <Plantilla titulo={datosIndicador.nombre} conMenu={true}>
@@ -44,6 +47,7 @@ const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: stri
     img={datosYa.imagen}
     archivos={archivosYa}
     hayDatos={datosIndicador.hay_datos}
+    descripcionAbierta={descripcionAbierta}
   />
   {
     datosIndicador.hay_datos ? (

@@ -52,13 +52,6 @@ const { ya, indicador } = Astro.params;
 
     let enCelular = false;
 
-    indicadores.forEach((indicador) => {
-      indicador.addEventListener('click', () => {
-        if (!descripcionYa) return;
-        descripcionYa.classList.add('cerrado');
-      });
-    });
-
     // Abrir sub menú de indicadores al hacer clic en un 'ya'
     yas.forEach((contenedorYa) => {
       const nombreYa = contenedorYa.querySelector<HTMLElement>('.nombreYa');
@@ -74,6 +67,8 @@ const { ya, indicador } = Astro.params;
 
         contenedorYa.classList.toggle('abierto');
         nombreYa.classList.toggle('ungido');
+
+        descripcionYa.classList.remove('cerrado');
       });
 
       icono.addEventListener('click', () => {
