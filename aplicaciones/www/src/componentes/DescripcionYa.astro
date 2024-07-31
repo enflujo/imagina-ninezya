@@ -5,11 +5,12 @@ interface Props {
   img: string;
   archivos: { titulo: string; archivo: string; umbral?: number; ruta: string }[];
   hayDatos: boolean;
+  descripcionAbierta: boolean;
 }
-const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
+const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astro.props;
 ---
 
-<div id="descripcionYa">
+<div id="descripcionYa" class=`${descripcionAbierta ? '' : 'cerrado'}`>
   <div class="cerrarDescripcion">X</div>
   <div class="seccionSuperior">
     <div id="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/${img}.svg)`}></div>
