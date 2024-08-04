@@ -211,34 +211,30 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
         background-color: var(--uvaNinezYa);
         width: 40px;
         height: 40px;
+        background-position-x: 100%; // usar el ícono claro
         cursor: pointer;
       }
     }
   }
 
-  .seccionSuperior {
-    background-color: var(--uvaNinezYa);
-  }
-
   #iconoYa {
     background-repeat: no-repeat;
-    width: 200px;
-    height: 200px;
+    width: 111px;
+    height: 88px;
     background-size: 200%;
-    background-position: 100%;
+    background-position-x: 0; // usar el ícono oscuro
     margin: 1em auto 0 auto;
   }
 
   h2 {
     text-align: center;
     width: 100%;
-    font-size: 3em;
+    font-size: 1.8em;
     margin-top: 1em;
   }
 
   h3 {
-    // text-align: center;
-    font-size: 1.3em;
+    font-size: 0.89em;
     font-variation-settings:
       'MONO' 1,
       'CASL' 0,
@@ -253,7 +249,7 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     margin-bottom: 2em;
 
     p {
-      font-size: 1.6em;
+      font-size: 1.2em;
       font-variation-settings:
         'MONO' 0,
         'CASL' 0,
@@ -267,12 +263,12 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     cursor: pointer;
     display: inline-block;
     transition: transform 0.2s ease-out;
-    padding: 0.5em;
+    padding: 8px 15px;
     font-size: 2em;
     position: absolute;
-    right: 1em;
-    top: 1em;
-    color: var(--moradoPandito);
+    right: 0.1em;
+    top: 0;
+    color: var(--uvaNinezYa);
 
     &:hover {
       transform: rotate(180deg);
@@ -282,9 +278,8 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
   #contenedorLineasIndicadores {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 0;
-    padding-left: 4em;
     background-color: var(--uvaNinezYa);
+    justify-content: center;
   }
 
   .descContenedorIndicador {
@@ -304,31 +299,8 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
   /// ✂️ Cortes pantalla ///
 
   @media screen and (min-width: $corte1) {
-    #descripcionYa {
-      &.cerrado {
-        #iconoYa {
-          width: 60px;
-          height: 60px;
-        }
-      }
-    }
-    h2 {
-      font-size: 2.5em;
-    }
-    h3 {
-      font-size: 1.2em;
-    }
-    .definicion {
-      p {
-        font-size: 1.55em;
-      }
-    }
     .cerrarDescripcion {
       font-size: 2.5em;
-    }
-
-    #contenedorLineasIndicadores {
-      padding-left: 4.5em;
     }
   }
 
@@ -342,14 +314,7 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
         }
       }
     }
-    #iconoYa {
-      background-repeat: no-repeat;
-      width: 150px;
-      height: 150px;
-      background-size: 200%;
-      background-position: 100%;
-      margin: 1em auto 0 auto;
-    }
+
     h2 {
       font-size: 2em;
     }
@@ -364,17 +329,14 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     .cerrarDescripcion {
       font-size: 1.8em;
     }
-    #contenedorLineasIndicadores {
-      padding-left: 7.5vw;
-    }
   }
   @media screen and (min-width: $corte3) {
     #descripcionYa {
       width: 60%;
       &.cerrado {
         #iconoYa {
-          width: 45px;
-          height: 45px;
+          width: 35px;
+          height: 35px;
         }
       }
     }
@@ -387,10 +349,6 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
         font-size: 1em;
       }
     }
-
-    #contenedorLineasIndicadores {
-      padding-left: 5.5vw;
-    }
   }
   @media screen and (min-width: $corte4) {
     #descripcionYa {
@@ -398,9 +356,6 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     }
     .cerrarDescripcion {
       font-size: 1.5em;
-    }
-    #contenedorLineasIndicadores {
-      padding-left: 4vw;
     }
   }
 </style>
