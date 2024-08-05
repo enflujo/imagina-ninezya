@@ -208,7 +208,7 @@ import Plantilla from '@/plantillas/Principal.astro';
 
       <h2 class="rol">Desarrolla:</h2>
 
-      <div class="logos">
+      <div class="logosDesarrolladores">
         <a href="https://imagina.uniandes.edu.co/" target="_blank">
           <img
             class="logoImagina logoGrande"
@@ -357,7 +357,7 @@ import Plantilla from '@/plantillas/Principal.astro';
     justify-content: center;
   }
 
-  .logos {
+  .logosDesarrolladores {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -492,8 +492,13 @@ import Plantilla from '@/plantillas/Principal.astro';
       margin-right: 0px;
     }
 
-    .logos {
-      align-items: flex-start;
+    .logosDesarrolladores {
+      flex-direction: row;
+      justify-content: center;
+
+      .logoEnFlujo {
+        margin-top: 27px;
+      }
     }
 
     .logoGrande {
