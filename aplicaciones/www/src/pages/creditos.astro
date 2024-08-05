@@ -208,21 +208,23 @@ import Plantilla from '@/plantillas/Principal.astro';
 
       <h2 class="rol">Desarrolla:</h2>
 
-      <a href="https://imagina.uniandes.edu.co/" target="_blank">
-        <img
-          class="logoImagina logoGrande"
-          src={`${import.meta.env.BASE_URL}/imagenes/Imagina.webp`}
-          alt="Logo Centro IMAGINA"
-        /></a
-      >
+      <div class="logos">
+        <a href="https://imagina.uniandes.edu.co/" target="_blank">
+          <img
+            class="logoImagina logoGrande"
+            src={`${import.meta.env.BASE_URL}/imagenes/Imagina.webp`}
+            alt="Logo Centro IMAGINA"
+          /></a
+        >
 
-      <a href="https://enflujo.com" target="_blank">
-        <img
-          class="logoEnFlujo logoGrande"
-          src={`${import.meta.env.BASE_URL}/imagenes/enflujo_andes.svg`}
-          alt="Logo Laboratorio EnFlujo"
-        /></a
-      >
+        <a href="https://enflujo.com" target="_blank">
+          <img
+            class="logoEnFlujo logoGrande"
+            src={`${import.meta.env.BASE_URL}/imagenes/enflujo_andes.svg`}
+            alt="Logo Laboratorio EnFlujo"
+          /></a
+        >
+      </div>
 
       <div class="voceros">
         <h2 class="rol">Definición indicadores por cada YA</h2>
@@ -355,11 +357,17 @@ import Plantilla from '@/plantillas/Principal.astro';
     justify-content: center;
   }
 
+  .logos {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
   .logoGrande {
     display: block;
     height: 180px;
     width: auto;
-    margin: 2em auto 0 auto;
+    margin: 1em auto 0 auto;
     &.logoImagina {
       height: 50px;
       mix-blend-mode: multiply;
@@ -484,13 +492,18 @@ import Plantilla from '@/plantillas/Principal.astro';
       margin-right: 0px;
     }
 
+    .logos {
+      align-items: flex-start;
+    }
+
     .logoGrande {
       &.logoImagina {
-        height: 100px;
+        height: 70px;
       }
 
       &.logoEnFlujo {
-        height: 68px;
+        padding-left: 0.5em;
+        height: 51px;
       }
     }
 
@@ -513,11 +526,11 @@ import Plantilla from '@/plantillas/Principal.astro';
 
     .logoGrande {
       &.logoImagina {
-        height: 180px;
+        height: 70px;
       }
 
       &.logoEnFlujo {
-        height: 126px;
+        height: 51px;
       }
     }
 
