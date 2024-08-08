@@ -1,17 +1,44 @@
 ---
 import Plantilla from '@/plantillas/Principal.astro';
 import datos from '@/datosVisibles/indicadores';
+import DescripcionYa from '@/componentes/DescripcionYa.astro';
 import type { GetStaticPaths } from 'astro';
 
 export const getStaticPaths = (() => {
-  return datos.map((ya) => {
-    return { params: { ya: ya.ruta } };
-  });
+  return datos
+    .map((ya) => {
+      return ya.indicadores.map((indicador) => {
+        return { params: { ya: ya.ruta, indicador: indicador.ruta } };
+      });
+    })
+    .flat();
 }) satisfies GetStaticPaths;
 
-const { ya } = Astro.params;
-const datosYa = datos.find((instancia) => instancia.ruta === ya);
-const rutaPrimerIndicador = `${datosYa.ruta}/${datosYa.indicadores[0].ruta}`;
+const { ya, indicador } = Astro.params;
+//const datosYa = datos.find((instancia) => instancia.ruta === ya);
+
+const posYa = datos.findIndex((instancia) => instancia.ruta === ya);
+const datosYa = datos[posYa];
+const datosIndicador = datosYa.indicadores.find((instancia) => instancia.ruta === indicador);
+const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: string }[] = datosYa.indicadores.map(
+  (indicador) => {
+    return {
+      titulo: indicador.nombre,
+      archivo: indicador.archivo,
+      umbral: indicador.umbral,
+      ruta: `${import.meta.env.BASE_URL}/${datosYa.ruta}/${indicador.ruta}`,
+    };
+  }
+);
 ---
 
-<Plantilla titulo={datosYa.nombre} conMenu={true} apuntarA={rutaPrimerIndicador} />
+<Plantilla titulo={datosYa.nombre} conMenu={true}>
+  <DescripcionYa
+    titulo={`${posYa + 1}. ${datosYa.nombre}`}
+    definicion={datosYa.definicion}
+    img={datosYa.imagen}
+    archivos={archivosYa}
+    hayDatos={datosYa.hay_datos}
+    descripcionAbierta={true}
+  />
+</Plantilla>
