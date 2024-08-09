@@ -6,11 +6,16 @@ interface Props {
   archivos: { titulo: string; archivo: string; umbral?: number; ruta: string }[];
   hayDatos: boolean;
   descripcionAbierta: boolean;
+  anchoCompleto: boolean;
 }
-const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astro.props;
+const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCompleto } = Astro.props;
 ---
 
-<div id="descripcionYa" class=`${descripcionAbierta ? '' : 'cerrado'}`>
+<div
+  id="descripcionYa"
+  class=`${descripcionAbierta ? '' : 'cerrado'} ${anchoCompleto ? 'anchoCompleto' : ''}`
+  data-anchoCompleto=`${anchoCompleto}`
+>
   <div class="cerrarDescripcion">X</div>
   <div class="seccionSuperior">
     <div id="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/${img}.svg)`}></div>
@@ -43,7 +48,6 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astr
 <script>
   import type { DatosIndicadorNal, DatosPorAñoOrdenado } from '@/tipos';
   import { definirMedidasMax, pedirDatos } from '@/utilidades/ayudas';
-  import { lugaresSeleccionados } from '@/utilidades/cerebro';
   import { colorPositivo } from '@/utilidades/constantes';
   import { convertirEscala } from '@enflujo/alquimia';
 
@@ -51,7 +55,7 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astr
   const cerrar = document.querySelector<HTMLDivElement>('.cerrarDescripcion') as HTMLDivElement;
   const icono = document.getElementById('iconoYa') as HTMLDivElement;
   const contenedores = document.querySelectorAll<HTMLDivElement>('.descContenedorIndicador');
-  let cerradoAlMenosUna = false;
+  const menu = document.getElementById('menu') as HTMLDivElement;
 
   if (contenedores) {
     for await (const elemento of contenedores) {
@@ -68,6 +72,9 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astr
 
   cerrar.onclick = () => {
     contenedor.classList.add('cerrado');
+    if (contenedor.dataset.anchocompleto === 'true') {
+      menu.classList.add('visible');
+    }
   };
 
   icono.onclick = () => {
@@ -150,15 +157,6 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astr
       linea.setAttribute('d', datosLinea);
     }
   }
-
-  lugaresSeleccionados.subscribe((lugares) => {
-    if (lugares.length) {
-      cerradoAlMenosUna = true;
-      contenedor.classList.add('cerrado');
-    } else if (cerradoAlMenosUna) {
-      contenedor.classList.remove('cerrado');
-    }
-  });
 </script>
 
 <style lang="scss" is:global>
@@ -189,11 +187,11 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astr
   #descripcionYa {
     position: fixed;
     top: $altoMenuSuperior;
-    width: 90%;
+    width: 87%;
     height: calc(100% - $altoMenuSuperior);
     background-color: var(--moradoPandito);
     color: var(--negroCasi);
-    z-index: 8;
+    z-index: 10;
     right: 0;
     transition: all 0.25s ease-in-out;
     overflow: auto;
@@ -340,6 +338,18 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astr
           height: 35px;
         }
       }
+      &.anchoCompleto {
+        width: 81vw;
+      }
+      .definicion {
+        width: 500px;
+      }
+      .descContenedorIndicador {
+        width: 30%;
+      }
+      #contenedorLineasIndicadores {
+        padding: 0 calc((100% - 600px) / 2);
+      }
     }
     h2 {
       font-size: 1.8em;
@@ -354,6 +364,16 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta } = Astr
   @media screen and (min-width: $corte4) {
     #descripcionYa {
       width: 40%;
+      &.anchoCompleto {
+        width: calc(100vw - 440px);
+      }
+
+      .definicion {
+        width: 700px;
+      }
+      #contenedorLineasIndicadores {
+        padding: 0 calc((100% - 800px) / 2);
+      }
     }
     .cerrarDescripcion {
       font-size: 1.5em;

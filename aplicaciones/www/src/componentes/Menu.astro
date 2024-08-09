@@ -100,12 +100,6 @@ const { ya, indicador } = Astro.params;
         enCelular = false;
       }
     }
-
-    document.body.addEventListener('click', (evento) => {
-      if (!(menu === evento.target || menu.contains(evento.target as Node))) {
-        menu.classList.remove('visible');
-      }
-    });
   }
 </script>
 
@@ -119,8 +113,8 @@ const { ya, indicador } = Astro.params;
     background-color: var(--moradoPandito);
     height: calc(100vh - $altoMenuSuperior);
     position: fixed;
-    z-index: 99;
-    width: 50vw;
+    z-index: 9;
+    width: 70vw;
 
     font-variation-settings:
       'MONO' 0,
@@ -278,6 +272,12 @@ const { ya, indicador } = Astro.params;
         position: absolute;
         border-radius: 50%;
       }
+    }
+  }
+
+  @media screen and (min-width: $corte1) {
+    #menu {
+      width: 50vw;
     }
   }
   @media screen and (min-width: $corte3) {
