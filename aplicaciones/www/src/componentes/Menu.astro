@@ -21,6 +21,8 @@ const { ya, indicador } = Astro.params;
               </p>
             </a>
 
+            <span class="desplegarIndicadores">︾</span>
+
             <ul class="indicadores">
               {datosYa.indicadores.map((datosIndicador) => {
                 return (
@@ -55,7 +57,7 @@ const { ya, indicador } = Astro.params;
     // Abrir sub menú de indicadores al hacer clic en un 'ya'
     yas.forEach((contenedorYa) => {
       const nombreYa = contenedorYa.querySelector<HTMLElement>('.nombreYa');
-      const icono = contenedorYa.querySelector<HTMLSpanElement>('.iconoYa');
+      const botonDesplegar = contenedorYa.querySelector<HTMLSpanElement>('.desplegarIndicadores');
 
       nombreYa.addEventListener('click', () => {
         const actualmenteAbierto = menu.querySelector('.abierto');
@@ -71,7 +73,7 @@ const { ya, indicador } = Astro.params;
         descripcionYa.classList.remove('cerrado');
       });
 
-      icono.addEventListener('click', () => {
+      botonDesplegar.addEventListener('click', () => {
         if (enCelular) {
           const yasAbierto = document.querySelectorAll<HTMLElement>('.abierto');
           const nombresUngidos = document.querySelectorAll<HTMLElement>('.ungido');
@@ -155,9 +157,32 @@ const { ya, indicador } = Astro.params;
         }
       }
 
+      .desplegarIndicadores {
+        display: block;
+        position: absolute;
+        color: var(--uvaNinezYa);
+        font-size: 1.4em;
+        width: 50px;
+        text-align: center;
+        height: 26px;
+        background-color: var(--aguaMarinaNinezYa);
+        padding-top: 0.4em;
+        border: 1px solid var(--uvaNinezYa);
+        &:hover {
+          color: var(--color9);
+        }
+      }
+
       &.abierto {
+        height: 70px;
         .indicadores {
           display: block;
+        }
+
+        .desplegarIndicadores {
+          z-index: 2;
+          right: -97px;
+          top: 45px;
         }
       }
     }
@@ -185,6 +210,10 @@ const { ya, indicador } = Astro.params;
 
         &.abierto .iconoYa {
           background-position-x: -17.5px;
+        }
+
+        .desplegarIndicadores {
+          display: none;
         }
       }
     }
@@ -278,6 +307,14 @@ const { ya, indicador } = Astro.params;
   @media screen and (min-width: $corte1) {
     #menu {
       width: 50vw;
+      .ya {
+        .desplegarIndicadores {
+          display: none;
+        }
+        &.abierto {
+          height: auto;
+        }
+      }
     }
   }
   @media screen and (min-width: $corte3) {
