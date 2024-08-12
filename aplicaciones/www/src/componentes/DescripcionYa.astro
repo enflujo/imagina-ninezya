@@ -12,32 +12,32 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
 ---
 
 <div
-  id='descripcionYa'
+  id="descripcionYa"
   class=`${descripcionAbierta ? '' : 'cerrado'} ${anchoCompleto ? 'anchoCompleto' : ''}`
   data-anchoCompleto=`${anchoCompleto}`
 >
-  {!anchoCompleto && <div class='cerrarDescripcion'>X</div>}
-  <div class='seccionSuperior'>
-    <div id='iconoYa' style={`background-image:url(${import.meta.env.BASE_URL}/iconos/${img}.svg)`}></div>
+  {!anchoCompleto && <div class="cerrarDescripcion">X</div>}
+  <div class="seccionSuperior">
+    <div id="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/${img}.svg)`}></div>
   </div>
-  <section class='definicion'>
+  <section class="definicion">
     <h2>{titulo}</h2>
     <p>{definicion}</p>
   </section>
 
-  <div id='contenedorLineasIndicadores'>
+  <div id="contenedorLineasIndicadores">
     {
       archivos.map((obj) => {
         return (
           <a
             href={obj.ruta}
             class={`descContenedorIndicador${Astro.url.pathname === obj.ruta ? ' activo' : ''}`}
-            style='width: 45%'
+            style="width: 45%"
             data-archivo={obj.archivo}
             data-umbral={obj.umbral}
           >
             <h3>{obj.titulo}</h3>
-            {hayDatos && <svg class='visDescripcion' style='width:100%; height:100px' />}
+            {hayDatos && <svg class="visDescripcion" style="width:100%; height:100px" />}
           </a>
         );
       })
@@ -157,7 +157,7 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
   }
 </script>
 
-<style lang='scss' is:global>
+<style lang="scss" is:global>
   @import '@/scss/constantes';
 
   .lineaDesc {
@@ -179,7 +179,7 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
   }
 </style>
 
-<style lang='scss'>
+<style lang="scss">
   @import '@/scss/constantes';
 
   #descripcionYa {
@@ -193,13 +193,14 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
     transition: all 0.25s ease-in-out;
     overflow: auto;
     opacity: 0.95;
+    z-index: 8;
 
     h2 {
       color: var(--uvaNinezYa);
     }
 
     &.cerrado {
-      right: -90%;
+      right: -100%;
 
       #iconoYa {
         position: fixed;
@@ -209,6 +210,7 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
         height: 40px;
         background-position-x: 100%; // usar el ícono claro
         cursor: pointer;
+        z-index: 12;
       }
     }
   }
@@ -295,6 +297,9 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
   /// ✂️ Cortes pantalla ///
 
   @media screen and (min-width: $corte1) {
+    #descripcionYa {
+      width: 93%;
+    }
     .cerrarDescripcion {
       font-size: 2.5em;
     }
@@ -302,7 +307,7 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
 
   @media screen and (min-width: $corte2) {
     #descripcionYa {
-      width: 80%;
+      width: 95%;
       &.cerrado {
         #iconoYa {
           width: 40px;
@@ -338,9 +343,6 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
       &.anchoCompleto {
         width: 81vw;
       }
-      .definicion {
-        width: 500px;
-      }
       .descContenedorIndicador {
         width: 30%;
       }
@@ -360,16 +362,17 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
   }
   @media screen and (min-width: $corte4) {
     #descripcionYa {
-      width: 40%;
+      width: 50%;
       &.anchoCompleto {
         width: calc(100vw - 440px);
       }
 
       .definicion {
-        width: 700px;
+        width: 25vw;
+        min-width: 500px;
       }
       #contenedorLineasIndicadores {
-        padding: 0 calc((100% - 800px) / 2);
+        padding: 0 calc((100% - 600px) / 2);
       }
     }
     .cerrarDescripcion {

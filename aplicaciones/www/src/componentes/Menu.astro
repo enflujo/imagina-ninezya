@@ -4,7 +4,7 @@ import datos from '@/datosVisibles/indicadores';
 const { ya, indicador } = Astro.params;
 ---
 
-<nav id='menu'>
+<nav id="menu">
   <ol>
     {
       datos.map((datosYa, i) => {
@@ -21,9 +21,9 @@ const { ya, indicador } = Astro.params;
               </p>
             </a>
 
-            <span class='desplegarIndicadores'>︾</span>
+            <span class="desplegarIndicadores">︾</span>
 
-            <ul class='indicadores'>
+            <ul class="indicadores">
               {datosYa.indicadores.map((datosIndicador) => {
                 return (
                   <li
@@ -110,7 +110,7 @@ const { ya, indicador } = Astro.params;
   });
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @import '@/scss/constantes';
 
   #menu {
@@ -311,16 +311,11 @@ const { ya, indicador } = Astro.params;
 
   @media screen and (min-width: $corte1) {
     #menu {
-      width: 50vw;
-      .ya {
-        .desplegarIndicadores {
-          display: none;
-        }
-        &.abierto {
-          height: auto;
-        }
-      }
+      width: 35vw;
     }
+  }
+
+  @media screen and (min-width: $corte2) {
   }
 
   @media screen and (min-width: $corte3) {
@@ -328,7 +323,9 @@ const { ya, indicador } = Astro.params;
       width: 19vw;
       .ya {
         height: auto;
-
+        .desplegarIndicadores {
+          display: none;
+        }
         .iconoYa {
           width: 1.2em;
           height: 1.2em;
@@ -342,6 +339,7 @@ const { ya, indicador } = Astro.params;
         }
 
         &.abierto {
+          height: auto;
           .iconoYa {
             background-position-x: -17.5px;
           }
