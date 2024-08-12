@@ -4,7 +4,7 @@ import datos from '@/datosVisibles/indicadores';
 const { ya, indicador } = Astro.params;
 ---
 
-<nav id="menu">
+<nav id='menu'>
   <ol>
     {
       datos.map((datosYa, i) => {
@@ -21,9 +21,9 @@ const { ya, indicador } = Astro.params;
               </p>
             </a>
 
-            <span class="desplegarIndicadores">︾</span>
+            <span class='desplegarIndicadores'>︾</span>
 
-            <ul class="indicadores">
+            <ul class='indicadores'>
               {datosYa.indicadores.map((datosIndicador) => {
                 return (
                   <li
@@ -49,7 +49,6 @@ const { ya, indicador } = Astro.params;
 
   if (menu) {
     const yas = document.querySelectorAll<HTMLElement>('.ya');
-    const indicadores = document.querySelectorAll<HTMLElement>('.indicador');
     const descripcionYa = document.getElementById('descripcionYa');
 
     let enCelular = false;
@@ -69,7 +68,6 @@ const { ya, indicador } = Astro.params;
 
         contenedorYa.classList.toggle('abierto');
         nombreYa.classList.toggle('ungido');
-
         descripcionYa.classList.remove('cerrado');
       });
 
@@ -103,9 +101,16 @@ const { ya, indicador } = Astro.params;
       }
     }
   }
+
+  // Cerrar menú de años al hacer click por fuera
+  document.body.addEventListener('click', (evento) => {
+    if (!(menu === evento.target || menu.contains(evento.target as Node))) {
+      menu.classList.remove('visible');
+    }
+  });
 </script>
 
-<style lang="scss">
+<style lang='scss'>
   @import '@/scss/constantes';
 
   #menu {
@@ -164,7 +169,7 @@ const { ya, indicador } = Astro.params;
         font-size: 1.4em;
         width: 50px;
         text-align: center;
-        height: 26px;
+        height: 33px;
         background-color: var(--aguaMarinaNinezYa);
         padding-top: 0.4em;
         border: 1px solid var(--uvaNinezYa);
@@ -174,7 +179,7 @@ const { ya, indicador } = Astro.params;
       }
 
       &.abierto {
-        height: 70px;
+        height: 75px;
         .indicadores {
           display: block;
         }
@@ -317,6 +322,7 @@ const { ya, indicador } = Astro.params;
       }
     }
   }
+
   @media screen and (min-width: $corte3) {
     #menu {
       width: 19vw;
