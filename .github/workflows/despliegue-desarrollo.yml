@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  BUILD_PATH: './aplicaciones/www' # default value when not using subfolders
+  BUILD_PATH: '.' # default value when not using subfolders
   # BUILD_PATH: subfolder
 
 jobs:
@@ -65,7 +65,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.BUILD_PATH }}/publico
+          path: ${{ env.BUILD_PATH }}/aplicaciones/www/publico
 
   deploy:
     environment:
