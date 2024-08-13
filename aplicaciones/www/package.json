@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "armar:dev": "astro build --sire https://enflujo.github.io --base /imagina-ninezya"
   },
   "dependencies": {
     "@enflujo/alquimia": "^2.0.0",
