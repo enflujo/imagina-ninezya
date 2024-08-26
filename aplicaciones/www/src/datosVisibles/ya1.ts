@@ -75,7 +75,7 @@ export const ya1: DatosYa = {
     {
       nombre: 'Proporción de nacidos vivos con 4 o más controles prenatales',
       ruta: 'control-prenatal',
-      archivo: 'ya1-5',
+      archivo: 'ya1-4',
       hay_datos: true,
       umbral: 95,
       explicacion_umbral:
@@ -96,7 +96,7 @@ export const ya1: DatosYa = {
     {
       nombre: 'Proporción de menores de 5 años con Desnutrición Aguda',
       ruta: 'desnutricion',
-      archivo: 'ya1-7',
+      archivo: 'ya1-5',
       hay_datos: true,
       umbral: 0.09,
       explicacion_umbral:
@@ -118,7 +118,7 @@ export const ya1: DatosYa = {
     {
       nombre: 'Proporción de nacidos vivos con bajo peso al nacer',
       ruta: 'bajo-peso',
-      archivo: 'ya1-8',
+      archivo: 'ya1-6',
       hay_datos: true,
       umbral: 2.6,
       explicacion_umbral:

@@ -6,5 +6,21 @@
   "ya1-2": {
     "peso": "175.76 kB",
     "nombre": "YA_1.2"
+  },
+  "ya1-3": {
+    "peso": "573.79 kB",
+    "nombre": "YA_1.3"
+  },
+  "ya1-4": {
+    "peso": "760.65 kB",
+    "nombre": "YA_1.4"
+  },
+  "ya1-5": {
+    "peso": "211.28 kB",
+    "nombre": "YA_1.5"
+  },
+  "ya1-6": {
+    "peso": "520.47 kB",
+    "nombre": "YA_1.6"
   }
 }
