@@ -4175,7 +4175,7 @@ __metadata:
     rimraf: "npm:^6.0.1"
     ts-node: "npm:^10.9.2"
     tsconfig-paths: "npm:^4.2.0"
-    typescript: "npm:^5.5.4"
+    typescript: "npm:^5.5.3"
     xlstream: "npm:^2.5.5"
     xlsx: "npm:^0.18.5"
   languageName: unknown
@@ -5027,7 +5027,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.5.4":
+"typescript@npm:^5.5.3":
   version: 5.5.4
   resolution: "typescript@npm:5.5.4"
   bin:
@@ -5037,7 +5037,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.5.4#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.5.3#optional!builtin<compat/typescript>":
   version: 5.5.4
   resolution: "typescript@patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"
   bin:
