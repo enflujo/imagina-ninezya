@@ -1,6 +1,7 @@
 {
   "name": "imagina-ninezya",
   "private": true,
+  "packageManager": "yarn@4.4.1",
   "workspaces": [
     "aplicaciones/*"
   ],
@@ -16,6 +17,6 @@
     "armar:dev": "yarn workspace www armar:dev"
   },
   "devDependencies": {
-    "prettier": "^3.1.0"
+    "prettier": "^3.3.3"
   }
 }

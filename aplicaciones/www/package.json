@@ -13,12 +13,12 @@
   },
   "dependencies": {
     "@enflujo/alquimia": "^2.0.0",
-    "astro": "^3.6.4",
-    "fuzzysort": "^2.0.4",
-    "nanostores": "^0.9.5"
+    "astro": "^4.14.5",
+    "fuzzysort": "^3.0.2",
+    "nanostores": "^0.11.2"
   },
   "devDependencies": {
-    "sass": "^1.69.5",
+    "sass": "^1.77.8",
     "schema-dts": "^1.1.2"
   }
 }
