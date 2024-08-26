@@ -1,5 +1,5 @@
 import { writeFileSync } from 'fs';
-import path from 'path';
+import { resolve } from 'path';
 import { Agregado, NombreCodigo } from '@/tipos';
 
 /**
@@ -16,9 +16,14 @@ export const esNumero = (valor: string): boolean => !isNaN(parseInt(valor));
  * @param {object} json Objeto o Array que se quiere guardar en archivo JSON.
  * @param {string} nombre Nombre del archivo.
  */
-export const guardarJSON = (json: object, nombre: string, ruta = '../datos/procesados', espacios = 0): void => {
+export const guardarJSON = (
+  json: object,
+  nombre: string,
+  ruta = '../../../www/estaticos/datos',
+  espacios = 0
+): void => {
   writeFileSync(
-    path.resolve(__dirname, `${ruta}/${nombre}.json`),
+    resolve(__dirname, `${ruta}/${nombre}.json`),
     JSON.stringify(json, (_llave, valor) => (valor instanceof Set ? [...valor] : valor), espacios)
   );
 };

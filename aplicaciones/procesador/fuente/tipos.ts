@@ -73,8 +73,8 @@ export type RespuestaNacional = {
 export type VariableValorSingular =
   | 'codmpio'
   | 'anno'
-  | 'tacued'
-  | 'talcan'
+  | 'acueducto'
+  | 'alcantarillado'
   | 'tasa_mortalidad_infantil'
   | 'controles_prenatales'
   | 'bajo_peso'

@@ -49,7 +49,7 @@ export async function datosIndicadorMunicipio(año?: string) {
     if (cargando) cargador.classList.add('visible');
   }, 150);
 
-  const respuesta = await pedirDatos<DatosIndicador>(`https://enflujo.com/bodega/ninezya/${nombreArchivo}-mun.json`);
+  const respuesta = await pedirDatos<DatosIndicador>(`${import.meta.env.BASE_URL}/datos/${nombreArchivo}-mun.json`);
   datosMun.set(respuesta);
   cargando = false;
   cargador.classList.remove('visible');
@@ -64,7 +64,7 @@ export async function datosIndicadorDep(año?: string) {
     if (cargando) cargador.classList.add('visible');
   }, 150);
 
-  const respuesta = await pedirDatos<DatosIndicador>(`https://enflujo.com/bodega/ninezya/${nombreArchivo}-dep.json`);
+  const respuesta = await pedirDatos<DatosIndicador>(`${import.meta.env.BASE_URL}/datos/${nombreArchivo}-dep.json`);
   datosDep.set(respuesta);
   cargando = false;
   cargador.classList.remove('visible');
@@ -111,7 +111,7 @@ export async function cargarDatos() {
 
   try {
     // Cargar datos indicador nacionales para linea de tiempo
-    const nal = await pedirDatos<DatosIndicadorNal>(`https://enflujo.com/bodega/ninezya/${nombreArchivo}-nal.json`);
+    const nal = await pedirDatos<DatosIndicadorNal>(`${import.meta.env.BASE_URL}/datos/${nombreArchivo}-nal.json`);
 
     const maximos = definirMedidasMax(nal, nombreArchivo);
     valorMaxY = maximos.y;

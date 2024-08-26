@@ -1,8 +1,9 @@
-import { copyFile, readdir, rm, stat } from 'fs/promises';
+import { copyFile, mkdir, readdir, rm, stat } from 'fs/promises';
 import { parse, resolve } from 'path';
 import { guardarJSON } from './utilidades/ayudas';
-import { cadena, logAviso, logCyan } from './utilidades/constantes';
+import { cadena, logAviso, logCyan, rutaEstaticosDatos } from './utilidades/constantes';
 const ruta = resolve(__dirname, './datos');
+
 type PesosXLSX = {
   [nombre: string]: { peso: string; nombre: string };
 };
@@ -17,6 +18,23 @@ function pesoArchivo(peso: number) {
 }
 
 async function calcularPesos() {
+  const rutaEstaticosDescarga = resolve(__dirname, '../../www/estaticos/datos/descarga');
+
+  // Crear carpetas para depositar datos (si no existen)
+  try {
+    await mkdir(rutaEstaticosDatos).then(() => console.log(`Directory '${rutaEstaticosDatos}' created.`));
+    console.log('carpeta creada:', rutaEstaticosDatos);
+  } catch (error) {
+    console.log(rutaEstaticosDatos, 'ya está creada');
+  }
+
+  try {
+    await mkdir(rutaEstaticosDescarga).then(() => console.log(`Directory '${rutaEstaticosDescarga}' created.`));
+    console.log('carpeta creada:', rutaEstaticosDescarga);
+  } catch (error) {
+    console.log(rutaEstaticosDescarga, 'ya está creada');
+  }
+
   const archivos = await readdir(ruta).then((nombres) =>
     nombres.filter((nombre) => nombre.endsWith('.xlsx') && nombre.includes('YA'))
   );
@@ -24,11 +42,10 @@ async function calcularPesos() {
   archivos.sort();
 
   // Vaciar la carpeta de datos
-  const rutaEstaticosDatos = resolve(__dirname, '../../www/estaticos/datos');
-  const archivosXlsx = await readdir(rutaEstaticosDatos);
+  const archivosXlsx = await readdir(rutaEstaticosDescarga);
 
   for (const xlsx of archivosXlsx) {
-    await rm(`${rutaEstaticosDatos}/${xlsx}`);
+    await rm(`${rutaEstaticosDescarga}/${xlsx}`);
   }
 
   for (const nombre of archivos) {
@@ -41,7 +58,10 @@ async function calcularPesos() {
     datos[nuevoArchivo] = { peso, nombre: nombreArchivo };
 
     // Copiar .xlsx a la carpeta de estáticos en WWW
-    await copyFile(resolve(__dirname, `./datos/${nombre}`), resolve(__dirname, `../../www/estaticos/datos/${nombre}`));
+    await copyFile(
+      resolve(__dirname, `./datos/${nombre}`),
+      resolve(__dirname, `../../www/estaticos/datos/descarga/${nombre}`)
+    );
   }
 
   const nombreArchivoFinal = 'pesosArchivos';
@@ -54,4 +74,4 @@ async function calcularPesos() {
   );
 }
 
-calcularPesos();
+calcularPesos().catch(console.error);

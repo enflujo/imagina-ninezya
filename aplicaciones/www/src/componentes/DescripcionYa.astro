@@ -86,7 +86,7 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
     if (!svg) return;
 
     const respuesta = await pedirDatos<DatosIndicadorNal>(
-      `https://enflujo.com/bodega/ninezya/${nombreArchivo}-nal.json`
+      `${import.meta.env.BASE_URL}/datos/${nombreArchivo}-nal.json`
     );
 
     if (respuesta) {
