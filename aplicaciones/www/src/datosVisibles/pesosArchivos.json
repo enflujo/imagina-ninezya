@@ -1,26 +1,38 @@
 {
   "ya1-1": {
-    "peso": "287.68 kB",
+    "peso": "287.7 kB",
     "nombre": "YA_1.1"
   },
   "ya1-2": {
-    "peso": "175.76 kB",
+    "peso": "174.15 kB",
     "nombre": "YA_1.2"
   },
   "ya1-3": {
-    "peso": "573.79 kB",
+    "peso": "573.4 kB",
     "nombre": "YA_1.3"
   },
   "ya1-4": {
-    "peso": "760.65 kB",
+    "peso": "760.5 kB",
     "nombre": "YA_1.4"
   },
   "ya1-5": {
-    "peso": "211.28 kB",
+    "peso": "203.57 kB",
     "nombre": "YA_1.5"
   },
   "ya1-6": {
-    "peso": "520.47 kB",
+    "peso": "630.91 kB",
     "nombre": "YA_1.6"
+  },
+  "ya3-1": {
+    "peso": "207.19 kB",
+    "nombre": "YA_3.1"
+  },
+  "ya3-2": {
+    "peso": "206.15 kB",
+    "nombre": "YA_3.2"
+  },
+  "ya3-3": {
+    "peso": "212.74 kB",
+    "nombre": "YA_3.3"
   }
 }
