@@ -107,12 +107,16 @@ async function procesarDatos() {
   // await ya314.procesar('3.14: deserción secundaria', 'YA3_3.14', 'Sheet1', 'ya3-14');
   // const ya315 = new VariableSingular('desercion_media', false, 'porcentaje');
   // await ya315.procesar('3.15: deserción media', 'YA3_3.15', 'Sheet1', 'ya3-15');
+  const ya41 = new VariableSingular('tasa_EDA', false, 'porcentaje');
+  await ya41.procesar('4.1: mortalidad EDA', 'YA_4.1', 'Sheet 1', 'ya4-1');
+  const ya42 = new VariableSingular('tasa_IRA', false, 'porcentaje');
+  await ya42.procesar('4.2: mortalidad IRA', 'YA_4.2', 'Sheet 1', 'ya4-2');
   // const ya41 = new NumeradorDenominador(false, 'tasa', 100000);
   // await ya41.procesar('4.1: mortalidad EDA', 'YA4_4.1', 'datos', 'ya4-1');
   // const ya42 = new NumeradorDenominador(false, 'tasa', 100000);
   // await ya42.procesar('4.2: mortalidad IRA', 'YA4_4.2', 'datos', 'ya4-2');
-  // const ya43 = new VariableSingular('tacued', true, 'porcentaje');
-  // await ya43.procesar('4.3: acceso agua potable', 'YA4_4.3', 'Sheet1', 'ya4-3');
+  const ya43 = new VariableSingular('tacued', true, 'porcentaje');
+  await ya43.procesar('4.3: acceso agua potable', 'YA_4.3', 'Export', 'ya4-3');
   // const ya44 = new VariableSingular('concentracion', false, 'escala');
   // await ya44.procesar('4.4: calidad aire', 'YA4_4.4', 'Sheet1', 'ya4-4');
   // const ya71 = new VariableSingular('GINI', false, 'coeficiente', 1.0);

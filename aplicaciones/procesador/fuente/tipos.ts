@@ -79,6 +79,8 @@ export type VariableValorSingular =
   | 'controles_prenatales'
   | 'desnutricion'
   | 'bajo_peso'
+  | 'tasa_EDA'
+  | 'tasa_IRA'
   | 'cobertura_bruta_transicion'
   | 'cobertura_bruta_media'
   | 'cobertura_bruta_primaria'
