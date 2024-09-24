@@ -9,7 +9,7 @@ import type {
   VariableValorSingular,
   VariablesSingulares,
 } from '@/tipos';
-import { guardarJSON, redondearDecimal } from '@/utilidades/ayudas';
+import { esNumero, guardarJSON, redondearDecimal } from '@/utilidades/ayudas';
 import maquinaXlsx from '@/utilidades/maquinaXlsx';
 import { departamentos } from '@/utilidades/lugaresColombia';
 
@@ -103,12 +103,24 @@ export default class {
 
     const año = fila.anno;
 
-    if (!this.datosMunicipios[año]) {
-      this.datosMunicipios[año] = [];
-    }
+    if (año) {
+      if (esNumero(`${año}`)) {
+        const indice = parseInt(`${año}`.replace(',', ''));
+        if (!indice) {
+          console.log(año, indice, parseInt(`${año}`), esNumero(`${año}`));
+        }
+        if (!this.datosMunicipios[indice]) {
+          this.datosMunicipios[indice] = [];
+        }
 
-    if (valor) {
-      this.datosMunicipios[año].push([(municipio as Municipio)[3], redondearDecimal(valor, 1, 2)]);
+        if (valor) {
+          this.datosMunicipios[indice].push([(municipio as Municipio)[3], redondearDecimal(valor, 1, 2)]);
+        }
+      } else {
+        this.errata.push({ fila: numeroFila, error: `El año ${año} no es número.` });
+      }
+    } else {
+      this.errata.push({ fila: numeroFila, error: `No hay año en esta fila, sino ${año}` });
     }
   };
 
