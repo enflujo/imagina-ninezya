@@ -19,8 +19,7 @@ export const ya3: DatosYa = {
       explicacion:
         'Indica, en promedio, en qué categoría se encuentra el desempeño en matemáticas de los estudiantes que presentaron el Saber 11 en un departamento o municipio específico.',
       definicion: 'Mide el desempeño en promedio en el área de Matemáticas en la Prueba Saber 11.',
-      metodologia:
-        'Promedio simple del puntaje promedio por prueba de cada evaluado en una aplicación de Saber 11°',
+      metodologia: 'Promedio simple del puntaje promedio por prueba de cada evaluado en una aplicación de Saber 11°',
       unidad: 'Promedio',
       fuente_numerador: 'DataIcfes',
       fuente_denominador: 'DataIcfes',
@@ -41,8 +40,7 @@ export const ya3: DatosYa = {
       explicacion:
         'Indica, en promedio, en qué categoría se encuentra el desempeño en lectura de los estudiantes que presentaron el Saber 11 en un departamento o municipio específico.',
       definicion: 'Mide el desempeño en promedio en el área de Lectura en la Prueba Saber 11.',
-      metodologia:
-        'Promedio simple del puntaje promedio por prueba de cada evaluado en una aplicación de Saber 11°',
+      metodologia: 'Promedio simple del puntaje promedio por prueba de cada evaluado en una aplicación de Saber 11°',
       unidad: 'Promedio',
       fuente_numerador: 'DataIcfes',
       fuente_denominador: 'DataIcfes',
@@ -121,7 +119,8 @@ export const ya3: DatosYa = {
       archivo: 'ya3-6',
       hay_datos: true,
       umbral: 86.5,
-      explicacion_umbral: 'De acuerdo con el Plan Nacional de Desarrollo 2022-2026 no hay una meta para este indicador.',
+      explicacion_umbral:
+        'De acuerdo con el Plan Nacional de Desarrollo 2022-2026 no hay una meta para este indicador.',
       explicacion: 'Indica la cobertura bruta de estudiantes que cursan educación media.',
       definicion:
         'Tasa de reprobación de estudiantes del sector oficial en primaria. Identifica el porcentaje de alumnos en este nivel educativo que reprueba de acuerdo con los planes y programas de estudio vigentes.',
