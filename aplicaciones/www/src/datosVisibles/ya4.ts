@@ -13,7 +13,7 @@ export const ya4: DatosYa = {
       ruta: 'mortalidad-eda',
       archivo: 'ya4-1',
       hay_datos: true,
-      explicacion_umbral: 'No existe una meta definida como tal.',
+      explicacion_umbral: 'No existe una meta definida como tal.Según el Plan Decenal de Salud Pública, a 2021, se debe contar con el diseño, implementación y desarrollo progresivo de planes y programas territoriales de promoción y prevención de las enfermedades transmitidas por agua, suelo y alimentos.',
       explicacion: 'Indica el número de defunciones en menores de 5 años por enfermedad diarreica aguda.',
       definicion:
         'Indica el número de defunciones en niños menores de 5 años por enfermedad diarreica aguda con respecto a la población de niños menores de 5 años.',
@@ -33,7 +33,7 @@ export const ya4: DatosYa = {
       archivo: 'ya4-2',
       umbral: 8.9,
       explicacion_umbral:
-        'Según las metas establecidas en el Plan Decenal de Salud Pública hasta el año 2021, se ha conseguido disminuir gradualmente la tasa de mortalidad causada por Infecciones Respiratorias Agudas, que incluyen la Neumonía. El objetivo es alcanzar una tasa de mortalidad por Neumonía inferior a 8,9 casos por cada 100.000 niños menores de cinco años.',
+        'De acuerdo con el Plan Decenal de Salud Pública, a 2021, se logra la reducción progresiva de la mortalidad por Infección Respiratoria Aguda (incluida Neumonía), buscando llegar a una mortalidad por Neumonía de menos de 8,9 casos por cada 100.000 menores de cinco años.',
       hay_datos: true,
       explicacion: 'Indica el número de defunciones en menores de 5 años por enfermedad infección respiratoria aguda.',
       definicion:
@@ -51,7 +51,7 @@ export const ya4: DatosYa = {
     {
       nombre: 'Cobertura de acueducto',
       ruta: 'acueducto',
-      archivo: 'ya1-1',
+      archivo: 'ya4-3',
       hay_datos: true,
       umbral: 92.9,
       explicacion_umbral:
@@ -65,7 +65,7 @@ export const ya4: DatosYa = {
       fuente_denominador: 'Sistema Único de Información de Servicios Públicos - SUI',
       desagregacion: 'Municipal',
       contexto:
-        'La pandemia del COVID-19 ha resaltado la  importancia del saneamiento, la higiene y el acceso a agua potable para prevenir y controlar enfermedades. La Organización Mundial de la Salud destaca que el lavado de manos es una medida altamente efectiva para reducir la propagación de patógenos. A esto se suma que Colombia aún carece de una cobertura universal de agua potable y saneamiento.',
+        'El saneamiento, la higiene y el acceso a agua potable son pilares esenciales en la prevención y control de enfermedades. La Organización Mundial de la Salud subraya que el lavado de manos con agua y jabón es una de las medidas más efectivas para frenar la propagación de patógenos. Sin embargo, el acceso a agua potable no solo es crucial para la higiene personal, sino también para la salud pública en general. En Colombia, aún no se ha logrado una cobertura universal de agua potable y saneamiento, lo que resalta la urgencia de mejorar estas condiciones básicas para proteger la salud de la población.',
       interpretacion:
         'Un valor del 70% significa que existen 70 familias que cuentan con acceso real a agua potable por cada 100 familias en un territorio y momento específicos. <br/><br/>Más información sobre la importancia del acceso a agua potable: https://www.un.org/sustainabledevelopment/es/water-and-sanitation/#:~:text=Alcanzar%20la%20cobertura%20universal%20para,y%20tres%20para%20la%20higiene',
     },

@@ -20,7 +20,7 @@ export const ya10: DatosYa = {
       definicion:
         'Indica el número de menores de edad  y mujeres que fueron víctimas de un delito en contra de su libertad e integridad sexual.',
       metodologia: 'Número de menores de edad y mujeres que fueron víctimas',
-      unidad: 'x 100.000 menores',
+      unidad: 'Por cada 100.000 menores',
       fuente_numerador: 'Panel CEDE - Registro Único de Víctimas',
       fuente_denominador: 'Panel CEDE - Registro Único de Víctimas',
       desagregacion: 'Municipal',
@@ -64,8 +64,8 @@ export const ya10: DatosYa = {
         'Total = Suma (Número de Actos Terroristas, Atentados, Combates, Enfrentamientos, Declaraciones de Hostigamientos)',
       unidad: 'Conteo',
       fuente_numerador:
-        'Centro de Estudios sobre Desarrollo Económico de la Facultad de Economía de la Universidad de los Andes (CEDE) con base en el Registro Único de Víctimas',
-      fuente_denominador: 'No aplica',
+        'DANE: Integración de datos y estimación estadística de víctimas en el marco del conflicto armado (CEV - JEP - HRDAG)',
+      fuente_denominador: 'DANE: Integración de datos y estimación estadística de víctimas en el marco del conflicto armado (CEV - JEP - HRDAG)',
       desagregacion: 'Municipal',
       contexto:
         'Sánchez, Solimano y Formisano (2005) han estudiando los efectos del conflicto armado en el desarrollo social colombiano, los autores muestran como los actos terroristas están relacionados con un bajo desempeño en el aula y por consiguiente interfiere en la construcción de herramientas que favorecen la formación de capital humano. <br/><br/>Más información: https://www.jstor.org/stable/pdf/resrep02484.9.pdf',
@@ -85,8 +85,8 @@ export const ya10: DatosYa = {
       metodologia: 'Total = Suma (Artefactos Explosivos, Munición, Minas Antipersonales)',
       unidad: 'Conteo',
       fuente_numerador:
-        'Centro de Estudios sobre Desarrollo Económico de la Facultad de Economía de la Universidad de los Andes (CEDE) con base en el Registro Único de Víctimas',
-      fuente_denominador: 'No aplica',
+        'DANE: Integración de datos y estimación estadística de víctimas en el marco del conflicto armado (CEV - JEP - HRDAG)',
+      fuente_denominador: 'DANE: Integración de datos y estimación estadística de víctimas en el marco del conflicto armado (CEV - JEP - HRDAG)',
       desagregacion: 'Municipal',
       contexto:
         'Las secuelas del conflicto armado en Colombia se manifiestan de manera extensa y perduran en diversos aspectos de la vida individual y social. Incluso después de su supuesta conclusión, persisten marcadas huellas, especialmente al considerar los impactos de armas de gran alcance y bajo costo en términos de guerra, como las minas antipersonal, las municiones sin explotar y los artefactos explosivos improvisados. <br/><br/>Estos dispositivos, que transgreden de manera evidente los principios del derecho internacional humanitario (DIH), carecen de distinción entre civiles y combatientes, y contravienen la prohibición del uso de armas que generen pérdidas innecesarias o causen sufrimientos desmesurados.',
