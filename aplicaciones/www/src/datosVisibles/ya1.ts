@@ -19,13 +19,13 @@ export const ya1: DatosYa = {
       explicacion: 'Indica el acceso potencial a agua potable para el consumo humano.',
       definicion:
         'Conjunto de sistemas de riego que facilita el traslado constante de agua desde una ubicación naturalmente accesible hasta un punto de consumo. Sin embargo, es importante destacar que este indicador podría subestimar el verdadero acceso al agua potable en áreas rurales y no debe ser tomado como una medida precisa de dicho acceso.',
-      metodologia: 'Se desconoce, metodología propia del SUI.',
+      metodologia: 'Se desconoce, metodología propia del SUI',
       unidad: 'Porcentaje',
       fuente_numerador: 'Sistema Único de Información de Servicios Públicos - SUI',
       fuente_denominador: 'Sistema Único de Información de Servicios Públicos - SUI',
       desagregacion: 'Municipal',
       contexto:
-        'La pandemia del COVID-19 ha resaltado la  importancia del saneamiento, la higiene y el acceso a agua potable para prevenir y controlar enfermedades. La Organización Mundial de la Salud destaca que el lavado de manos es una medida altamente efectiva para reducir la propagación de patógenos. A esto se suma que Colombia aún carece de una cobertura universal de agua potable y saneamiento.',
+        'El saneamiento, la higiene y el acceso a agua potable son pilares esenciales en la prevención y control de enfermedades. La Organización Mundial de la Salud subraya que el lavado de manos con agua y jabón es una de las medidas más efectivas para frenar la propagación de patógenos. Sin embargo, el acceso a agua potable no solo es crucial para la higiene personal, sino también para la salud pública en general. En Colombia, aún no se ha logrado una cobertura universal de agua potable y saneamiento, lo que resalta la urgencia de mejorar estas condiciones básicas para proteger la salud de la población.',
       interpretacion:
         'Un valor del 70% significa que existen 70 familias que cuentan con acceso real a agua potable por cada 100 familias en un territorio y momento específicos. <br/><br/>Más información sobre la importancia del acceso a agua potable: https://www.un.org/sustainabledevelopment/es/water-and-sanitation/#:~:text=Alcanzar%20la%20cobertura%20universal%20para,y%20tres%20para%20la%20higiene.',
     },
@@ -46,7 +46,7 @@ export const ya1: DatosYa = {
       fuente_denominador: 'Sistema Único de Información de Servicios Públicos - SUI',
       desagregacion: 'Municipal',
       contexto:
-        'A pesar de los avances en la expansión del acceso a agua potable y saneamiento, aún hay cientos de colombianos que habitan principalmente en áreas rurales y carecen de estos servicios básicos. <br/><br/>A nivel global, una de cada tres personas no tiene acceso a agua potable segura, dos de cada cinco no cuentan con instalaciones básicas para lavarse las manos, y más de 673 millones aún practican la defecación al aire libre.',
+        'A pesar de los avances en la expansión del acceso a agua potable y saneamiento, aún hay cientos de colombianos, principalmente en áreas rurales, que carecen de estos servicios básicos. A nivel global, una de cada tres personas no tiene acceso a agua potable segura, dos de cada cinco no cuentan con instalaciones básicas para lavarse las manos, y más de 673 millones aún practican la defecación al aire libre (Organización Mundial de la Salud, 2021).',
       interpretacion:
         'Un valor del 90% significa que existen 90 familias que cuentan con acceso real a alcantarillado por cada 100 familias en un territorio y momento específicos. <br/><br/>Más información sobre alcantarillado y saneamiento: https://www.un.org/sustainabledevelopment/es/water-and-sanitation/#:~:text=Alcanzar%20la%20cobertura%20universal%20para,y%20tres%20para%20la%20higiene.',
     },
@@ -57,7 +57,7 @@ export const ya1: DatosYa = {
       hay_datos: true,
       umbral: 15,
       explicacion_umbral:
-        'De acuerdo con el Plan Decenal de Salud Pública, a 2021 se habrá disminuido la mortalidad nacional en la niñez a 15 x 1000 nacidos vivos o menos. Según los Objetivos de Desarrollo Sostenible se prevé reducir la mortalidad infantil a 15 por cada 1000 nacidos vivos en el año 2030.',
+        'De acuerdo con  los Objetivos de Desarrollo Sostenible se prevé reducir la mortalidad infantil a 15 por cada 1000 nacidos vivos en el año 2030.',
       explicacion: 'Indica el número de defunciones ocurridas en niños menores de 5 años por cada 1000 nacidos vivos.',
       definicion:
         'Indica el número de defunciones ocurridas en niños menores de 5 años por cada 1000 nacidos vivos en un periodo y territorio determinados.',
@@ -135,7 +135,7 @@ export const ya1: DatosYa = {
         'Centro de Estudios sobre Desarrollo Económico de la Facultad de Economía de la Universidad de los Andes (CEDE) con base a la C600-DANE',
       desagregacion: 'Municipal',
       contexto:
-        'El bajo peso al nacer es un serio problema de salud pública, ya que expresa las condiciones de salud durante la gestación. Se asocia a complicaciones durante los primeros meses de vida, por ejemplo mortalidad, deficiencias en el desarrollo cognitivo, e incluso puede aumentar el riesgo de padecer enfermedades sistémicas a lo largo de la vida.',
+        'El bajo peso al nacer constituye un grave problema de salud pública, reflejando condiciones subóptimas de salud materna y gestacional. Está estrechamente vinculado a un mayor riesgo de complicaciones neonatales, como una mayor tasa de mortalidad infantil y retrasos en el desarrollo neurocognitivo. Además, se asocia con la programación fetal adversa, lo que predispone al individuo a padecer enfermedades crónicas no transmisibles, como trastornos cardiovasculares y metabólicos, a lo largo de su ciclo de vida. Esta carga de morbilidad conlleva implicaciones epidemiológicas y económicas significativas, incrementando la demanda de servicios de salud y afectando el capital humano a largo plazo.',
       interpretacion:
         'Un valor del 2% indica que 2 de cada 100 nacidos vivos a término tienen bajo peso al nacer en un momento y territorio específicos. <br/><br/>Más información: https://apps.who.int/iris/bitstream/handle/10665/255733/WHO_NMH_NHD_14.5_spa.pdf',
     },
