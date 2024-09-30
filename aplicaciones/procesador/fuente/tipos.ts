@@ -117,13 +117,15 @@ export type VariableValorSingular =
   | 'Alumnos_primaria_O'
   | 'Alumnos_primaria_N_O'
   | 'reclu'
-  | 'tasa'
+  | 'intrafamiliar'
   | 'delito'
   | 'secu'
   | 'gini'
   | 'pobreza_monetaria'
   | 'homicidios'
-  | 'sexual';
+  | 'sexual'
+  | 'interpersonal'
+  | 'tasa';
 
 export type VariablesSingulares = {
   [llave in VariableValorSingular]: number;

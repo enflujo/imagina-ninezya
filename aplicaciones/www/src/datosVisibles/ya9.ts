@@ -7,24 +7,23 @@ export const ya9: DatosYa = {
   ruta: 'justicia-restaurativa',
   definicion:
     'Es crucial que los 15.4 millones de menores en Colombia participen en la construcción de una cultura de paz tras el conflicto armado. Reconociendo sus experiencias y dándoles voz activa en el diseño de acciones para la reconciliación, la niñez desempeña un papel esencial. Los gobiernos locales, especialmente en los 170 municipios afectados por el conflicto, deben proporcionarles espacio, priorizando la restitución de derechos y el interés superior de la niñez según normativas nacionales e internacionales. **Los indicadores de este YA nunca fueron proporcionados por el ICBF.',
-  hay_datos: false,
+  hay_datos: true,
   indicadores: [
     {
-      nombre: 'Porcentaje de adolescentes que ingresan más de una vez al SRPA por la presunta comisión de un delito.',
-      ruta: 'adolescentes-srpa',
+      nombre: '...',
+      ruta: 'detencion-no-privativa',
       archivo: 'ya9-1',
-      hay_datos: false,
-      definicion:
-        'Este indicador evalúa la recurrencia de ingreso de adolescentes al Sistema de Responsabilidad Penal Adolescente (SRPA) debido a la presunta comisión de un delito. Se calcula dividiendo el número de adolescentes que ingresan al SRPA en más de una ocasión entre el total de adolescentes que ingresan al sistema, expresado como un porcentaje. <br/><br/>Más información: https://www.icbf.gov.co/bienestar/proteccion/responsabilidad-penal',
-      metodologia:
-        'Número de Adolescentes que Ingresan más de una Vez (representa la cantidad de adolescentes que entran al Sistema de Responsabilidad Penal Adolescente (SRPA) en más de una ocasión) / Número Total de Adolescentes que Ingresan al SRPA en un mismo periodo y territorio específicos * 100',
-      unidad: 'Porcentaje',
-      desagregacion: 'Municipal',
-      interpretacion:
-        'Se interpreta como la proporción de adolescentes que tienen múltiples ingresos al Sistema de Responsabilidad Penal Adolescente (SRPA) en comparación con el total de adolescentes que ingresan al sistema en un período específico. <br/><br/>Alto Porcentaje: Un porcentaje elevado indica que una proporción significativa de adolescentes que ingresan al SRPA lo hacen en más de una ocasión. Esto podría sugerir la existencia de problemas sistémicos o la necesidad de intervenciones más efectivas para prevenir la reincidencia. <br/><br/>Bajo Porcentaje: Un porcentaje más bajo sugiere que la mayoría de los adolescentes ingresan al SRPA en una sola ocasión, lo cual podría ser indicativo de programas de prevención o rehabilitación exitosos que ayudan a evitar la reincidencia.',
-      responsable: 'Instituto Colombiano de Bienestar Familiar (ICBF).',
-      compete_a:
-        'Ministerio de Educación, Instituto Colombiano de Bienestar Familiar (ICBF), Fiscalía General de la Nación, y Secretarías de Educación o Seguridad; de acuerdo a la estructura institucional de cada municipio o departamento.',
+      hay_datos: true,
+      explicacion_umbral: '...',
+      explicacion: '...',
+      definicion: '...',
+      metodologia: '...',
+      unidad: '...',
+      fuente_numerador: '...',
+      fuente_denominador: '....',
+      desagregacion: '...',
+      contexto: '....',
+      interpretacion: '...',
     },
     {
       nombre: 'Tiempo promedio que dura un adolescente o joven en medida de internamiento preventivo',

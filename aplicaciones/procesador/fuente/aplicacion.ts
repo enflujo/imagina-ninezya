@@ -104,28 +104,16 @@ async function procesarDatos() {
   await ya310.procesar('3.10: desercion primaria', 'YA_3.10_VF', 'Sheet 1', 'ya3-10');
   const ya311 = new VariableSingular('desercion_media', false, 'porcentaje');
   await ya311.procesar('3.11: deserción media', 'YA_3.11_VF', 'Sheet 1', 'ya3-11');
-  // const ya312 = new VariableSingular('repitencia_media', false, 'porcentaje');
-  // await ya312.procesar('3.12: repitencia media', 'YA3_3.12', 'Sheet1', 'ya3-12');
-  // const ya313 = new VariableSingular('desercion_primaria', false, 'porcentaje');
-  // await ya313.procesar('3.13: deserción primaria', 'YA3_3.13', 'Sheet1', 'ya3-13');
-  // const ya314 = new VariableSingular('desercion_secundaria', false, 'porcentaje');
-  // await ya314.procesar('3.14: deserción secundaria', 'YA3_3.14', 'Sheet1', 'ya3-14');
-  // const ya315 = new VariableSingular('desercion_media', false, 'porcentaje');
-  // await ya315.procesar('3.15: deserción media', 'YA3_3.15', 'Sheet1', 'ya3-15');
 
   /** 4 */
   const ya41 = new VariableSingular('tasa_EDA', false, 'porcentaje');
   await ya41.procesar('4.1: mortalidad EDA', 'YA_4.1', 'Sheet 1', 'ya4-1');
   const ya42 = new VariableSingular('tasa_IRA', false, 'porcentaje');
   await ya42.procesar('4.2: mortalidad IRA', 'YA_4.2', 'Sheet 1', 'ya4-2');
-  // const ya41 = new NumeradorDenominador(false, 'tasa', 100000);
-  // await ya41.procesar('4.1: mortalidad EDA', 'YA4_4.1', 'datos', 'ya4-1');
-  // const ya42 = new NumeradorDenominador(false, 'tasa', 100000);
-  // await ya42.procesar('4.2: mortalidad IRA', 'YA4_4.2', 'datos', 'ya4-2');
   const ya43 = new VariableSingular('tacued', true, 'porcentaje');
   await ya43.procesar('4.3: acceso agua potable', 'YA_4.3', 'Export', 'ya4-3');
-  // const ya44 = new VariableSingular('concentracion', false, 'escala');
-  // await ya44.procesar('4.4: calidad aire', 'YA4_4.4', 'Sheet1', 'ya4-4');
+  const ya44 = new VariableSingular('concentracion', false, 'escala');
+  await ya44.procesar('4.4: calidad aire', 'YA_4.4', 'Sheet1', 'ya4-4');
 
   /** 7 */
   const ya71 = new VariableSingular('gini', false, 'coeficiente', 1.0);
@@ -138,18 +126,26 @@ async function procesarDatos() {
   await ya81.procesar('8.1: homicidios', 'YA_8.1', 'Sheet 1', 'ya8-1');
   const ya82 = new VariableSingular('sexual', false, 'tasa', 100000);
   await ya82.procesar('8.2: violencia sexual', 'YA_8.2', 'Sheet 1', 'ya8-2');
-  // const ya84 = new VariableSingular('tasa', false, 'tasa', 100000);
-  // await ya84.procesar('8.4: delito', 'YA8_8.4', 'Sheet1', 'ya8-4');
-  // const ya101 = new VariableSingular('e_delito_sex', false, 'conteo', 1);
-  // await ya101.procesar('10.1: delito sexual', 'YA10_10.1', 'Sheet1', 'ya10-1');
-  // const ya102 = new VariableSingular('reclu', false, 'conteo', 1);
-  // await ya102.procesar('10.2: vinculación estructuras criminales', 'YA10_10.2', 'Sheet1', 'ya10-2');
-  // const ya103 = new VariableSingular('o_acto_terror', false, 'conteo', 1);
-  // await ya103.procesar('10.3: ataques armados', 'YA10_10.3', 'Sheet1', 'ya10-3');
-  // const ya104 = new VariableSingular('o_minas_anti', false, 'conteo', 1);
-  // await ya104.procesar('10.4: explosivos', 'YA10_10.4', 'Sheet1', 'ya10-4');
-  // const ya105 = new VariableSingular('secu', false, 'conteo', 1);
-  // await ya105.procesar('10.5: secuestro', 'YA10_10.5', 'Sheet1', 'ya10-5');
+  const ya83 = new VariableSingular('intrafamiliar', false, 'tasa', 100000);
+  await ya83.procesar('8.3: violencia intrafamiliar', 'YA_8.3', 'Sheet 1', 'ya8-3');
+  const ya84 = new VariableSingular('interpersonal', false, 'tasa', 100000);
+  await ya84.procesar('8.4: violencia interpersonal', 'YA_8.4', 'Sheet 1', 'ya8-4');
+
+  /** 9 */
+  // const ya91 = new VariableSingular('tasa', false, 'porcentaje');
+  // await ya91.procesar('9.1: detención no privativa', 'YA_9.1', 'Sheet 1', 'ya9-1');
+
+  /** 10 */
+  const ya101 = new VariableSingular('e_delito_sex', false, 'conteo', 1);
+  await ya101.procesar('10.1: delito sexual', 'YA10_10.1', 'Sheet1', 'ya10-1');
+  const ya102 = new VariableSingular('reclu', false, 'conteo', 1);
+  await ya102.procesar('10.2: vinculación estructuras criminales', 'YA10_10.2', 'Sheet1', 'ya10-2');
+  const ya103 = new VariableSingular('o_acto_terror', false, 'conteo', 1);
+  await ya103.procesar('10.3: ataques armados', 'YA10_10.3', 'Sheet1', 'ya10-3');
+  const ya104 = new VariableSingular('o_minas_anti', false, 'conteo', 1);
+  await ya104.procesar('10.4: explosivos', 'YA10_10.4', 'Sheet1', 'ya10-4');
+  const ya105 = new VariableSingular('secu', false, 'conteo', 1);
+  await ya105.procesar('10.5: secuestro', 'YA10_10.5', 'Sheet1', 'ya10-5');
 }
 
 inicio().catch(console.error);
