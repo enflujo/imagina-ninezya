@@ -104,6 +104,8 @@ const { ya, indicador } = Astro.params;
 
   // Cerrar menú de años al hacer click por fuera
   document.body.addEventListener('click', (evento) => {
+    if (!menu) return;
+
     if (!(menu === evento.target || menu.contains(evento.target as Node))) {
       menu.classList.remove('visible');
     }
