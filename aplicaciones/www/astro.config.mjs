@@ -11,6 +11,13 @@ export default defineConfig({
   },
   vite: {
     ssr: { noExternal: ['@enflujo/alquimia'] },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          api: 'modern-compiler',
+        },
+      },
+    },
   },
   server: {
     port: 3000,
