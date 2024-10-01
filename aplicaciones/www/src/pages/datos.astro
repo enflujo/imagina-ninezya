@@ -47,9 +47,11 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
                             </a>
                           )}
                         </p>
+
                         <span class="abrirFicha" data-ficha={`ya${i}i${j}`}>
-                          ?
+                          Ficha técnica
                         </span>
+
                         <div id={`ya${i}i${j}`} class="contenedorFicha">
                           <FichaTecnica rutaYa={ya.ruta} rutaIndicador={indicador.ruta} />
                         </div>
@@ -121,9 +123,12 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     position: absolute;
     justify-content: space-around;
     background-color: var(--blancoMarfil);
-    top: 0;
-    left: 0;
-    width: 93%;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    // width: 93%;
+    background-color: var(--blancoMarfil);
+    z-index: 7;
     &.abierta {
       display: flex;
     }
@@ -200,10 +205,9 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   }
 
   .indicador {
-    // width: 70vw;
     margin: 0.4em 0;
     border: 1px dotted;
-    position: relative;
+    // position: relative;
   }
 
   .contenedorYa {
@@ -214,19 +218,19 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     }
   }
 
+  .enlace {
+    margin-bottom: 0;
+  }
+
   .abrirFicha {
-    display: block;
-    position: relative;
-    left: 95%;
-    bottom: 10px;
+    display: inline-block;
     background-color: var(--blancoMarfil);
-    border-radius: 50%;
-    padding: 0.18em 0.2em;
-    width: 1.4em;
-    height: 1.4em;
+    border-radius: 3px;
+    border: solid 1px var(--azulViejo);
+    padding: 0.4em;
+    margin: 0 0 1em 1em;
     text-align: center;
     font-size: 0.8em;
-    border: solid 1px var(--azulViejo);
     color: var(--azulViejo);
     cursor: pointer;
   }
@@ -238,9 +242,9 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   }
 
   @media screen and (min-width: $corte3) {
-    .contenedorFicha {
-      width: 70%;
-    }
+    // .contenedorFicha {
+    //   width: 70%;
+    // }
   }
 
   @media screen and (min-width: $corte4) {
@@ -251,7 +255,6 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     }
 
     .contenedorFicha {
-      left: 100%;
       justify-content: flex-start;
     }
   }
