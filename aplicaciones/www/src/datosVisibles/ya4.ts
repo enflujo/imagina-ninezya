@@ -13,7 +13,8 @@ export const ya4: DatosYa = {
       ruta: 'mortalidad-eda',
       archivo: 'ya4-1',
       hay_datos: true,
-      explicacion_umbral: 'No existe una meta definida como tal.Según el Plan Decenal de Salud Pública, a 2021, se debe contar con el diseño, implementación y desarrollo progresivo de planes y programas territoriales de promoción y prevención de las enfermedades transmitidas por agua, suelo y alimentos.',
+      explicacion_umbral:
+        'No existe una meta definida como tal.Según el Plan Decenal de Salud Pública, a 2021, se debe contar con el diseño, implementación y desarrollo progresivo de planes y programas territoriales de promoción y prevención de las enfermedades transmitidas por agua, suelo y alimentos.',
       explicacion: 'Indica el número de defunciones en menores de 5 años por enfermedad diarreica aguda.',
       definicion:
         'Indica el número de defunciones en niños menores de 5 años por enfermedad diarreica aguda con respecto a la población de niños menores de 5 años.',
