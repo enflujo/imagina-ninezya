@@ -30,7 +30,6 @@
     "ignore": [
       "./datos/*"
     ],
-    "exec": "node -r tsconfig-paths/register -r ts-node/register ./fuente/aplicacion.ts && node -r tsconfig-paths/register -r ts-node/register ./fuente/datosDescarga.ts",
     "ext": "ts, js"
   }
 }

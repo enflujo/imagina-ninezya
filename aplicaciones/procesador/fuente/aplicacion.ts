@@ -1,16 +1,12 @@
-import NumeradorDenominador from './modulos/NumeradorDenominador';
 import VariableSingular from './modulos/VariableSingular';
-import { departamentos, municipios } from './utilidades/lugaresColombia';
-import { guardarJSON } from './utilidades/ayudas';
 import { readdir, rm } from 'fs/promises';
-import prerocesarIndicador83 from '@/indicadores/08-03';
 import { rutaEstaticosDatos } from './utilidades/constantes';
+import calcularPesos from './datosDescarga';
 
 async function inicio() {
-  // procesarLugares();
-  // await prerocesarIndicador83();
   await vaciarProcesados();
   await procesarDatos();
+  await calcularPesos();
 }
 
 async function vaciarProcesados() {
@@ -23,37 +19,6 @@ async function vaciarProcesados() {
       await rm(`${rutaEstaticosDatos}/${archivo}`);
     }
   }
-}
-
-function procesarLugares() {
-  const deps = departamentos.datos.map((lugar) => {
-    return { nombre: lugar[1], codigo: lugar[0] };
-  });
-
-  guardarJSON(deps, 'buscador-deps');
-
-  const muns = municipios.datos.map((lugar): { nombre: string; codigo: string; dep?: string } => {
-    const departamento = departamentos.datos.find((dep) => dep[0] === lugar[2]);
-    if (!departamento) {
-      console.log(lugar);
-      throw new Error('no hay departamento');
-    }
-    return { nombre: `${lugar[1]} (${departamento[1]})`, codigo: lugar[3], dep: departamento[1] };
-  });
-
-  muns.sort((a, b) => {
-    if (a.dep && b.dep) {
-      if (a.dep > b.dep) return 1;
-      if (a.dep < b.dep) return -1;
-    }
-    return 0;
-  });
-
-  muns.forEach((mun) => {
-    delete mun.dep;
-  });
-
-  guardarJSON(muns, 'buscador-muns');
 }
 
 async function procesarDatos() {

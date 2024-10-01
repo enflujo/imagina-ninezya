@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
-import { Agregado, NombreCodigo } from '@/tipos';
+import { Agregado, NombreCodigo } from '../tipos';
 
 /**
  * Revisa si el valor de un texto contiene un número.

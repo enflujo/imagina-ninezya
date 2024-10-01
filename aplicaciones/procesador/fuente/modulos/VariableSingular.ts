@@ -1,4 +1,4 @@
-import { limpiarDepartamento, limpiarMunicipio } from '@/limpieza/lugar';
+import { limpiarDepartamento, limpiarMunicipio } from '../limpieza/lugar';
 import type {
   Departamento,
   Errata,
@@ -9,9 +9,9 @@ import type {
   VariableValorSingular,
   VariablesSingulares,
 } from '@/tipos';
-import { esNumero, guardarJSON, redondearDecimal } from '@/utilidades/ayudas';
-import maquinaXlsx from '@/utilidades/maquinaXlsx';
-import { departamentos } from '@/utilidades/lugaresColombia';
+import { esNumero, guardarJSON, redondearDecimal } from '../utilidades/ayudas';
+import maquinaXlsx from '../utilidades/maquinaXlsx';
+import { departamentos } from '../utilidades/lugaresColombia';
 
 export default class {
   datosNacionales: RespuestaNacional;

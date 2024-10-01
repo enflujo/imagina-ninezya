@@ -17,7 +17,7 @@ function pesoArchivo(peso: number) {
   return `${calculo} ${formato}`;
 }
 
-async function calcularPesos() {
+export default async function calcularPesos() {
   const rutaEstaticosDescarga = resolve(__dirname, '../../www/estaticos/datos/descarga');
 
   // Crear carpetas para depositar datos (si no existen)
@@ -73,5 +73,3 @@ async function calcularPesos() {
     logCyan(resolve(__dirname, `${rutaWWW.replace('../', '')}/${nombreArchivoFinal}.json`))
   );
 }
-
-calcularPesos().catch(console.error);
