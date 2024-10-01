@@ -21,3 +21,4 @@ export const gorila = emojify(':gorilla:');
 export const chulo = emojify(':white_check_mark:');
 
 export const rutaEstaticosDatos = resolve(__dirname, '../../../www/estaticos/datos');
+export const rutaEstaticosDescarga = resolve(rutaEstaticosDatos, 'descarga');

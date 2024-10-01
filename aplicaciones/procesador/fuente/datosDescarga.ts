@@ -1,7 +1,7 @@
-import { copyFile, mkdir, readdir, rm, stat } from 'fs/promises';
+import { copyFile, mkdir, readdir, stat } from 'fs/promises';
 import { parse, resolve } from 'path';
 import { guardarJSON } from './utilidades/ayudas';
-import { cadena, logAviso, logCyan, rutaEstaticosDatos } from './utilidades/constantes';
+import { cadena, logAviso, logCyan, rutaEstaticosDatos, rutaEstaticosDescarga } from './utilidades/constantes';
 const ruta = resolve(__dirname, './datos');
 
 type PesosXLSX = {
@@ -18,8 +18,6 @@ function pesoArchivo(peso: number) {
 }
 
 export default async function calcularPesos() {
-  const rutaEstaticosDescarga = resolve(__dirname, '../../www/estaticos/datos/descarga');
-
   // Crear carpetas para depositar datos (si no existen)
   try {
     await mkdir(rutaEstaticosDatos).then(() => console.log(`Directory '${rutaEstaticosDatos}' created.`));
@@ -40,13 +38,6 @@ export default async function calcularPesos() {
   );
 
   archivos.sort();
-
-  // Vaciar la carpeta de datos
-  const archivosXlsx = await readdir(rutaEstaticosDescarga);
-
-  for (const xlsx of archivosXlsx) {
-    await rm(`${rutaEstaticosDescarga}/${xlsx}`);
-  }
 
   for (const nombre of archivos) {
     const { size } = await stat(resolve(ruta, nombre));
