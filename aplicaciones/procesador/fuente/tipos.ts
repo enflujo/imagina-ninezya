@@ -128,7 +128,8 @@ export type VariableValorSingular =
   | 'tasa'
   | 'tasa_mortalidad_neonatal'
   | 'tasa_mortalidad_menores_1_año'
-  | 'tasa_mortalidad_desnutricion_5_años';
+  | 'tasa_mortalidad_desnutricion_5_años'
+  | 'porcentaje_marco_integral';
 
 export type VariablesSingulares = {
   [llave in VariableValorSingular]: number;

@@ -97,5 +97,22 @@ export const ya2: DatosYa = {
       interpretacion:
         'Un valor del 2% indica que 2 de cada 100 estudiantes en edad teórica para cursar transición desertaron en el año lectivo en un momento y territorio específicos. <br/><br/>Más información: https://unitedwaycolombia.org/2023/10/19/desercion-escolar-en-colombia-un-desafio-que-se-agrava/',
     },
+    {
+      nombre: 'Porcentaje marco integral',
+      ruta: 'marco-integral',
+      archivo: 'ya2-5',
+      hay_datos: true,
+      umbral: 80,
+      explicacion_umbral: '...',
+      explicacion: '...',
+      definicion: '...',
+      metodologia: '...',
+      unidad: 'Porcentaje',
+      fuente_numerador: '...',
+      fuente_denominador: '...',
+      desagregacion: 'Municipal',
+      contexto: '...',
+      interpretacion: '...',
+    },
   ],
 };
