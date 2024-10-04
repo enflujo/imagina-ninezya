@@ -172,14 +172,10 @@ const crearSeccionSvg = (
 
 export function definirMedidasMax(datosNal: DatosIndicadorNal, nombreArchivo: string) {
   if (datosNal.unidadMedida > 100) {
-    if (nombreArchivo === 'ya1-7') {
-      return { y: 15000, color: 15000 };
-    } else {
-      return {
-        y: Math.min(Math.ceil(datosNal.maxDep / 100) * 100, 10000),
-        color: Math.ceil(datosNal.maxNal / 10) * 10,
-      };
-    }
+    return {
+      y: Math.min(Math.ceil(datosNal.maxDep / 100) * 100, datosNal.unidadMedida),
+      color: Math.ceil(datosNal.maxNal / 10) * 10,
+    };
   } else {
     if (datosNal.estructura === 'conteo') {
       return {
