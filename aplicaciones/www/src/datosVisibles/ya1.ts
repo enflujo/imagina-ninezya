@@ -19,7 +19,7 @@ export const ya1: DatosYa = {
       explicacion: 'Indica el acceso potencial a agua potable para el consumo humano.',
       definicion:
         'Conjunto de sistemas de riego que facilita el traslado constante de agua desde una ubicación naturalmente accesible hasta un punto de consumo. Sin embargo, es importante destacar que este indicador podría subestimar el verdadero acceso al agua potable en áreas rurales y no debe ser tomado como una medida precisa de dicho acceso.',
-      metodologia: 'Se desconoce, metodología propia del SUI',
+      metodologia: 'Se desconoce, metodología propia del SUI.',
       unidad: 'Porcentaje',
       fuente_numerador: 'Sistema Único de Información de Servicios Públicos - SUI',
       fuente_denominador: 'Sistema Único de Información de Servicios Públicos - SUI',
@@ -144,34 +144,48 @@ export const ya1: DatosYa = {
       ruta: 'mortalidad-neonatal',
       archivo: 'ya1-7',
       hay_datos: true,
-      umbral: 6,
-      explicacion_umbral: '...',
-      explicacion: '...',
-      definicion: '...',
-      metodologia: '...',
+      umbral: 0,
+      explicacion_umbral:
+        'De acuerdo a los Objetivos de Desarrollo Sostenible (ODS) se espera alcanzar una meta de 6 o menos muertes por cada 1,000 nacidos vivos para el 2030.',
+      explicacion: 'Indica la proporción de nacidos vivos con bajo peso al nacer.',
+      definicion:
+        'La tasa de mortalidad neonatal indica el número de muertes de neonatos (niños menores de 28 días) por cada 1,000 nacidos vivos en un año determinado. Es un indicador de la salud materno-infantil y refleja las condiciones de atención durante el embarazo, el parto y el periodo neonatal. <br/><br/> Esta tasa se utiliza para evaluar la calidad de los servicios de salud, las intervenciones de salud pública y el nivel de desarrollo socioeconómico de un país o región. Un alto valor de esta tasa suele estar asociado con problemas como deficiencias en la atención prenatal, complicaciones durante el parto, infecciones neonatales y bajo peso al nacer, entre otros factores.',
+      metodologia:
+        '(Número de muertes de nacidos vivos que ocurren durante los primeros 28 días de vida / número de nacidos vivos) * 1.000 nacidos',
       unidad: 'Tasa',
-      fuente_numerador: '...',
-      fuente_denominador: '...',
+      fuente_numerador:
+        'CUBO INDICADORES EEVV',
+      fuente_denominador:
+        'CUBO INDICADORES EEVV',
       desagregacion: 'Municipal',
-      contexto: '...',
-      interpretacion: '...',
+      contexto:
+        'Desde 1990, el mundo ha avanzado de manera significativa en la reducción de la mortalidad infantil, con una notable disminución del número de muertes neonatales, que pasó de 5 millones en 1990 a 2,3 millones en 2022. A pesar de estos logros, la reducción de la mortalidad neonatal ha sido más lenta en comparación con la disminución de la mortalidad de niños menores de 5 años en el periodo posneonatal, y los progresos se han estancado desde 2010. Actualmente, se estima que 64 países no alcanzarán para 2030 la meta establecida en los Objetivos de Desarrollo Sostenible (ODS) relativa a la reducción de la mortalidad neonatal, a menos que se implementen medidas urgentes para acelerar la tendencia a la baja.<br/><br/>Las probabilidades de supervivencia infantil varían de manera considerable según el lugar de nacimiento del niño. África subsahariana y Asia central y meridional soportan la mayor carga de mortalidad neonatal, con tasas de 27 y 21 muertes por cada 1,000 nacidos vivos, respectivamente, en 2022. Esta desigualdad es especialmente alarmante cuando se compara con regiones como Australia y Nueva Zelanda, donde la tasa de mortalidad neonatal es 11 veces menor que en África subsahariana. En el mismo año, las tasas de mortalidad neonatal a nivel nacional oscilaron ampliamente entre 0,7 y 39,4 muertes por cada 1,000 nacidos vivos, lo que pone de manifiesto las marcadas disparidades en las condiciones de vida y acceso a servicios de salud. En países con las tasas más altas, el riesgo de morir antes de los 28 días de vida fue 60 veces mayor que en aquellos con las tasas más bajas.<br/><br/>La mayoría de las muertes neonatales (75%) se producen durante la primera semana de vida, y aproximadamente 1 millón de recién nacidos fallecen en sus primeras 24 horas. Las principales causas de muerte en esta etapa temprana de la vida son el parto prematuro, las complicaciones relacionadas con el parto (asfixia perinatal o traumatismo obstétrico), las infecciones neonatales y las anomalías congénitas. Estos factores representan en conjunto casi el 40% de todas las muertes de menores de 5 años. A pesar de las reducciones en la incidencia de estas causas desde el año 2000, su proporción relativa en la mortalidad de menores de 5 años se ha mantenido constante, evidenciando la necesidad de un acceso más equitativo y universal a servicios de salud de calidad para prevenir muertes evitables tanto en madres como en recién nacidos',
+      interpretacion:
+        'Un valor de 20 significa que existen 20 defunciones por cada 1000 nacidos vivos en un momento y territorios específicos.<br/><br/> Más Información: https://www.who.int/es/news-room/fact-sheets/detail/newborn-mortality',
     },
     {
       nombre: 'Tasa de mortalidad menores de 1 año',
-      ruta: 'mortalidad-menores-1',
+      ruta: 'mortalidad-menores',
       archivo: 'ya1-8',
       hay_datos: true,
       umbral: 0,
-      explicacion_umbral: '...',
-      explicacion: '...',
-      definicion: '...',
-      metodologia: '...',
+      explicacion_umbral:
+        'Los Objetivos de Desarrollo Sostenible (ODS) establecen como meta eliminar las muertes evitables de recién nacidos y niños menores de 5 años para 2030, un indicador clave para evaluar el progreso de los países, especialmente en aquellos de ingresos medios y bajos, donde se concentra la mayor cantidad de fallecimientos infantiles.',
+      explicacion: 'Indica la proporción de mortalidad por desnutrición en menores de  año.',
+      definicion:
+        'La Tasa de Mortalidad Infantil (TMI) es el número de defunciones de niños menores de 1 año por cada 1.000 nacidos vivos para un año dado, en un determinado país, territorio o área geográfica.',
+      metodologia:
+        'TMI=(No. total de defunciones en menores de un año durante un período dado / No. total de nacidos vivos durante el mismo período) x  1.000',
       unidad: 'Tasa',
-      fuente_numerador: '...',
-      fuente_denominador: '...',
+      fuente_numerador:
+        'CUBO INDICADORES EEVV',
+      fuente_denominador:
+        'CUBO INDICADORES EEVV',
       desagregacion: 'Municipal',
-      contexto: '...',
-      interpretacion: '...',
+      contexto:
+        'En 2019, murieron aproximadamente 1,5 millones de niños menores de 1 año por causas mayoritariamente prevenibles, como infecciones (36%), parto prematuro (28%) y asfixia al nacer (23%), según la OMS. Los Objetivos de Desarrollo Sostenible (ODS) buscan eliminar estas muertes evitables para 2030, con un enfoque especial en países de medianos y bajos ingresos, donde se concentra la mayoría de los casos. Factores como el nivel de ingresos y la educación de la madre son determinantes en la mortalidad infantil. En Colombia, por ejemplo, esta es cuatro veces mayor en el quintil de ingresos más bajo y cinco veces mayor en madres con bajo nivel educativo, lo que evidencia la necesidad de reducir desigualdades para mejorar la salud infantil.',
+      interpretacion:
+        'Un valor de 15 significa que existen 15 defunciones por cada 1000 nacidos vivos en un momento y territorios específicos.<br/><br/> Más Información: https://www.who.int/es/news-room/fact-sheets/detail/children-reducing-mortality',
     },
     {
       nombre: 'Tasa de mortalidad por desnutrición en menores de 5 años',
@@ -179,16 +193,23 @@ export const ya1: DatosYa = {
       archivo: 'ya1-9',
       hay_datos: true,
       umbral: 0,
-      explicacion_umbral: '...',
-      explicacion: '...',
-      definicion: '...',
-      metodologia: '...',
+      explicacion_umbral:
+        'Los Objetivos de Desarrollo Sostenible (ODS) establecen como meta eliminar las muertes evitables de recién nacidos y niños menores de 5 años para 2030, un indicador clave para evaluar el progreso de los países, especialmente en aquellos de ingresos medios y bajos, donde se concentra la mayor cantidad de fallecimientos infantiles. No hay un valor específico.',
+      explicacion: 'Indica la proporción de mortalidad por desnutrición en menores de 5 años.',
+      definicion:
+        'La Tasa de Mortalidad por Desnutrición en Niños Menores de 5 Años es el número de defunciones de niños menores de 5 años causadas por desnutrición, por cada 100,000 niños de esa edad, en un año específico. Este indicador permite evaluar el impacto de la desnutrición en la salud infantil y monitorear la efectividad de las políticas de salud pública orientadas a la prevención y tratamiento de la malnutrición en la población infantil.',
+      metodologia:
+        'TMI=(No. total de defunciones en menores de un año durante un período dado / No. total de nacidos vivos durante el mismo período) x  100.000',
       unidad: 'Tasa',
-      fuente_numerador: '...',
-      fuente_denominador: '...',
+      fuente_numerador:
+        'CUBO INDICADORES EEVV',
+      fuente_denominador:
+        'CUBO INDICADORES EEVV',
       desagregacion: 'Municipal',
-      contexto: '...',
-      interpretacion: '...',
+      contexto:
+        'Las principales causas de mortalidad en niños menores de cinco años son prevenibles o tratables con intervenciones sencillas y accesibles, como la inmunización, una nutrición adecuada, el acceso a agua potable y alimentos seguros, así como la atención de calidad por parte de personal de salud capacitado. Entre estas causas se encuentran complicaciones del parto prematuro, asfixia durante el parto, neumonía, diarrea, paludismo y anomalías congénitas.<br/><br/>A pesar de los avances globales en la reducción de la mortalidad infantil, las infecciones respiratorias agudas, las enfermedades diarreicas y la desnutrición continúan siendo factores significativos en las estadísticas de mortalidad. Se estima que las infecciones respiratorias causan aproximadamente 4 millones de muertes al año y son la principal causa de muerte en este grupo etario. La diarrea, en segundo lugar, provoca la muerte de 525,000 niños cada año. Además, la desnutrición contribuye al 45% de las muertes de menores de cinco años, principalmente en países de ingresos bajos y medianos, donde simultáneamente están aumentando las tasas de sobrepeso y obesidad en la niñez.<br/><br/>En Colombia, la reducción de la mortalidad evitable por desnutrición en niños menores de cinco años es una meta prioritaria dentro del Plan Decenal de Salud Pública. La vigilancia integral y articulada de las condiciones nutricionales y de salud es fundamental, ya que la desnutrición no solo aumenta la incidencia y severidad de las enfermedades diarreicas y respiratorias, sino que estas enfermedades también agravan la desnutrición al afectar el apetito, la absorción y la retención de nutrientes en los niños.',
+      interpretacion:
+        'Un valor de 15 significa que existen 15 defunciones por cada 1000 nacidos vivos en un momento y territorios específicos.<br/><br/> Más Información: https://www.who.int/es/news-room/fact-sheets/detail/children-reducing-mortality',
     },
   ],
 };
