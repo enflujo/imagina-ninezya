@@ -5,27 +5,35 @@ import Plantilla from '@/plantillas/Principal.astro';
 import pesos from '@/datosVisibles/pesosArchivos.json';
 ---
 
-<Plantilla titulo="Datos" descripcion=" Aquí se encuentran los datos en bruto para descarga directa." conMenu={false}>
-  <section class="contenedorDatos">
-    <h1 id="tituloPagina">Datos</h1>
+<Plantilla titulo='Datos' descripcion=' Aquí se encuentran los datos en bruto para descarga directa.' conMenu={false}>
+  <section class='contenedorDatos'>
+    <h1 id='tituloPagina'>Datos</h1>
 
-    <div id="datos">
-      <div class="textoDatos">
+    <div id='datos'>
+      <div class='textoDatos'>
         <p>
-          Aquí se encuentran los datos en bruto para descarga directa en formato <span class="negrita">.xlsx</span>. En
-          el menú selecciona el <span class="negrita">YA</span> del cual quieres obtener datos. Cada archivo incluye información
+          Aquí se encuentran los datos en bruto para descarga directa en formato <span class='negrita'>.xlsx</span>. En
+          el menú selecciona el <span class='negrita'>YA</span> del cual quieres obtener datos. Cada archivo incluye información
           de distintos años.
         </p>
       </div>
 
-      <form id="selector">
-        <label for="opciones">Selecciona un YA</label>
-        <select id="opciones" name="opciones">
-          {datos.map((ya, i) => ya.hay_datos && <option value={ya.ruta}>{`${i + 1}. ${ya.nombre}`}</option>)}
-        </select>
-      </form>
+      <div class='botonesSubMenu'>
+        {
+          datos.map((ya, i) => (
+            <div
+              class={`botonYaDatos${!ya.hay_datos ? ' desactivado' : ''}${i === 0 ? ' activo' : ''}`}
+              data-ya={ya.ruta}
+            >
+              <span class='iconoYa' style={`background-image:url(${import.meta.env.BASE_URL}/iconos/ya${i + 1}.svg)`} />
+              <span class='nombreYa'>{`${i + 1} ${ya.nombre}`}</span>
+              {!ya.hay_datos && <span class='explicacion'>Este indicador no tiene datos</span>}
+            </div>
+          ))
+        }
+      </div>
 
-      <div id="indicadores">
+      <div id='indicadores'>
         {
           datos.map(
             (ya, i) =>
@@ -33,26 +41,35 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
                 <div id={ya.ruta} class={`contenedorYa${i === 0 ? ' visible' : ''}`}>
                   {ya.indicadores.map((indicador, j) => {
                     return (
-                      <div class="indicador">
-                        <p class="columna enlace">
-                          {pesos[indicador.archivo] && (
-                            <a href={`${import.meta.env.BASE_URL}/datos/${pesos[indicador.archivo].nombre}.xlsx`}>
-                              <span class="nombre">{indicador.nombre}</span>
-                              <span class="peso">({pesos[indicador.archivo].peso})</span>
-                              <img
-                                class="iconoDescarga"
-                                src={`${import.meta.env.BASE_URL}/imagenes/icono-descarga.svg`}
-                                alt="Icono Descarga"
-                              />
-                            </a>
-                          )}
-                        </p>
+                      <div class='indicador'>
+                        <div class='columna'>
+                          <p class='enlace'>
+                            {pesos[indicador.archivo] && (
+                              <a href={`${import.meta.env.BASE_URL}/datos/${pesos[indicador.archivo].nombre}.xlsx`}>
+                                <span class='nombre'>{indicador.nombre}</span>
+                                <span class='peso'>({pesos[indicador.archivo].peso})</span>
+                              </a>
+                            )}
+                          </p>
+                          <span class='botonCaja'>
+                            <img
+                              class='iconoDescarga'
+                              src={`${import.meta.env.BASE_URL}/imagenes/icono-descarga.svg`}
+                              alt='Icono Descarga'
+                            />{' '}
+                            .xlsx
+                          </span>
 
-                        <span class="abrirFicha" data-ficha={`ya${i}i${j}`}>
-                          Ficha técnica
-                        </span>
+                          <span class='abrirFicha botonCaja' data-ficha={`ya${i}i${j}`}>
+                            Ficha técnica
+                          </span>
+                        </div>
 
-                        <div id={`ya${i}i${j}`} class="contenedorFicha">
+                        <div class='columna definicion'>
+                          <p>{indicador.definicion}</p>
+                        </div>
+
+                        <div id={`ya${i}i${j}`} class='contenedorFicha'>
                           <FichaTecnica rutaYa={ya.ruta} rutaIndicador={indicador.ruta} />
                         </div>
                       </div>
@@ -68,10 +85,10 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
 </Plantilla>
 
 <script>
-  const selector = document.getElementById('selector') as HTMLFormElement;
-  const opciones = document.getElementById('opciones') as HTMLSelectElement;
   const contenedor = document.getElementById('indicadores') as HTMLDivElement;
   const botones = document.querySelectorAll<HTMLSpanElement>('.abrirFicha');
+  const botonesYa = document.querySelectorAll<HTMLDivElement>('.botonYaDatos');
+
   let fichaAbierta: HTMLDivElement;
 
   botones.forEach((boton) => {
@@ -90,14 +107,26 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     }
   });
 
-  selector.onchange = () => {
-    if (opciones.value) {
-      const contenedorYa = document.getElementById(opciones.value);
-      const visible = contenedor.querySelector<HTMLDivElement>('.visible') as HTMLDivElement;
-      visible.classList.remove('visible');
-      contenedorYa.classList.add('visible');
-    }
-  };
+  if (botonesYa && botonesYa.length) {
+    botonesYa.forEach((boton) => {
+      if (boton.classList.contains('desactivado')) return;
+      const contenedorYa = document.getElementById(boton.dataset.ya);
+
+      boton.addEventListener('click', () => {
+        if (boton.classList.contains('activo')) return;
+
+        const visible = contenedor.querySelector<HTMLDivElement>('.visible') as HTMLDivElement;
+        visible.classList.remove('visible');
+        contenedorYa.classList.add('visible');
+
+        const activo = document.querySelector('.botonYaDatos.activo');
+
+        if (activo) activo.classList.remove('activo');
+
+        boton.classList.add('activo');
+      });
+    });
+  }
 
   // Cerrar ficha al hacer click afuera
   document.body.addEventListener('click', (evento) => {
@@ -111,7 +140,8 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   });
 </script>
 
-<style lang="scss">
+<style lang='scss'>
+  @use 'sass:color';
   @import '@/scss/constantes';
 
   .contenedorDatos {
@@ -120,7 +150,7 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
 
   .contenedorFicha {
     display: none;
-    position: absolute;
+    position: fixed;
     justify-content: space-around;
     background-color: var(--blancoMarfil);
     top: 80px;
@@ -138,6 +168,46 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     width: 60vw;
     max-width: 1300px;
     margin: 0 auto 7em auto;
+  }
+
+  .botonesSubMenu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.75em;
+
+    .botonYaDatos {
+      width: calc(50% - 10px);
+      text-align: center;
+      border: 1px solid;
+      padding: 0 0.5em 0.5em 0.5em;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: color.adjust(#7600db, $lightness: 70%);
+      }
+
+      &.activo {
+        background-color: var(--uvaNinezYa);
+        color: var(--blancoMarfil);
+        cursor: default;
+
+        .iconoYa {
+          background-position-x: -48px;
+        }
+      }
+
+      &.desactivado {
+        display: none;
+      }
+    }
+
+    .iconoYa {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   #tituloPagina {
@@ -194,8 +264,7 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   }
 
   .iconoDescarga {
-    width: 22px;
-    margin-left: 0.5em;
+    width: 14px;
     vertical-align: bottom;
   }
 
@@ -207,6 +276,11 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   .indicador {
     margin: 0.4em 0;
     border: 1px dotted;
+    display: flex;
+
+    .definicion {
+      font-size: 0.85em;
+    }
     // position: relative;
   }
 
@@ -218,21 +292,22 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     }
   }
 
-  .enlace {
-    margin-bottom: 0;
-  }
-
-  .abrirFicha {
+  .botonCaja {
     display: inline-block;
     background-color: var(--blancoMarfil);
     border-radius: 3px;
     border: solid 1px var(--azulViejo);
     padding: 0.4em;
-    margin: 0 0 1em 1em;
+    margin: 0 1em 1em 0;
     text-align: center;
     font-size: 0.8em;
     color: var(--azulViejo);
     cursor: pointer;
+
+    &:hover {
+      color: var(--blancoMarfil);
+      background-color: var(--color22);
+    }
   }
 
   /// ✂️ Cortes pantalla
@@ -242,9 +317,28 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   }
 
   @media screen and (min-width: $corte3) {
-    // .contenedorFicha {
-    //   width: 70%;
-    // }
+    .botonesSubMenu {
+      .botonYaDatos {
+        width: calc(20% - 10px);
+
+        &.desactivado {
+          opacity: 0.4;
+          cursor: default;
+          display: block;
+
+          .explicacion {
+            font-family: Arial Helvetica sans-serif;
+            display: block;
+            font-style: italic;
+            margin-top: 0.6em;
+          }
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
   }
 
   @media screen and (min-width: $corte4) {

@@ -14,12 +14,10 @@ export const getStaticPaths = (() => {
     .flat();
 }) satisfies GetStaticPaths;
 
-const { ya, indicador } = Astro.params;
-//const datosYa = datos.find((instancia) => instancia.ruta === ya);
+const { ya } = Astro.params;
 
 const posYa = datos.findIndex((instancia) => instancia.ruta === ya);
 const datosYa = datos[posYa];
-const datosIndicador = datosYa.indicadores.find((instancia) => instancia.ruta === indicador);
 const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: string }[] = datosYa.indicadores.map(
   (indicador) => {
     return {

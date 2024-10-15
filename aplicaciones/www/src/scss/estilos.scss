@@ -97,6 +97,16 @@ h2 {
   color: var(--azulViejo);
 }
 
+a,
+a:link {
+  text-decoration: none;
+  color: var(--color11);
+
+  &:hover {
+    color: var(--color22);
+  }
+}
+
 i {
   font-variation-settings:
     'MONO' 0,
@@ -274,5 +284,21 @@ main {
   .contenido {
     flex-direction: row;
     margin-left: 440px;
+  }
+}
+
+.iconoYa {
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  z-index: 9;
+  background-position: 2px;
+
+  &.actual {
+    background-color: var(--uvaNinezYa);
+    background-position-x: -48px;
   }
 }

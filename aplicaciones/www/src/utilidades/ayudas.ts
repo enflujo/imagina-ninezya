@@ -37,7 +37,7 @@ export const hexARGB = (valor: string): number[] | null => {
   const color = valor.match(/.{1,2}/g);
   if (color) {
     const rgb = [parseInt(color[0], 16), parseInt(color[1], 16), parseInt(color[2], 16)];
-
+    
     return rgb;
   }
 
@@ -137,7 +137,7 @@ export const crearLinea = (
   let res = '';
 
   geometria.coordinates.forEach((grupo: Position[] | Position[][]): void => {
-    grupo.forEach((posicion, i) => {
+    grupo.forEach((posicion: Position | Position[], i: number) => {
       const cabeza = i === 0 ? 'M' : 'L';
 
       if (typeof posicion[0] === 'object') {

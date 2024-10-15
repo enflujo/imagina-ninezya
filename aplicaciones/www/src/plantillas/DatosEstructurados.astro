@@ -34,26 +34,26 @@ const OrgEnFlujo: Organization = {
   logo: 'https://imagina.uniandes.edu.co/especiales/siya/imagenes/SEO_EnFlujo.webp',
 };
 
-const OrgImagina: Organization = {
-  '@type': 'Organization',
-  '@id': 'https://imagina.uniandes.edu.co/#identidad',
-  name: 'Centro Imagina',
-  description:
-    'Imagina es una plataforma de colaboración multidisciplinaria, que busca impactar el bienestar de la infancia y adolescencia; a través de la investigación, la comunicación, el desarrollo de capacidades y la incidencia en política pública vinculando a niños, niñas y jóvenes en el proceso.',
-  url: 'https://imagina.uniandes.edu.co',
-  // foundingDate: '2020',
-  foundingLocation: 'Bogotá, Colombia',
-  // founder: {
-  //   '@id': 'https://juancgonzalez.com/#identidad',
-  // },
-  sameAs: [
-    // 'https://www.instagram.com/labenflujo/',
-    // 'https://github.com/enflujo',
-    // 'https://twitter.com/labenflujo',
-    // 'https://www.facebook.com/labenflujo',
-  ],
-  logo: 'https://imagina.uniandes.edu.co/especiales/siya/imagenes/SEO_imagina.webp',
-};
+// const OrgImagina: Organization = {
+//   '@type': 'Organization',
+//   '@id': 'https://imagina.uniandes.edu.co/#identidad',
+//   name: 'Centro Imagina',
+//   description:
+//     'Imagina es una plataforma de colaboración multidisciplinaria, que busca impactar el bienestar de la infancia y adolescencia; a través de la investigación, la comunicación, el desarrollo de capacidades y la incidencia en política pública vinculando a niños, niñas y jóvenes en el proceso.',
+//   url: 'https://imagina.uniandes.edu.co',
+//   // foundingDate: '2020',
+//   foundingLocation: 'Bogotá, Colombia',
+//   // founder: {
+//   //   '@id': 'https://juancgonzalez.com/#identidad',
+//   // },
+//   sameAs: [
+//     // 'https://www.instagram.com/labenflujo/',
+//     // 'https://github.com/enflujo',
+//     // 'https://twitter.com/labenflujo',
+//     // 'https://www.facebook.com/labenflujo',
+//   ],
+//   logo: 'https://imagina.uniandes.edu.co/especiales/siya/imagenes/SEO_imagina.webp',
+// };
 
 const OrgNiñezYa: Organization = {
   '@type': 'Organization',
@@ -92,4 +92,4 @@ const datos: Graph = {
 };
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(datos)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(datos)} />
