@@ -24,7 +24,7 @@
     "nombre": "ya1-1-acueducto.xlsx"
   },
   "ya1-2": {
-    "peso": "174.15 kB",
+    "peso": "179.05 kB",
     "nombre": "ya1-2-alcantarillado.xlsx"
   },
   "ya1-3": {
@@ -32,15 +32,15 @@
     "nombre": "ya1-3-mortalidad.xlsx"
   },
   "ya1-4": {
-    "peso": "760.5 kB",
+    "peso": "776.84 kB",
     "nombre": "ya1-4-control-prenatal.xlsx"
   },
   "ya1-5": {
-    "peso": "203.57 kB",
+    "peso": "210.54 kB",
     "nombre": "ya1-5-desnutricion.xlsx"
   },
   "ya1-6": {
-    "peso": "630.91 kB",
+    "peso": "646.06 kB",
     "nombre": "ya1-6-bajo-peso.xlsx"
   },
   "ya1-7": {
@@ -48,11 +48,11 @@
     "nombre": "ya1-7-mortalidad-neonatal.xlsx"
   },
   "ya1-8": {
-    "peso": "474.29 kB",
+    "peso": "493.14 kB",
     "nombre": "ya1-8-mortalidad-menores.xlsx"
   },
   "ya1-9": {
-    "peso": "211.29 kB",
+    "peso": "203.6 kB",
     "nombre": "ya1-9-mortalidad-desnutricion-5.xlsx"
   },
   "ya2-1": {
@@ -72,7 +72,7 @@
     "nombre": "ya2-4-desercion-transicion.xlsx"
   },
   "ya2-5": {
-    "peso": "182.88 kB",
+    "peso": "183.01 kB",
     "nombre": "ya2-5-marco-integral.xlsx"
   },
   "ya3-1": {
@@ -80,15 +80,15 @@
     "nombre": "ya3-1-saber11-matematicas.xlsx"
   },
   "ya3-10": {
-    "peso": "259.45 kB",
+    "peso": "232.41 kB",
     "nombre": "ya3-10-desercion-primaria.xlsx"
   },
   "ya3-11": {
-    "peso": "224.68 kB",
+    "peso": "231.06 kB",
     "nombre": "ya3-11-desercion-media.xlsx"
   },
   "ya3-2": {
-    "peso": "206.15 kB",
+    "peso": "210.45 kB",
     "nombre": "ya3-2-saber11-lectura.xlsx"
   },
   "ya3-3": {
@@ -96,35 +96,35 @@
     "nombre": "ya3-3-saber11-total.xlsx"
   },
   "ya3-4": {
-    "peso": "232.09 kB",
+    "peso": "240.27 kB",
     "nombre": "ya3-4-cobertura-primaria.xlsx"
   },
   "ya3-5": {
-    "peso": "230.73 kB",
+    "peso": "238.37 kB",
     "nombre": "ya3-5-cobertura-media.xlsx"
   },
   "ya3-6": {
-    "peso": "222.25 kB",
+    "peso": "229.01 kB",
     "nombre": "ya3-6-reprobacion-primaria.xlsx"
   },
   "ya3-7": {
-    "peso": "256.62 kB",
+    "peso": "229.79 kB",
     "nombre": "ya3-7-reprobacion-media.xlsx"
   },
   "ya3-8": {
-    "peso": "224.02 kB",
+    "peso": "230.84 kB",
     "nombre": "ya3-8-repitencia-primaria.xlsx"
   },
   "ya3-9": {
-    "peso": "251 kB",
+    "peso": "258.79 kB",
     "nombre": "ya3-9-repitencia-media.xlsx"
   },
   "ya4-1": {
-    "peso": "213.33 kB",
+    "peso": "204.59 kB",
     "nombre": "ya4-1-mortalidad-eda.xlsx"
   },
   "ya4-2": {
-    "peso": "280.43 kB",
+    "peso": "280.74 kB",
     "nombre": "ya4-2-mortalidad-ira.xlsx"
   },
   "ya4-3": {
@@ -136,11 +136,11 @@
     "nombre": "ya4-4-calidad-aire.xlsx"
   },
   "ya7-1": {
-    "peso": "15.24 kB",
+    "peso": "13.82 kB",
     "nombre": "ya7-1-gini.xlsx"
   },
   "ya7-2": {
-    "peso": "19.56 kB",
+    "peso": "18.42 kB",
     "nombre": "ya7-2-pobreza-monetaria.xlsx"
   },
   "ya8-1": {
@@ -156,11 +156,23 @@
     "nombre": "ya8-3-homicidios-menores.xlsx"
   },
   "ya8-4": {
-    "peso": "191.23 kB",
+    "peso": "229.76 kB",
     "nombre": "ya8-4-....xlsx"
   },
   "ya9-1": {
     "peso": "13.9 kB",
     "nombre": "ya9-1-detencion-no-privativa.xlsx"
+  },
+  "ya9-2": {
+    "peso": "15.01 kB",
+    "nombre": "ya9-2-tiempo-internamiento.xlsx"
+  },
+  "ya9-3": {
+    "peso": "14.94 kB",
+    "nombre": "ya9-3-justicia-restaurativa.xlsx"
+  },
+  "ya9-4": {
+    "peso": "18.21 kB",
+    "nombre": "ya9-4-cae-acceso-educativo.xlsx"
   }
 }
