@@ -2,7 +2,6 @@
   "name": "procesador",
   "version": "1.0.0",
   "description": "Procesador de datos para ¡Niñez Ya!",
-  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "dev": " nodemon ./fuente/aplicacion.ts",
@@ -25,9 +24,13 @@
     "xlsx": "^0.18.5"
   },
   "nodemonConfig": {
+    "watch": [
+      "fuente"
+    ],
     "ignore": [
       "./datos/*"
     ],
-    "ext": "ts, js"
+    "ext": "ts",
+    "exec": "ts-node ./fuente/aplicacion.ts"
   }
 }

@@ -6,46 +6,46 @@ const datosIndicador = datosYa.indicadores.find((instancia) => instancia.ruta ==
 import { urlsAEnlacesHTML } from '@enflujo/alquimia';
 ---
 
-<div class='contenedorInfoAdicional' data-hayDatos=`${datosIndicador.hay_datos}`>
-  <div class='contenedorSugerencias'>
-    <div class='aviso'>
+<div class="contenedorInfoAdicional" data-hayDatos=`${datosIndicador.hay_datos}`>
+  <div class="contenedorSugerencias">
+    <div class="aviso">
       No hay información suficiente para reconstruir este indicador. Proponemos algunas sugerencias de cómo podría
       trabajarse.
     </div>
-    <div class='sugerencia'>
-      <h4 class='titulo'>Responsables de medición</h4><p class='texto'>
+    <div class="sugerencia">
+      <h4 class="titulo">Responsables de medición</h4><p class="texto">
         {datosIndicador.responsable}
       </p>
     </div>
-    <div class='sugerencia'>
-      <h4 class='titulo'>A quién le compete</h4><p
-        class='texto'
+    <div class="sugerencia">
+      <h4 class="titulo">A quién le compete</h4><p
+        class="texto"
         set:html={urlsAEnlacesHTML(datosIndicador.compete_a)}
       />
     </div>
   </div>
 
-  <div class='fichaTecnica'>
-    <h2 class='tituloSeccion tituloYa'>{datosYa.nombre}</h2>
-    <p class='nombre'>{datosIndicador.nombre}</p>
-    <div class='seccion'>
-      <h4 class='titulo'>Definición</h4><p class='texto' set:html={urlsAEnlacesHTML(datosIndicador.definicion)} />
+  <div class="fichaTecnica">
+    <h2 class="tituloSeccion tituloYa">{datosYa.nombre}</h2>
+    <p class="nombre">{datosIndicador.nombre}</p>
+    <div class="seccion">
+      <h4 class="titulo">Definición</h4><p class="texto" set:html={urlsAEnlacesHTML(datosIndicador.definicion)} />
     </div>
-    <h3 class='tituloSeccion'>Información técnica</h3>
-    <section class='inferior'>
-      <div class='seccion'><h4 class='titulo'>Unidad de medida</h4><p class='texto'>{datosIndicador.unidad}</p></div>
-      <div class='seccion'>
-        <h4 class='titulo'>Metodología de cálculo</h4><p class='texto'>{datosIndicador.metodologia}</p>
+    <h3 class="tituloSeccion">Información técnica</h3>
+    <section class="inferior">
+      <div class="seccion"><h4 class="titulo">Unidad de medida</h4><p class="texto">{datosIndicador.unidad}</p></div>
+      <div class="seccion">
+        <h4 class="titulo">Metodología de cálculo</h4><p class="texto">{datosIndicador.metodologia}</p>
       </div>
-      <div class='seccion'>
-        <h4 class='titulo'>Cómo se interpreta</h4>
-        <p class='texto' set:html={urlsAEnlacesHTML(datosIndicador.interpretacion)} />
+      <div class="seccion">
+        <h4 class="titulo">Cómo se interpreta</h4>
+        <p class="texto" set:html={urlsAEnlacesHTML(datosIndicador.interpretacion)} />
       </div>
     </section>
   </div>
 </div>
 
-<style lang='scss'>
+<style lang="scss">
   @import '@/scss/constantes';
   .contenedorInfoAdicional {
     display: flex;

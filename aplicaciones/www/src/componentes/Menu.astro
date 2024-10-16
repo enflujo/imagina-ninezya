@@ -4,7 +4,7 @@ import datos from '@/datosVisibles/indicadores';
 const { ya, indicador } = Astro.params;
 ---
 
-<nav id='menu'>
+<nav id="menu">
   <ol>
     {
       datos.map((datosYa, i) => {
@@ -21,9 +21,9 @@ const { ya, indicador } = Astro.params;
               </p>
             </a>
 
-            <span class='desplegarIndicadores'>︾</span>
+            <span class="desplegarIndicadores">︾</span>
 
-            <ul class='indicadores'>
+            <ul class="indicadores">
               {datosYa.indicadores.map((datosIndicador) => {
                 return (
                   <li
@@ -112,7 +112,7 @@ const { ya, indicador } = Astro.params;
   });
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @import '@/scss/constantes';
 
   #menu {

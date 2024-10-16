@@ -1,4 +1,4 @@
-import type { DatosYa } from '@/tipos';
+import type { DatosYa } from '../tipos/compartidos';
 
 export const ya9: DatosYa = {
   nombre:

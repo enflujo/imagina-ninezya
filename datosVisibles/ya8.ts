@@ -1,4 +1,4 @@
-import type { DatosYa } from '@/tipos';
+import type { DatosYa } from '../tipos/compartidos';
 
 export const ya8: DatosYa = {
   nombre: 'Protección frente a cualquier tipo de violencia',

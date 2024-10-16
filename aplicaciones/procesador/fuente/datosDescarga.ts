@@ -1,7 +1,8 @@
 import { copyFile, mkdir, readdir, stat } from 'fs/promises';
-import { parse, resolve } from 'path';
+import { extname, parse, resolve } from 'path';
 import { guardarJSON } from './utilidades/ayudas';
 import { cadena, logAviso, logCyan, rutaEstaticosDatos, rutaEstaticosDescarga } from './utilidades/constantes';
+import * as datosYas from '../../../datosVisibles/indicadores';
 const ruta = resolve(__dirname, './datos');
 
 type PesosXLSX = {
@@ -44,19 +45,33 @@ export default async function calcularPesos() {
     const nombreArchivo = parse(nombre).name;
     const peso = pesoArchivo(size);
     const pos = nombreArchivo.indexOf('_') + 1;
-    const nuevoArchivo = ('ya' + nombreArchivo.slice(pos, nombreArchivo.length)).replace('.', '-');
+    const nombreSimple = ('ya' + nombreArchivo.slice(pos, nombreArchivo.length)).replace('.', '-');
+    const datosYa = datosYas.default.find((ya) =>
+      ya.indicadores.find((indicador) => indicador.archivo === nombreSimple)
+    );
 
-    datos[nuevoArchivo] = { peso, nombre: nombreArchivo };
+    if (!datosYa) {
+      throw new Error(`No hay datos para archivo ${nombreSimple}`);
+    }
+
+    const dataosIndicador = datosYa.indicadores.find((indicador) => indicador.archivo === nombreSimple);
+
+    if (!dataosIndicador) {
+      throw new Error(`No hay datos para archivo ${nombreSimple}`);
+    }
+
+    const nuevoNombreXlsx = `${nombreSimple}-${dataosIndicador.ruta}${extname(nombre)}`;
+    datos[nombreSimple] = { peso, nombre: nuevoNombreXlsx };
 
     // Copiar .xlsx a la carpeta de estáticos en WWW
     await copyFile(
       resolve(__dirname, `./datos/${nombre}`),
-      resolve(__dirname, `../../www/estaticos/datos/descarga/${nombre}`)
+      resolve(__dirname, `../../www/estaticos/datos/descarga/${nuevoNombreXlsx}`)
     );
   }
 
   const nombreArchivoFinal = 'pesosArchivos';
-  const rutaWWW = '../../../www/src/datosVisibles';
+  const rutaWWW = '../../../../datosVisibles';
   guardarJSON(datos, nombreArchivoFinal, rutaWWW, 2);
   console.log(
     cadena,

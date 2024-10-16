@@ -9,21 +9,21 @@ interface Props {
 const { ancho, alto } = Astro.props;
 ---
 
-<div id='contenedorMapa'>
-  <svg class='mapa' data-proporciones={JSON.stringify({ ancho, alto })}>
+<div id="contenedorMapa">
+  <svg class="mapa" data-proporciones={JSON.stringify({ ancho, alto })}>
     <defs>
-      <pattern id='sinInfo' patternUnits='userSpaceOnUse' width='3.5' height='3.5' patternTransform='rotate(45)'>
-        <line x1='0' y1='0' x2='0' y2='3.5' stroke='#46484A' stroke-width='1'></line>
+      <pattern id="sinInfo" patternUnits="userSpaceOnUse" width="3.5" height="3.5" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="3.5" stroke="#46484A" stroke-width="1"></line>
       </pattern>
     </defs>
 
-    <g id='colombia'></g>
-    <g id='seleccionados'></g>
+    <g id="colombia"></g>
+    <g id="seleccionados"></g>
   </svg>
-  <div id='leyendaMapa'>
-    <span class='marcaLeyenda alerta'></span>
-    <span class='marcaLeyenda umbral'></span>
-    <span class='marcaLeyenda positivo'></span>
+  <div id="leyendaMapa">
+    <span class="marcaLeyenda alerta"></span>
+    <span class="marcaLeyenda umbral"></span>
+    <span class="marcaLeyenda positivo"></span>
   </div>
 </div>
 
@@ -358,7 +358,7 @@ const { ancho, alto } = Astro.props;
   }
 </script>
 
-<style lang='scss' is:global>
+<style lang="scss" is:global>
   @import '@/scss/constantes';
 
   #contenedorMapa {
@@ -389,7 +389,7 @@ const { ancho, alto } = Astro.props;
   }
 </style>
 
-<style lang='scss'>
+<style lang="scss">
   #leyendaMapa {
     width: 200px;
     height: 7px;

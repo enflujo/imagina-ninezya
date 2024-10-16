@@ -3,73 +3,85 @@ import FichaTecnica from '@/componentes/FichaTecnica.astro';
 import datos from '@/datosVisibles/indicadores';
 import Plantilla from '@/plantillas/Principal.astro';
 import pesos from '@/datosVisibles/pesosArchivos.json';
+import { urlsAEnlacesHTML } from '@enflujo/alquimia';
+console.log(pesos);
 ---
 
-<Plantilla titulo='Datos' descripcion=' Aquí se encuentran los datos en bruto para descarga directa.' conMenu={false}>
-  <section class='contenedorDatos'>
-    <h1 id='tituloPagina'>Datos</h1>
+<Plantilla titulo="Datos" descripcion=" Aquí se encuentran los datos en bruto para descarga directa." conMenu={false}>
+  <section class="contenedorDatos">
+    <h1 id="tituloPagina">Datos</h1>
 
-    <div id='datos'>
-      <div class='textoDatos'>
+    <div id="datos">
+      <div class="textoDatos">
         <p>
-          Aquí se encuentran los datos en bruto para descarga directa en formato <span class='negrita'>.xlsx</span>. En
-          el menú selecciona el <span class='negrita'>YA</span> del cual quieres obtener datos. Cada archivo incluye información
+          Aquí se encuentran los datos en bruto para descarga directa en formato <span class="negrita">.xlsx</span>. En
+          el menú selecciona el <span class="negrita">YA</span> del cual quieres obtener datos. Cada archivo incluye información
           de distintos años.
         </p>
       </div>
 
-      <div class='botonesSubMenu'>
+      <div class="botonesSubMenu">
         {
           datos.map((ya, i) => (
             <div
               class={`botonYaDatos${!ya.hay_datos ? ' desactivado' : ''}${i === 0 ? ' activo' : ''}`}
               data-ya={ya.ruta}
             >
-              <span class='iconoYa' style={`background-image:url(${import.meta.env.BASE_URL}/iconos/ya${i + 1}.svg)`} />
-              <span class='nombreYa'>{`${i + 1} ${ya.nombre}`}</span>
-              {!ya.hay_datos && <span class='explicacion'>Este indicador no tiene datos</span>}
+              <span class="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/ya${i + 1}.svg)`} />
+              <span class="nombreYa">{`${i + 1} ${ya.nombre}`}</span>
+              {!ya.hay_datos && <span class="explicacion">Este indicador no tiene datos</span>}
             </div>
           ))
         }
       </div>
 
-      <div id='indicadores'>
+      <div id="indicadores">
         {
           datos.map(
             (ya, i) =>
               ya.hay_datos && (
                 <div id={ya.ruta} class={`contenedorYa${i === 0 ? ' visible' : ''}`}>
                   {ya.indicadores.map((indicador, j) => {
+                    const datosArchivo = pesos[indicador.archivo];
+
                     return (
-                      <div class='indicador'>
-                        <div class='columna'>
-                          <p class='enlace'>
-                            {pesos[indicador.archivo] && (
-                              <a href={`${import.meta.env.BASE_URL}/datos/${pesos[indicador.archivo].nombre}.xlsx`}>
-                                <span class='nombre'>{indicador.nombre}</span>
-                                <span class='peso'>({pesos[indicador.archivo].peso})</span>
+                      <div class="indicador">
+                        <div class="columna">
+                          <p class="enlace">
+                            {datosArchivo ? (
+                              <a href={`${import.meta.env.BASE_URL}/datos/descarga/${datosArchivo.nombre}`}>
+                                <span class="nombre">{indicador.nombre}</span>
+                                <span class="peso">({datosArchivo.peso})</span>
                               </a>
+                            ) : (
+                              <span class="nombre">{indicador.nombre}</span>
                             )}
                           </p>
-                          <span class='botonCaja'>
-                            <img
-                              class='iconoDescarga'
-                              src={`${import.meta.env.BASE_URL}/imagenes/icono-descarga.svg`}
-                              alt='Icono Descarga'
-                            />{' '}
-                            .xlsx
-                          </span>
 
-                          <span class='abrirFicha botonCaja' data-ficha={`ya${i}i${j}`}>
+                          {datosArchivo && (
+                            <a
+                              class="botonCaja"
+                              href={`${import.meta.env.BASE_URL}/datos/descarga/${datosArchivo.nombre}`}
+                            >
+                              <img
+                                class="iconoDescarga"
+                                src={`${import.meta.env.BASE_URL}/imagenes/icono-descarga.svg`}
+                                alt="Icono Descarga"
+                              />{' '}
+                              .xlsx
+                            </a>
+                          )}
+
+                          <span class="abrirFicha botonCaja" data-ficha={`ya${i}i${j}`}>
                             Ficha técnica
                           </span>
                         </div>
 
-                        <div class='columna definicion'>
-                          <p>{indicador.definicion}</p>
+                        <div class="columna definicion">
+                          <p set:html={urlsAEnlacesHTML(indicador.definicion)} />
                         </div>
 
-                        <div id={`ya${i}i${j}`} class='contenedorFicha'>
+                        <div id={`ya${i}i${j}`} class="contenedorFicha">
                           <FichaTecnica rutaYa={ya.ruta} rutaIndicador={indicador.ruta} />
                         </div>
                       </div>
@@ -140,7 +152,7 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   });
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @use 'sass:color';
   @import '@/scss/constantes';
 

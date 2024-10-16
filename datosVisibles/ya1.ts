@@ -1,4 +1,4 @@
-import type { DatosYa } from '@/tipos';
+import type { DatosYa } from '../tipos/compartidos';
 
 export const ya1: DatosYa = {
   nombre: 'Salud y nutrición',
@@ -153,10 +153,8 @@ export const ya1: DatosYa = {
       metodologia:
         '(Número de muertes de nacidos vivos que ocurren durante los primeros 28 días de vida / número de nacidos vivos) * 1.000 nacidos',
       unidad: 'Tasa',
-      fuente_numerador:
-        'CUBO INDICADORES EEVV',
-      fuente_denominador:
-        'CUBO INDICADORES EEVV',
+      fuente_numerador: 'CUBO INDICADORES EEVV',
+      fuente_denominador: 'CUBO INDICADORES EEVV',
       desagregacion: 'Municipal',
       contexto:
         'Desde 1990, el mundo ha avanzado de manera significativa en la reducción de la mortalidad infantil, con una notable disminución del número de muertes neonatales, que pasó de 5 millones en 1990 a 2,3 millones en 2022. A pesar de estos logros, la reducción de la mortalidad neonatal ha sido más lenta en comparación con la disminución de la mortalidad de niños menores de 5 años en el periodo posneonatal, y los progresos se han estancado desde 2010. Actualmente, se estima que 64 países no alcanzarán para 2030 la meta establecida en los Objetivos de Desarrollo Sostenible (ODS) relativa a la reducción de la mortalidad neonatal, a menos que se implementen medidas urgentes para acelerar la tendencia a la baja.<br/><br/>Las probabilidades de supervivencia infantil varían de manera considerable según el lugar de nacimiento del niño. África subsahariana y Asia central y meridional soportan la mayor carga de mortalidad neonatal, con tasas de 27 y 21 muertes por cada 1,000 nacidos vivos, respectivamente, en 2022. Esta desigualdad es especialmente alarmante cuando se compara con regiones como Australia y Nueva Zelanda, donde la tasa de mortalidad neonatal es 11 veces menor que en África subsahariana. En el mismo año, las tasas de mortalidad neonatal a nivel nacional oscilaron ampliamente entre 0,7 y 39,4 muertes por cada 1,000 nacidos vivos, lo que pone de manifiesto las marcadas disparidades en las condiciones de vida y acceso a servicios de salud. En países con las tasas más altas, el riesgo de morir antes de los 28 días de vida fue 60 veces mayor que en aquellos con las tasas más bajas.<br/><br/>La mayoría de las muertes neonatales (75%) se producen durante la primera semana de vida, y aproximadamente 1 millón de recién nacidos fallecen en sus primeras 24 horas. Las principales causas de muerte en esta etapa temprana de la vida son el parto prematuro, las complicaciones relacionadas con el parto (asfixia perinatal o traumatismo obstétrico), las infecciones neonatales y las anomalías congénitas. Estos factores representan en conjunto casi el 40% de todas las muertes de menores de 5 años. A pesar de las reducciones en la incidencia de estas causas desde el año 2000, su proporción relativa en la mortalidad de menores de 5 años se ha mantenido constante, evidenciando la necesidad de un acceso más equitativo y universal a servicios de salud de calidad para prevenir muertes evitables tanto en madres como en recién nacidos',
@@ -177,10 +175,8 @@ export const ya1: DatosYa = {
       metodologia:
         'TMI=(No. total de defunciones en menores de un año durante un período dado / No. total de nacidos vivos durante el mismo período) x  1.000',
       unidad: 'Tasa',
-      fuente_numerador:
-        'CUBO INDICADORES EEVV',
-      fuente_denominador:
-        'CUBO INDICADORES EEVV',
+      fuente_numerador: 'CUBO INDICADORES EEVV',
+      fuente_denominador: 'CUBO INDICADORES EEVV',
       desagregacion: 'Municipal',
       contexto:
         'En 2019, murieron aproximadamente 1,5 millones de niños menores de 1 año por causas mayoritariamente prevenibles, como infecciones (36%), parto prematuro (28%) y asfixia al nacer (23%), según la OMS. Los Objetivos de Desarrollo Sostenible (ODS) buscan eliminar estas muertes evitables para 2030, con un enfoque especial en países de medianos y bajos ingresos, donde se concentra la mayoría de los casos. Factores como el nivel de ingresos y la educación de la madre son determinantes en la mortalidad infantil. En Colombia, por ejemplo, esta es cuatro veces mayor en el quintil de ingresos más bajo y cinco veces mayor en madres con bajo nivel educativo, lo que evidencia la necesidad de reducir desigualdades para mejorar la salud infantil.',
@@ -201,10 +197,8 @@ export const ya1: DatosYa = {
       metodologia:
         'TMI=(No. total de defunciones en menores de un año durante un período dado / No. total de nacidos vivos durante el mismo período) x  100.000',
       unidad: 'Tasa',
-      fuente_numerador:
-        'CUBO INDICADORES EEVV',
-      fuente_denominador:
-        'CUBO INDICADORES EEVV',
+      fuente_numerador: 'CUBO INDICADORES EEVV',
+      fuente_denominador: 'CUBO INDICADORES EEVV',
       desagregacion: 'Municipal',
       contexto:
         'Las principales causas de mortalidad en niños menores de cinco años son prevenibles o tratables con intervenciones sencillas y accesibles, como la inmunización, una nutrición adecuada, el acceso a agua potable y alimentos seguros, así como la atención de calidad por parte de personal de salud capacitado. Entre estas causas se encuentran complicaciones del parto prematuro, asfixia durante el parto, neumonía, diarrea, paludismo y anomalías congénitas.<br/><br/>A pesar de los avances globales en la reducción de la mortalidad infantil, las infecciones respiratorias agudas, las enfermedades diarreicas y la desnutrición continúan siendo factores significativos en las estadísticas de mortalidad. Se estima que las infecciones respiratorias causan aproximadamente 4 millones de muertes al año y son la principal causa de muerte en este grupo etario. La diarrea, en segundo lugar, provoca la muerte de 525,000 niños cada año. Además, la desnutrición contribuye al 45% de las muertes de menores de cinco años, principalmente en países de ingresos bajos y medianos, donde simultáneamente están aumentando las tasas de sobrepeso y obesidad en la niñez.<br/><br/>En Colombia, la reducción de la mortalidad evitable por desnutrición en niños menores de cinco años es una meta prioritaria dentro del Plan Decenal de Salud Pública. La vigilancia integral y articulada de las condiciones nutricionales y de salud es fundamental, ya que la desnutrición no solo aumenta la incidencia y severidad de las enfermedades diarreicas y respiratorias, sino que estas enfermedades también agravan la desnutrición al afectar el apetito, la absorción y la retención de nutrientes en los niños.',

@@ -51,31 +51,31 @@ const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: stri
     datosIndicador.hay_datos ? (
       <>
         <div
-          id='visualizaciones'
-          class='columna'
+          id="visualizaciones"
+          class="columna"
           data-archivo={datosIndicador.archivo}
           data-umbral={datosIndicador.umbral}
           data-unidad={datosIndicador.unidad}
         >
-          <div id='secionSuperior'>
-            <div id='filtros'>
-              <div id='indicadorSeleccionado'>
-                <h2 id='nombreYa'>{datosYa.nombre}</h2>
-                <h3 id='nombreIndicador'>{datosIndicador.nombre}</h3>
+          <div id="secionSuperior">
+            <div id="filtros">
+              <div id="indicadorSeleccionado">
+                <h2 id="nombreYa">{datosYa.nombre}</h2>
+                <h3 id="nombreIndicador">{datosIndicador.nombre}</h3>
 
-                <span id='abrirFicha'>?</span>
-                <div id='contenedorInfoAdicional'>
+                <span id="abrirFicha">?</span>
+                <div id="contenedorInfoAdicional">
                   <FichaTecnica rutaYa={datosYa.ruta} rutaIndicador={datosIndicador.ruta} />
                 </div>
               </div>
 
-              <p id='descripcionIndicador'>{datosIndicador.explicacion}</p>
+              <p id="descripcionIndicador">{datosIndicador.explicacion}</p>
               <Buscador />
 
               <SelectorNivel />
               <MenuAnios />
             </div>
-            <div id='mapa'>
+            <div id="mapa">
               <Mapa ancho={30} alto={45} />
             </div>
           </div>
@@ -83,8 +83,8 @@ const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: stri
           <LineaTiempo alto={25} meta={datosIndicador.explicacion_umbral} umbral={datosIndicador.umbral} />
         </div>
 
-        <div id='comparativo' class='columna' />
-        <div id='informacion' />
+        <div id="comparativo" class="columna" />
+        <div id="informacion" />
       </>
     ) : (
       <PropuestaIndicador />
@@ -191,7 +191,7 @@ const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: stri
   }
 </script>
 
-<style lang='scss'>
+<style lang="scss">
   @import '@/scss/constantes';
 
   #visualizaciones {

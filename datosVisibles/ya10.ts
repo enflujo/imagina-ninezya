@@ -1,4 +1,4 @@
-import type { DatosYa } from '@/tipos';
+import type { DatosYa } from '../tipos/compartidos';
 
 export const ya10: DatosYa = {
   nombre: 'Cultura de paz, reconciliación y convivencia',

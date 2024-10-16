@@ -1,4 +1,4 @@
-import type { DatosYa } from '@/tipos';
+import type { DatosYa } from '../tipos/compartidos';
 import { ya1 } from './ya1';
 import { ya2 } from './ya2';
 import { ya3 } from './ya3';

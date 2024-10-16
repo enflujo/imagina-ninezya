@@ -37,7 +37,7 @@ export const hexARGB = (valor: string): number[] | null => {
   const color = valor.match(/.{1,2}/g);
   if (color) {
     const rgb = [parseInt(color[0], 16), parseInt(color[1], 16), parseInt(color[2], 16)];
-    
+
     return rgb;
   }
 
