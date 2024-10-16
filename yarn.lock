@@ -4746,7 +4746,6 @@ __metadata:
     nodemon: "npm:^3.1.7"
     rimraf: "npm:^6.0.1"
     ts-node: "npm:^10.9.2"
-    www: "workspace:*"
     xlstream: "npm:^2.5.5"
     xlsx: "npm:^0.18.5"
   languageName: unknown
@@ -6321,7 +6320,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"www@workspace:*, www@workspace:aplicaciones/www":
+"www@workspace:aplicaciones/www":
   version: 0.0.0-use.local
   resolution: "www@workspace:aplicaciones/www"
   dependencies:
