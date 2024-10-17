@@ -1,4 +1,5 @@
-import type { DatosIndicadorNal, IMapearCoordenadas } from '@/tipos';
+import type { IMapearCoordenadas } from '@/tipos';
+import type { DatosIndicadorNal } from '@/tiposCompartidos/compartidos';
 import type { MultiPolygon, Polygon, Position } from 'geojson';
 /**
  * Convierte un valor de una escala a otra.

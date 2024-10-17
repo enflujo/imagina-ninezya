@@ -29,7 +29,7 @@ export const ya9: DatosYa = {
       nombre: 'Tiempo promedio que dura un adolescente o joven en medida de internamiento preventivo',
       ruta: 'tiempo-internamiento',
       archivo: 'ya9-2',
-      hay_datos: false,
+      hay_datos: true,
       definicion:
         'Es un indicador que mide la duración media en la cual un adolescente o joven permanece en una medida de internamiento preventivo. Este tipo de medida se aplica como precaución antes de que se haya llevado a cabo un juicio o haya una decisión final sobre el caso legal del individuo. <br/><br/>Más información: https://www.icbf.gov.co/bienestar/proteccion/responsabilidad-penal',
       metodologia:
@@ -46,9 +46,9 @@ export const ya9: DatosYa = {
       nombre: 'Número de casos abordados o finalizados en los Programas de Justicia Restaurativa del País',
       ruta: 'justicia-restaurativa',
       archivo: 'ya9-3',
-      hay_datos: false,
+      hay_datos: true,
       definicion:
-        ' Se refiere a la cantidad total de casos que han sido tratados o concluidos dentro de los programas de justicia restaurativa a nivel nacional. La justicia restaurativa es un enfoque no convencional que busca resolver conflictos y delitos mediante la reconciliación y la reparación, priorizando la restauración de relaciones en las comunidades, a través de intervenciones directas. <br/><br/>Más información: https://www.icbf.gov.co/bienestar/proteccion/responsabilidad-penal',
+        'Se refiere a la cantidad total de casos que han sido tratados o concluidos dentro de los programas de justicia restaurativa a nivel nacional. La justicia restaurativa es un enfoque no convencional que busca resolver conflictos y delitos mediante la reconciliación y la reparación, priorizando la restauración de relaciones en las comunidades, a través de intervenciones directas. <br/><br/>Más información: https://www.icbf.gov.co/bienestar/proteccion/responsabilidad-penal',
       metodologia: 'Número total de casos abordados o finalizados en un mismo periodo y territorios específicos.',
       unidad: 'Conteo',
       desagregacion: 'Municipal',
@@ -63,7 +63,7 @@ export const ya9: DatosYa = {
         'Porcentaje de adolescentes o jóvenes en Centros de Atención Especializada y Centros de Internamiento Preventivo con acceso al sistema educativo.',
       ruta: 'cae-acceso-educativo',
       archivo: 'ya9-4',
-      hay_datos: false,
+      hay_datos: true,
       definicion:
         'Se refiere a la proporción de adolescentes y/o jóvenes que se encuentran en instalaciones como Centros de Atención Especializada y Centros de Internamiento Preventivo y que tienen acceso al sistema educativo. En otras palabras, mide la cantidad de jóvenes en centros especializados o de internamiento preventivo que participan en programas educativos en relación con el total de jóvenes en esas instalaciones. <br/><br/>Más información: https://www.icbf.gov.co/bienestar/proteccion/responsabilidad-penal',
       metodologia:

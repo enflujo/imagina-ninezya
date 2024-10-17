@@ -4,7 +4,6 @@ import type {
   Errata,
   EstructurasMatematicas,
   Municipio,
-  RespuestaNacional,
   RespuestaNumDen,
   RespuestaNumDenNal,
   RespuestaPorcentaje,
@@ -12,9 +11,10 @@ import type {
 } from '@/tipos';
 import { guardarJSON, redondearDecimal } from '@/utilidades/ayudas';
 import maquinaXlsx from '@/utilidades/maquinaXlsx';
+import { DatosIndicadorNal } from '../../../../tipos/compartidos';
 
 export default class {
-  datosNacionales: RespuestaNacional;
+  datosNacionales: DatosIndicadorNal;
   datosDepartamentos: RespuestaPorcentaje;
   datosMunicipios: RespuestaPorcentaje;
   preDatosMunicipios: RespuestaNumDen;
@@ -29,6 +29,7 @@ export default class {
       estructura,
       unidadMedida,
       datos: {},
+      datosMunicipio: true,
       maxNal: 0,
       minNal: Infinity,
       maxDep: 0,

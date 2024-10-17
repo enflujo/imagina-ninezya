@@ -30,23 +30,11 @@ export interface ExtremosCoordenadas {
   longitudMax: number;
 }
 
-export type TiposEstructura = 'porcentaje' | 'tasa' | 'escala' | 'conteo' | 'coeficiente';
 export type DatosAño = [codigo: string, valor: number][];
 export type DatosIndicador = { [año: string]: DatosAño };
-export type DatosPorAño = { [año: string]: number };
+
 export type DatosPorAñoOrdenado = { año: string; valor: number | null }[];
-export type DatosIndicadorNal = {
-  ascendente: boolean;
-  estructura: TiposEstructura;
-  unidadMedida: number;
-  datos: DatosPorAño;
-  minNal: number;
-  maxNal: number;
-  minDep: number;
-  maxDep: number;
-  minMun: number;
-  maxMun: number;
-};
+
 export type FuncionColor = (valor: number) => string;
 
 export interface LugarSeleccionado {

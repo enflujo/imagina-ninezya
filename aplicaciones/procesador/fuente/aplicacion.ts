@@ -115,8 +115,14 @@ async function procesarDatos() {
   await ya84.procesar('8.4: violencia interpersonal', 'YA_8.4', 'Sheet 1', 'ya8-4');
 
   /** 9 */
-  // const ya91 = new VariableSingular('tasa', false, 'porcentaje');
-  // await ya91.procesar('9.1: detención no privativa', 'YA_9.1', 'Sheet 1', 'ya9-1');
+  const ya91 = new VariableSingular('tasa', false, 'porcentaje');
+  await ya91.procesar('9.1: detención no privativa', 'YA_9.1', 'Sheet 1', 'ya9-1');
+  const ya92 = new VariableSingular('tasa', false, 'porcentaje');
+  await ya92.procesar('9.2: tiempo de reclutamiento', 'YA_9.2', 'Sheet 1', 'ya9-2');
+  const ya93 = new VariableSingular('tasa', false, 'porcentaje');
+  await ya93.procesar('9.3: justicia restaurativa', 'YA_9.3', 'Sheet 1', 'ya9-3');
+  const ya94 = new VariableSingular('tasa', false, 'porcentaje');
+  await ya94.procesar('9.4: acceso educativo', 'YA_9.4', 'Sheet 1', 'ya9-4');
 
   /** 10 */
   const ya101 = new VariableSingular('e_delito_sex', false, 'conteo', 1);

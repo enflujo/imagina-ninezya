@@ -46,7 +46,8 @@ const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCo
 </div>
 
 <script>
-  import type { DatosIndicadorNal, DatosPorAñoOrdenado } from '@/tipos';
+  import type { DatosPorAñoOrdenado } from '@/tipos';
+  import type { DatosIndicadorNal } from '@/tiposCompartidos/compartidos';
   import { definirMedidasMax, pedirDatos } from '@/utilidades/ayudas';
   import { colorPositivo } from '@/utilidades/constantes';
   import { convertirEscala } from '@enflujo/alquimia';

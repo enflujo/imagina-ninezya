@@ -4,7 +4,6 @@ import type {
   Errata,
   EstructurasMatematicas,
   Municipio,
-  RespuestaNacional,
   RespuestaPorcentaje,
   VariableValorSingular,
   VariablesSingulares,
@@ -12,14 +11,16 @@ import type {
 import { esNumero, guardarJSON, redondearDecimal } from '../utilidades/ayudas';
 import maquinaXlsx from '../utilidades/maquinaXlsx';
 import { departamentos } from '../utilidades/lugaresColombia';
+import { DatosIndicadorNal } from '../../../../tipos/compartidos';
 
 export default class {
-  datosNacionales: RespuestaNacional;
+  datosNacionales: DatosIndicadorNal;
   datosDepartamentos: RespuestaPorcentaje;
   datosMunicipios: RespuestaPorcentaje;
   errata: { fila: number; error: string }[];
   nombreVariableValor: VariableValorSingular;
   estructura: EstructurasMatematicas;
+  exportarMunicipios: boolean;
 
   constructor(
     nombreVariable: VariableValorSingular,
@@ -32,6 +33,7 @@ export default class {
       estructura,
       unidadMedida,
       datos: {},
+      datosMunicipio: true,
       maxNal: 0,
       minNal: Infinity,
       maxDep: 0,
@@ -44,6 +46,7 @@ export default class {
     this.datosDepartamentos = {};
     this.nombreVariableValor = nombreVariable;
     this.estructura = estructura;
+    this.exportarMunicipios = true;
   }
 
   async procesar(nombreReferencia: string, nombreArchivo: string, hoja: string, nombreParaArchivo: string) {
@@ -51,6 +54,7 @@ export default class {
     this.procesarDepartamentos();
     this.procesarNacional();
 
+    if (!this.exportarMunicipios) this.datosNacionales.datosMunicipio = false;
     guardarJSON(this.datosMunicipios, `${nombreParaArchivo}-mun`);
     guardarJSON(this.datosDepartamentos, `${nombreParaArchivo}-dep`);
     guardarJSON(this.datosNacionales, `${nombreParaArchivo}-nal`);
@@ -58,107 +62,111 @@ export default class {
     if (this.errata.length) guardarJSON(this.errata, `Errata ${nombreParaArchivo}`);
   }
 
-  procesarMunicipios = (fila: VariablesSingulares, numeroFila: number) => {
-    const municipio = limpiarMunicipio(+fila.codmpio);
-    const valor = fila[this.nombreVariableValor];
-
+  validarValor(valor: number, numeroFila: number) {
     if (valor && isNaN(valor)) {
       this.errata.push({ fila: numeroFila, error: `el valor no es un número: ${valor}` });
-      return;
+      return false;
     }
 
-    this.revisarMinMax(valor, 'maxMun', 'minMun');
+    return true;
+  }
 
-    // Si no existe el municipio
-    if (municipio.hasOwnProperty('error') && valor) {
-      // El código de datos nacionales es 1001 entonces lo podemos comparar directo.
-      if (fila.codmpio == 1001) {
-        this.datosNacionales.datos[fila.anno] = valor;
+  procesarMunicipios = (fila: VariablesSingulares, numeroFila: number) => {
+    const valor = fila[this.nombreVariableValor];
+
+    if (fila.hasOwnProperty('codmpio')) {
+      const municipio = limpiarMunicipio(+fila.codmpio);
+      const tieneValor = this.validarValor(valor, numeroFila);
+      if (!tieneValor) return;
+
+      this.revisarMinMax(valor, 'maxMun', 'minMun');
+
+      // Si no existe el municipio
+      if (municipio.hasOwnProperty('error') && valor) {
+        // El código de datos nacionales es 1001 entonces lo podemos comparar directo.
+        if (fila.codmpio == 1001) {
+          this.datosNacionales.datos[fila.anno] = valor;
+          return;
+        }
+        // Si termina en 00 y no lo encontró antes significa que es el dato del departamento.
+        else if (`${fila.codmpio}`.slice(-2) === '00') {
+          // Poner ceros al principio y convertir a texto para que quede bien al comparar con código departamento.
+          const codigoCompleto = `${fila.codmpio}`.padStart(5, '0');
+          const codigoDep = codigoCompleto.slice(0, 2); // sacar los primeros dos números.
+          const dep = departamentos.datos.find((obj) => obj[0] === codigoDep); // buscar el departamento.
+
+          // agregar datos del departamento si existen.
+          if (dep) {
+            if (!this.datosDepartamentos[fila.anno]) {
+              this.datosDepartamentos[fila.anno] = [];
+            }
+
+            this.datosDepartamentos[fila.anno].push([(dep as Departamento)[0], valor]);
+            return;
+          } else {
+            this.errata.push({ fila: numeroFila, error: `No existe departamento con código: ${codigoDep}` });
+          }
+        }
+
+        // No pasó ninguna prueba, registrar en errata para revisar el caso.
+        this.errata.push({ fila: numeroFila, error: (municipio as Errata).mensaje });
         return;
       }
-      // Si termina en 00 y no lo encontró antes significa que es el dato del departamento.
-      else if (`${fila.codmpio}`.slice(-2) === '00') {
-        // Poner ceros al principio y convertir a texto para que quede bien al comparar con codigo departamento.
-        const codigoCompleto = `${fila.codmpio}`.padStart(5, '0');
-        const codigoDep = codigoCompleto.slice(0, 2); // sacar los primeros dos números.
-        const dep = departamentos.datos.find((obj) => obj[0] === codigoDep); // buscar el departamento.
 
-        // agregar datos del departamento si existen.
-        if (dep) {
-          if (!this.datosDepartamentos[fila.anno]) {
-            this.datosDepartamentos[fila.anno] = [];
-          }
-
-          this.datosDepartamentos[fila.anno].push([(dep as Departamento)[0], valor]);
-          return;
-        } else {
-          this.errata.push({ fila: numeroFila, error: `No existe departamento con código: ${codigoDep}` });
-        }
-      }
-
-      // No pasó ninguna prueba, registrar en errata para revisar el caso.
-      this.errata.push({ fila: numeroFila, error: (municipio as Errata).mensaje });
-      return;
-    }
-
-    const año = fila.anno;
-
-    if (año) {
-      if (esNumero(`${año}`)) {
-        const indice = parseInt(`${año}`.replace(',', ''));
-        if (!indice) {
-          console.log(año, indice, parseInt(`${año}`), esNumero(`${año}`));
-        }
-        if (!this.datosMunicipios[indice]) {
-          this.datosMunicipios[indice] = [];
-        }
-
-        if (valor) {
-          this.datosMunicipios[indice].push([(municipio as Municipio)[3], redondearDecimal(valor, 1, 2)]);
-        }
-      } else {
-        this.errata.push({ fila: numeroFila, error: `El año ${año} no es número.` });
-      }
+      this.registrarAño(numeroFila, fila.anno, { datos: municipio, valor });
     } else {
-      this.errata.push({ fila: numeroFila, error: `No hay año en esta fila, sino ${año}` });
+      if (fila.hasOwnProperty('coddepto')) {
+        const departamento = limpiarDepartamento(+fila.coddepto);
+        const tieneValor = this.validarValor(valor, numeroFila);
+        if (!tieneValor) return;
+
+        this.revisarMinMax(valor, 'maxDep', 'minDep');
+        this.exportarMunicipios = false;
+        this.registrarAño(numeroFila, fila.anno, null, { datos: departamento, valor });
+      } else {
+        this.errata.push({ fila: numeroFila, error: `No hay valor en codmpio` });
+      }
     }
   };
 
   procesarDepartamentos() {
-    for (const año in this.datosMunicipios) {
-      const datosAño = this.datosMunicipios[año];
-      const deps: { [codDep: string]: number[] } = {};
-      datosAño.forEach((municipio) => {
-        const codDepartamento = municipio[0].slice(0, 2);
-        if (!deps[codDepartamento]) {
-          deps[codDepartamento] = [];
-        }
-        deps[codDepartamento].push(municipio[1]);
-      });
+    if (this.exportarMunicipios) {
+      for (const año in this.datosMunicipios) {
+        const datosAño = this.datosMunicipios[año];
+        const deps: { [codDep: string]: number[] } = {};
 
-      for (const codDep in deps) {
-        const yaExiste =
-          this.datosDepartamentos[año] && this.datosDepartamentos[año].find(([codigo]) => codigo === codDep);
+        datosAño.forEach((municipio) => {
+          const codDepartamento = municipio[0].slice(0, 2);
+          if (!deps[codDepartamento]) {
+            deps[codDepartamento] = [];
+          }
+          deps[codDepartamento].push(municipio[1]);
+        });
 
-        if (yaExiste) {
-          // Ya existen datos departamentales, no hacer nada.
-        } else {
-          // No hay datos de este departamento en la tabla original, procesarlos con los datos que tenemos de los municipios.
-          const departamento = limpiarDepartamento(+codDep);
-          if (departamento.hasOwnProperty('error')) {
-            this.errata.push({ fila: Infinity, error: (departamento as Errata).mensaje });
+        for (const codDep in deps) {
+          const yaExiste =
+            this.datosDepartamentos[año] && this.datosDepartamentos[año].find(([codigo]) => codigo === codDep);
+
+          if (yaExiste) {
+            // Ya existen datos departamentales, no hacer nada.
           } else {
-            if (!this.datosDepartamentos[año]) {
-              this.datosDepartamentos[año] = [];
-            }
-            const suma = deps[codDep].reduce((valorAnterior, valorActual) => valorAnterior + valorActual, 0);
-            if (this.estructura === 'conteo') {
-              this.revisarMinMax(suma, 'maxDep', 'minDep');
-              this.datosDepartamentos[año].push([(departamento as Departamento)[0], suma]);
+            // No hay datos de este departamento en la tabla original, procesarlos con los datos que tenemos de los municipios.
+            const departamento = limpiarDepartamento(+codDep);
+            if (departamento.hasOwnProperty('error')) {
+              this.errata.push({ fila: Infinity, error: (departamento as Errata).mensaje });
             } else {
-              const porcentaje = redondearDecimal(suma / deps[codDep].length, 1, 2);
-              this.revisarMinMax(porcentaje, 'maxDep', 'minDep');
-              this.datosDepartamentos[año].push([(departamento as Departamento)[0], porcentaje]);
+              if (!this.datosDepartamentos[año]) {
+                this.datosDepartamentos[año] = [];
+              }
+              const suma = deps[codDep].reduce((valorAnterior, valorActual) => valorAnterior + valorActual, 0);
+              if (this.estructura === 'conteo') {
+                this.revisarMinMax(suma, 'maxDep', 'minDep');
+                this.datosDepartamentos[año].push([(departamento as Departamento)[0], suma]);
+              } else {
+                const porcentaje = redondearDecimal(suma / deps[codDep].length, 1, 2);
+                this.revisarMinMax(porcentaje, 'maxDep', 'minDep');
+                this.datosDepartamentos[año].push([(departamento as Departamento)[0], porcentaje]);
+              }
             }
           }
         }
@@ -185,6 +193,51 @@ export default class {
           this.datosNacionales.datos[año] = porcentaje;
         }
       }
+    }
+  }
+
+  registrarAño(
+    numeroFila: number,
+    año: number | string,
+    municipio: { datos: Municipio | Errata; valor?: number } | null,
+    departamento?: { datos: Departamento | Errata; valor?: number }
+  ) {
+    if (año) {
+      if (esNumero(`${año}`)) {
+        const indice = parseInt(`${año}`.replace(',', ''));
+
+        if (!indice) {
+          console.log(año, indice, parseInt(`${año}`), esNumero(`${año}`));
+        }
+
+        if (!this.datosMunicipios[indice]) {
+          this.datosMunicipios[indice] = [];
+        }
+
+        if (!this.exportarMunicipios) {
+          if (!this.datosDepartamentos[indice]) {
+            this.datosDepartamentos[indice] = [];
+          }
+        }
+
+        if (municipio && municipio.valor) {
+          this.datosMunicipios[indice].push([
+            (municipio.datos as Municipio)[3],
+            redondearDecimal(municipio.valor, 1, 2),
+          ]);
+        }
+
+        if (departamento && departamento.valor) {
+          this.datosDepartamentos[indice].push([
+            (departamento.datos as Departamento)[0],
+            redondearDecimal(departamento.valor, 1, 2),
+          ]);
+        }
+      } else {
+        this.errata.push({ fila: numeroFila, error: `El año ${año} no es número.` });
+      }
+    } else {
+      this.errata.push({ fila: numeroFila, error: `No hay año en esta fila, sino ${año}` });
     }
   }
 

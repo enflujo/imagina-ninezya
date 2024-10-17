@@ -1,14 +1,8 @@
 import { extraerPartesLugar, limpiarDepartamento } from '@/limpieza/lugar';
-import type {
-  Departamento,
-  Errata,
-  EstructurasMatematicas,
-  Municipio,
-  RespuestaNacional,
-  RespuestaPorcentaje,
-} from '@/tipos';
+import type { Departamento, Errata, EstructurasMatematicas, Municipio, RespuestaPorcentaje } from '@/tipos';
 import { guardarJSON, redondearDecimal } from '@/utilidades/ayudas';
 import maquinaXlsx from '@/utilidades/maquinaXlsx';
+import { DatosIndicadorNal } from '../../../../tipos/compartidos';
 
 type Variables = {
   codmpio_num: string;
@@ -34,7 +28,7 @@ type DatosLugar = {
 
 const años = ['2015', '2017', '2018', '2019', '2020'];
 export default class {
-  datosNacionales: RespuestaNacional;
+  datosNacionales: DatosIndicadorNal;
   datosDepartamentos: RespuestaPorcentaje;
   datosMunicipios: RespuestaPorcentaje;
   errata: { fila: number; error: string }[];
@@ -42,7 +36,19 @@ export default class {
   datosDen: DatosLugar[];
 
   constructor(ascendente: boolean, estructura: EstructurasMatematicas) {
-    this.datosNacionales = { ascendente, estructura, unidadMedida: 100, datos: {} };
+    this.datosNacionales = {
+      ascendente,
+      estructura,
+      unidadMedida: 100,
+      datos: {},
+      datosMunicipio: true,
+      minNal: Infinity,
+      maxNal: 0,
+      minDep: Infinity,
+      maxDep: 0,
+      minMun: Infinity,
+      maxMun: 0,
+    };
     this.datosNum = [];
     this.datosDen = [];
     this.errata = [];

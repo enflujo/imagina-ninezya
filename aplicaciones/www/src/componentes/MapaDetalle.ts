@@ -9,6 +9,7 @@ import {
   nivel,
   actualizarUrl,
   revisarDepartamentos,
+  sinMunicipios,
 } from '@/utilidades/cerebro';
 import { crearLinea, escalaCoordenadas, extremosLugar } from '@enflujo/alquimia';
 import type { IMapearCoordenadas } from '@enflujo/alquimia/libreria/modulos/tipos';
@@ -93,6 +94,7 @@ export default class MapaDetalle extends HTMLElement {
   }
 
   async crearMapa() {
+    const informacion = document.getElementById('informacion');
     this.contenedor = document.createElement('div');
     this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
@@ -134,8 +136,6 @@ export default class MapaDetalle extends HTMLElement {
     });
 
     this.extremos();
-
-    const informacion = document.getElementById('informacion');
 
     this.municipios.forEach((lugar) => {
       if (lugar.geometry.type === 'Polygon' || lugar.geometry.type === 'MultiPolygon') {

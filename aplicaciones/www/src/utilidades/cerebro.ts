@@ -1,8 +1,9 @@
 import { atom, map } from 'nanostores';
 import type { FeatureCollection, Polygon, MultiPolygon, Position } from 'geojson';
-import type { DatosIndicador, DatosIndicadorNal, DatosPorAñoOrdenado, FuncionColor, LugarSeleccionado } from '@/tipos';
+import type { DatosIndicador, DatosPorAñoOrdenado, FuncionColor, LugarSeleccionado } from '@/tipos';
 import { definirMedidasMax, escalaColores, obtenerVariableCSS, pedirDatos } from './ayudas';
 import { colorNegativo, colorNeutro, colorPositivo } from './constantes';
+import type { DatosIndicadorNal } from '@/tiposCompartidos/compartidos';
 
 export const listaAños = atom<DatosPorAñoOrdenado>([]);
 export const datosDep = map<DatosIndicador>(null);
@@ -12,6 +13,7 @@ export const nivel = atom<string>(null);
 export const añoSeleccionado = atom<string | null>(null);
 export const datosColombia = map<{ dep?: FeatureCollection; mun?: FeatureCollection }>({});
 export const lugaresSeleccionados = atom<LugarSeleccionado[]>([]);
+export const sinMunicipios = atom<boolean>(false);
 export let color: FuncionColor;
 export let valorMaxY = 0;
 export let valorMaxColor = 0;
@@ -118,6 +120,11 @@ export async function cargarDatos() {
     valorMaxColor = maximos.color;
     color = definirColor(nal.ascendente);
     datosNal.set(nal);
+
+    // Quitar botón de municipios si este indicador no tiene datos municipales.
+    if (!nal.datosMunicipio) {
+      sinMunicipios.set(true);
+    }
   } catch (error) {
     cargando = false;
   }

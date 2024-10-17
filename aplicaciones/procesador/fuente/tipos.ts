@@ -57,21 +57,9 @@ export type RespuestaNumDenNal = {
   [año: string]: [numerador: number, denominador: number];
 };
 
-export type RespuestaNacional = {
-  ascendente: boolean;
-  estructura: EstructurasMatematicas;
-  unidadMedida: number;
-  datos: { [año: string]: number | [variable1: number, variable2: number] };
-  maxNal: number;
-  minNal: number;
-  maxMun: number;
-  minMun: number;
-  maxDep: number;
-  minDep: number;
-};
-
 export type VariableValorSingular =
   | 'codmpio'
+  | 'coddepto'
   | 'anno'
   | 'tacued'
   | 'talcan'
