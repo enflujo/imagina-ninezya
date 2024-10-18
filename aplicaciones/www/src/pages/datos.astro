@@ -185,10 +185,10 @@ import { urlsAEnlacesHTML } from '@enflujo/alquimia';
     background-color: var(--blancoMarfil);
     top: 20px;
     padding: 2em;
-    width: 100vw;
-    overflow: auto;
+    width: fit-content;
     height: 100vh;
     justify-content: flex-start;
+    overflow: auto;
     z-index: 7;
     &.abierta {
       display: flex;
@@ -382,7 +382,7 @@ import { urlsAEnlacesHTML } from '@enflujo/alquimia';
   /// ✂️ Cortes pantalla
   @media screen and (min-width: $corte1) {
     .contenedorFicha {
-      width: 80vw;
+      max-width: 80vw;
       left: 10vw;
     }
     .indicador {
