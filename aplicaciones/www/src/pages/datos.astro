@@ -22,13 +22,10 @@ import { urlsAEnlacesHTML } from '@enflujo/alquimia';
       <div class="botonesSubMenu">
         {
           datos.map((ya, i) => (
-            <div
-              class={`botonYaDatos${!ya.hay_datos ? ' desactivado' : ''}${i === 0 ? ' activo' : ''}`}
-              data-ya={ya.ruta}
-            >
+            <div class={`botonYaDatos${i === 0 ? ' activo' : ''}`} data-ya={ya.ruta}>
               <span class="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/ya${i + 1}.svg)`} />
               <span class="nombreYa">{`${i + 1} ${ya.nombre}`}</span>
-              {!ya.hay_datos && <span class="explicacion">Este indicador no tiene datos</span>}
+              {/*  {!ya.hay_datos && <span class="explicacion">Este indicador no tiene datos</span>} */}
             </div>
           ))
         }
@@ -36,59 +33,53 @@ import { urlsAEnlacesHTML } from '@enflujo/alquimia';
 
       <div id="indicadores">
         {
-          datos.map(
-            (ya, i) =>
-              ya.hay_datos && (
-                <div id={ya.ruta} class={`contenedorYa${i === 0 ? ' visible' : ''}`}>
-                  {ya.indicadores.map((indicador, j) => {
-                    const datosArchivo = pesos[indicador.archivo];
+          datos.map((ya, i) => (
+            <div id={ya.ruta} class={`contenedorYa${i === 0 ? ' visible' : ''}`}>
+              {ya.indicadores.map((indicador, j) => {
+                const datosArchivo = pesos[indicador.archivo];
 
-                    return (
-                      <div class="indicador">
-                        <div class="columna">
-                          <p class="enlace">
-                            {datosArchivo ? (
-                              <a href={`${import.meta.env.BASE_URL}/datos/descarga/${datosArchivo.nombre}`}>
-                                <span class="nombre">{indicador.nombre}</span>
-                                <span class="peso">({datosArchivo.peso})</span>
-                              </a>
-                            ) : (
-                              <span class="nombre">{indicador.nombre}</span>
-                            )}
-                          </p>
+                return (
+                  <div class="indicador">
+                    <div class="columna">
+                      <p class="enlace">
+                        {datosArchivo ? (
+                          <a href={`${import.meta.env.BASE_URL}/datos/descarga/${datosArchivo.nombre}`}>
+                            <span class="nombre">{indicador.nombre}</span>
+                            <span class="peso">({datosArchivo.peso})</span>
+                          </a>
+                        ) : (
+                          <span class="nombre">{indicador.nombre}</span>
+                        )}
+                      </p>
 
-                          {datosArchivo && (
-                            <a
-                              class="botonCaja"
-                              href={`${import.meta.env.BASE_URL}/datos/descarga/${datosArchivo.nombre}`}
-                            >
-                              <img
-                                class="iconoDescarga"
-                                src={`${import.meta.env.BASE_URL}/imagenes/icono-descarga.svg`}
-                                alt="Icono Descarga"
-                              />{' '}
-                              .xlsx
-                            </a>
-                          )}
+                      {datosArchivo && (
+                        <a class="botonCaja" href={`${import.meta.env.BASE_URL}/datos/descarga/${datosArchivo.nombre}`}>
+                          <img
+                            class="iconoDescarga"
+                            src={`${import.meta.env.BASE_URL}/imagenes/icono-descarga.svg`}
+                            alt="Icono Descarga"
+                          />{' '}
+                          .xlsx
+                        </a>
+                      )}
 
-                          <span class="abrirFicha botonCaja" data-ficha={`ya${i}i${j}`}>
-                            Ficha técnica
-                          </span>
-                        </div>
+                      <span class="abrirFicha botonCaja" data-ficha={`ya${i}i${j}`}>
+                        Ficha técnica
+                      </span>
+                    </div>
 
-                        <div class="columna definicion">
-                          <p set:html={urlsAEnlacesHTML(indicador.definicion)} />
-                        </div>
+                    <div class="columna definicion">
+                      <p set:html={urlsAEnlacesHTML(indicador.definicion)} />
+                    </div>
 
-                        <div id={`ya${i}i${j}`} class="contenedorFicha">
-                          <FichaTecnica rutaYa={ya.ruta} rutaIndicador={indicador.ruta} />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )
-          )
+                    <div id={`ya${i}i${j}`} class="contenedorFicha">
+                      <FichaTecnica rutaYa={ya.ruta} rutaIndicador={indicador.ruta} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ))
         }
       </div>
     </div>
@@ -99,6 +90,7 @@ import { urlsAEnlacesHTML } from '@enflujo/alquimia';
   const contenedor = document.getElementById('indicadores') as HTMLDivElement;
   const botones = document.querySelectorAll<HTMLSpanElement>('.abrirFicha');
   const botonesYa = document.querySelectorAll<HTMLDivElement>('.botonYaDatos');
+  const botonesCerrar = document.querySelectorAll('.cerrarFicha');
 
   let fichaAbierta: HTMLDivElement;
 
@@ -143,11 +135,21 @@ import { urlsAEnlacesHTML } from '@enflujo/alquimia';
   document.body.addEventListener('click', (evento) => {
     if (!fichaAbierta) return;
     const elemento = evento.target as HTMLElement;
+
     if (elemento.classList.contains('abrirFicha')) return;
 
     if (!(elemento.classList.contains('contenedorFicha') || fichaAbierta.contains(elemento))) {
       fichaAbierta.classList.remove('abierta');
     }
+  });
+
+  // Cerrar fichas desde botón cerrar
+  botonesCerrar.forEach((boton) => {
+    boton.addEventListener('click', (evento) => {
+      const elemento = evento.target as HTMLElement;
+      const contenedorFicha = elemento.parentElement.parentElement;
+      contenedorFicha.classList.remove('abierta');
+    });
   });
 </script>
 
