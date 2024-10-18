@@ -101,6 +101,7 @@ const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: stri
     const comparativo = document.getElementById('comparativo') as HTMLDivElement;
     const botonFicha = document.getElementById('abrirFicha') as HTMLSpanElement;
     const infoAdicional = document.getElementById('contenedorInfoAdicional') as HTMLDivElement;
+    const botonesCerrar = document.querySelectorAll('.cerrarFicha');
 
     if (botonFicha) {
       botonFicha.addEventListener('click', () => {
@@ -188,6 +189,13 @@ const archivosYa: { titulo: string; archivo: string; umbral?: number; ruta: stri
       if (!(infoAdicional === evento.target || infoAdicional.contains(evento.target as Node))) {
         infoAdicional.classList.remove('abierta');
       }
+    });
+
+    // Cerrar ficha con botón cerrar
+    botonesCerrar.forEach((boton) => {
+      boton.addEventListener('click', (evento) => {
+        infoAdicional.classList.remove('abierta');
+      });
     });
   }
 </script>
