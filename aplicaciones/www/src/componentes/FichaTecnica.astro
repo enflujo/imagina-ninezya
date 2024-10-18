@@ -101,22 +101,21 @@ const datosIndicador = datosYa.indicadores.find((instancia) => instancia.ruta ==
 <style lang="scss">
   @import '@/scss/constantes';
   .fichaTecnica {
-    min-width: 300px;
     border: solid 2px var(--azulViejo);
     border-radius: 15px 0 0 15px;
     color: var(--azulViejo);
     background-color: var(--blancoMarfil);
     text-align: center;
-    max-height: 85vh;
-    overflow: auto;
+    position: relative;
     z-index: 9;
+
     font-variation-settings:
       'MONO' 0,
       'CASL' 0,
       'wght' 700,
       'slnt' 0,
       'CRSV' 0;
-    position: relative;
+    width: 70vw;
     .cerrarFicha {
       color: var(--blancoMarfil);
       position: absolute;
@@ -203,6 +202,7 @@ const datosIndicador = datosYa.indicadores.find((instancia) => instancia.ruta ==
     .fichaTecnica {
       min-width: 330px;
       width: 70vw;
+
       .seccion {
         .titulo {
           flex-basis: 50%;
@@ -212,6 +212,11 @@ const datosIndicador = datosYa.indicadores.find((instancia) => instancia.ruta ==
   }
 
   @media screen and (min-width: $corte2) {
+    .fichaTecnica {
+      height: 80vh;
+      overflow: auto;
+      width: 50vw;
+    }
   }
 
   @media screen and (min-width: $corte3) {
