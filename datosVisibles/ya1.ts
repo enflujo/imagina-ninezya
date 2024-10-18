@@ -168,7 +168,7 @@ export const ya1: DatosYa = {
       hay_datos: true,
       umbral: 0,
       explicacion_umbral:
-        'Los Objetivos de Desarrollo Sostenible (ODS) establecen como meta eliminar las muertes evitables de recién nacidos y niños menores de 5 años para 2030, un indicador clave para evaluar el progreso de los países, especialmente en aquellos de ingresos medios y bajos, donde se concentra la mayor cantidad de fallecimientos infantiles.',
+        'Dentro de los ODS (Objetivos de Desarrollo Sostenible) se encuentra la meta de poner fin a las muertes evitables de recién nacidos y de niños menores de 5 años a 2030. Línea Base 19.51  año 2005.',
       explicacion: 'Indica la proporción de mortalidad por desnutrición en menores de  año.',
       definicion:
         'La Tasa de Mortalidad Infantil (TMI) es el número de defunciones de niños menores de 1 año por cada 1.000 nacidos vivos para un año dado, en un determinado país, territorio o área geográfica.',
@@ -190,7 +190,7 @@ export const ya1: DatosYa = {
       hay_datos: true,
       umbral: 0,
       explicacion_umbral:
-        'Los Objetivos de Desarrollo Sostenible (ODS) establecen como meta eliminar las muertes evitables de recién nacidos y niños menores de 5 años para 2030, un indicador clave para evaluar el progreso de los países, especialmente en aquellos de ingresos medios y bajos, donde se concentra la mayor cantidad de fallecimientos infantiles. No hay un valor específico.',
+        'Plan Decenal de Salud: A 2031, disminuir la tasa de mortalidad asociada a desnutrición aguda en menores de 5 años a 5 muertes por cada 100 mil menores de 5 años. Linea Base:DANE 2020 6,72 x 100000 niños menores de 5 años',
       explicacion: 'Indica la proporción de mortalidad por desnutrición en menores de 5 años.',
       definicion:
         'La Tasa de Mortalidad por Desnutrición en Niños Menores de 5 Años es el número de defunciones de niños menores de 5 años causadas por desnutrición, por cada 100,000 niños de esa edad, en un año específico. Este indicador permite evaluar el impacto de la desnutrición en la salud infantil y monitorear la efectividad de las políticas de salud pública orientadas a la prevención y tratamiento de la malnutrición en la población infantil.',
