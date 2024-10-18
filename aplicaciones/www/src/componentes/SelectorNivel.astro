@@ -8,13 +8,13 @@
 </div>
 
 <script>
-  import { nivel } from '@/utilidades/cerebro';
+  import { nivel, sinMunicipios } from '@/utilidades/cerebro';
 
   const contenedor = document.getElementById('selectorNivel') as HTMLDivElement;
 
   if (contenedor) {
-    const botonDep = contenedor.querySelector('.nivelDep');
-    const botonMun = contenedor.querySelector('.nivelMun');
+    const botonDep = contenedor.querySelector<HTMLButtonElement>('.nivelDep');
+    const botonMun = contenedor.querySelector<HTMLButtonElement>('.nivelMun');
     const selectores = document.querySelectorAll<HTMLButtonElement>('.botonSelector');
 
     selectores.forEach((boton) => {
@@ -35,6 +35,12 @@
       } else {
         botonMun.classList.add('activo');
         botonDep.classList.remove('activo');
+      }
+    });
+
+    sinMunicipios.subscribe((sinMun) => {
+      if (sinMun) {
+        botonMun.style.display = 'none';
       }
     });
   }

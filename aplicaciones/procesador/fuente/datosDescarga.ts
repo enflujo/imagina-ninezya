@@ -1,8 +1,10 @@
-import { copyFile, readdir, rm, stat } from 'fs/promises';
-import { parse, resolve } from 'path';
+import { copyFile, mkdir, readdir, stat } from 'fs/promises';
+import { extname, parse, resolve } from 'path';
 import { guardarJSON } from './utilidades/ayudas';
-import { cadena, logAviso, logCyan } from './utilidades/constantes';
+import { cadena, logAviso, logCyan, rutaEstaticosDatos, rutaEstaticosDescarga } from './utilidades/constantes';
+import * as datosYas from '../../../datosVisibles/indicadores';
 const ruta = resolve(__dirname, './datos');
+
 type PesosXLSX = {
   [nombre: string]: { peso: string; nombre: string };
 };
@@ -16,36 +18,60 @@ function pesoArchivo(peso: number) {
   return `${calculo} ${formato}`;
 }
 
-async function calcularPesos() {
+export default async function calcularPesos() {
+  // Crear carpetas para depositar datos (si no existen)
+  try {
+    await mkdir(rutaEstaticosDatos).then(() => console.log(`Directory '${rutaEstaticosDatos}' created.`));
+    console.log('carpeta creada:', rutaEstaticosDatos);
+  } catch (error) {
+    console.log(rutaEstaticosDatos, 'ya está creada');
+  }
+
+  try {
+    await mkdir(rutaEstaticosDescarga).then(() => console.log(`Directory '${rutaEstaticosDescarga}' created.`));
+    console.log('carpeta creada:', rutaEstaticosDescarga);
+  } catch (error) {
+    console.log(rutaEstaticosDescarga, 'ya está creada');
+  }
+
   const archivos = await readdir(ruta).then((nombres) =>
     nombres.filter((nombre) => nombre.endsWith('.xlsx') && nombre.includes('YA'))
   );
 
   archivos.sort();
 
-  // Vaciar la carpeta de datos
-  const rutaEstaticosDatos = resolve(__dirname, '../../www/estaticos/datos');
-  const archivosXlsx = await readdir(rutaEstaticosDatos);
-
-  for (const xlsx of archivosXlsx) {
-    await rm(`${rutaEstaticosDatos}/${xlsx}`);
-  }
-
   for (const nombre of archivos) {
     const { size } = await stat(resolve(ruta, nombre));
     const nombreArchivo = parse(nombre).name;
     const peso = pesoArchivo(size);
     const pos = nombreArchivo.indexOf('_') + 1;
-    const nuevoArchivo = ('ya' + nombreArchivo.slice(pos, nombreArchivo.length)).replace('.', '-');
+    const nombreSimple = ('ya' + nombreArchivo.slice(pos, nombreArchivo.length)).replace('.', '-');
+    const datosYa = datosYas.default.find((ya) =>
+      ya.indicadores.find((indicador) => indicador.archivo === nombreSimple)
+    );
 
-    datos[nuevoArchivo] = { peso, nombre: nombreArchivo };
+    if (!datosYa) {
+      throw new Error(`No hay datos para archivo ${nombreSimple}`);
+    }
+
+    const dataosIndicador = datosYa.indicadores.find((indicador) => indicador.archivo === nombreSimple);
+
+    if (!dataosIndicador) {
+      throw new Error(`No hay datos para archivo ${nombreSimple}`);
+    }
+
+    const nuevoNombreXlsx = `${nombreSimple}-${dataosIndicador.ruta}${extname(nombre)}`;
+    datos[nombreSimple] = { peso, nombre: nuevoNombreXlsx };
 
     // Copiar .xlsx a la carpeta de estáticos en WWW
-    await copyFile(resolve(__dirname, `./datos/${nombre}`), resolve(__dirname, `../../www/estaticos/datos/${nombre}`));
+    await copyFile(
+      resolve(__dirname, `./datos/${nombre}`),
+      resolve(__dirname, `../../www/estaticos/datos/descarga/${nuevoNombreXlsx}`)
+    );
   }
 
   const nombreArchivoFinal = 'pesosArchivos';
-  const rutaWWW = '../../../www/src/datosVisibles';
+  const rutaWWW = '../../../../datosVisibles';
   guardarJSON(datos, nombreArchivoFinal, rutaWWW, 2);
   console.log(
     cadena,
@@ -53,5 +79,3 @@ async function calcularPesos() {
     logCyan(resolve(__dirname, `${rutaWWW.replace('../', '')}/${nombreArchivoFinal}.json`))
   );
 }
-
-calcularPesos();

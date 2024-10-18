@@ -1,5 +1,6 @@
 import colores from 'cli-color';
 import { emojify } from 'node-emoji';
+import { resolve } from 'path';
 
 /**
  * Para usar otros colores, usar esta tabla para saber el número: https://robotmoon.com/256-colors/
@@ -18,3 +19,6 @@ export const cadena = emojify(':link:');
 export const conector = emojify(':electric_plug:');
 export const gorila = emojify(':gorilla:');
 export const chulo = emojify(':white_check_mark:');
+
+export const rutaEstaticosDatos = resolve(__dirname, '../../../www/estaticos/datos');
+export const rutaEstaticosDescarga = resolve(rutaEstaticosDatos, 'descarga');

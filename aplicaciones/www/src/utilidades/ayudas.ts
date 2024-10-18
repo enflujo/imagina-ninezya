@@ -1,4 +1,5 @@
-import type { DatosIndicadorNal, IMapearCoordenadas } from '@/tipos';
+import type { IMapearCoordenadas } from '@/tipos';
+import type { DatosIndicadorNal } from '@/tiposCompartidos/compartidos';
 import type { MultiPolygon, Polygon, Position } from 'geojson';
 /**
  * Convierte un valor de una escala a otra.
@@ -137,7 +138,7 @@ export const crearLinea = (
   let res = '';
 
   geometria.coordinates.forEach((grupo: Position[] | Position[][]): void => {
-    grupo.forEach((posicion, i) => {
+    grupo.forEach((posicion: Position | Position[], i: number) => {
       const cabeza = i === 0 ? 'M' : 'L';
 
       if (typeof posicion[0] === 'object') {
@@ -172,14 +173,10 @@ const crearSeccionSvg = (
 
 export function definirMedidasMax(datosNal: DatosIndicadorNal, nombreArchivo: string) {
   if (datosNal.unidadMedida > 100) {
-    if (nombreArchivo === 'ya1-7') {
-      return { y: 15000, color: 15000 };
-    } else {
-      return {
-        y: Math.min(Math.ceil(datosNal.maxDep / 100) * 100, 10000),
-        color: Math.ceil(datosNal.maxNal / 10) * 10,
-      };
-    }
+    return {
+      y: Math.min(Math.ceil(datosNal.maxDep / 100) * 100, datosNal.unidadMedida),
+      color: Math.ceil(datosNal.maxNal / 10) * 10,
+    };
   } else {
     if (datosNal.estructura === 'conteo') {
       return {

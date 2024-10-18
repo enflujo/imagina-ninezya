@@ -1,4 +1,5 @@
 publico
 aplicaciones/www/estaticos/**/*
-aplicaciones/www/src/datosVisibles/pesosArchivos.json
+datosVisibles/pesosArchivos.json
 aplicaciones/procesador/fuente/indicadores/ya8_3_num.json
+.astro

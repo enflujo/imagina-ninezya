@@ -1,5 +1,5 @@
-import type { Departamento, Errata, Municipio } from '@/tipos';
-import { departamentos, municipios } from '@/utilidades/lugaresColombia';
+import type { Departamento, Errata, Municipio } from '../tipos';
+import { departamentos, municipios } from '../utilidades/lugaresColombia';
 
 export const limpiarDepartamento = (codigo: number): Departamento | Errata => {
   if (codigo === 0) {

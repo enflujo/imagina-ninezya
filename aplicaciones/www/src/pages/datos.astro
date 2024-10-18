@@ -3,66 +3,100 @@ import FichaTecnica from '@/componentes/FichaTecnica.astro';
 import datos from '@/datosVisibles/indicadores';
 import Plantilla from '@/plantillas/Principal.astro';
 import pesos from '@/datosVisibles/pesosArchivos.json';
+import { urlsAEnlacesHTML } from '@enflujo/alquimia';
 ---
 
-<Plantilla
-  titulo="Datos"
-  descripcion="Aquí se encuentran los datos para descarga directa de todos los indicadores utilizados en SIYA."
-  conMenu={false}
->
+<Plantilla titulo="Datos" descripcion=" Aquí se encuentran los datos en bruto para descarga directa." conMenu={false}>
   <section class="contenedorDatos">
     <h1 id="tituloPagina">Datos</h1>
 
     <div id="datos">
       <div class="textoDatos">
         <p>
-          Aquí se encuentran los datos en bruto para descarga directa. A través del menú selecciona el <span
-            class="negrita">YA</span
-          > del cual quieres obtener datos. Los datos están disponibles en <span class="negrita">.xlsx</span>.
+          Aquí se encuentran los datos en bruto para descarga directa en formato <span class="negrita">.xlsx</span>. En
+          el menú selecciona el <span class="negrita">YA</span> del cual quieres obtener datos. Cada archivo incluye información
+          de distintos años.
         </p>
       </div>
 
-      <form id="selector">
-        <label for="opciones">Selecciona un YA</label>
-        <select id="opciones" name="opciones">
-          {datos.map((ya, i) => ya.hay_datos && <option value={ya.ruta}>{`${i + 1}. ${ya.nombre}`}</option>)}
-        </select>
-      </form>
+      <div class="botonesSubMenu">
+        {
+          datos.map((ya, i) => (
+            <div class={`botonYaDatos${i === 0 ? ' activo' : ''}`} data-ya={ya.ruta}>
+              <span class="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/ya${i + 1}.svg)`} />
+              <span class="nombreYa">{`${i + 1} ${ya.nombre}`}</span>
+              {/*  {!ya.hay_datos && <span class="explicacion">Este indicador no tiene datos</span>} */}
+            </div>
+          ))
+        }
+      </div>
 
       <div id="indicadores">
         {
-          datos.map(
-            (ya, i) =>
-              ya.hay_datos && (
-                <div id={ya.ruta} class={`contenedorYa${i === 0 ? ' visible' : ''}`}>
-                  {ya.indicadores.map((indicador, j) => {
-                    return (
-                      <div class="indicador">
-                        <p class="columna enlace">
-                          {pesos[indicador.archivo] && (
-                            <a href={`${import.meta.env.BASE_URL}/datos/${pesos[indicador.archivo].nombre}.xlsx`}>
-                              <span class="nombre">{indicador.nombre}</span>
-                              <span class="peso">({pesos[indicador.archivo].peso})</span>
-                              <img
-                                class="iconoDescarga"
-                                src={`${import.meta.env.BASE_URL}/imagenes/icono-descarga.svg`}
-                                alt="Icono Descarga"
-                              />
-                            </a>
-                          )}
-                        </p>
-                        <span class="abrirFicha" data-ficha={`ya${i}i${j}`}>
-                          ?
-                        </span>
-                        <div id={`ya${i}i${j}`} class="contenedorFicha">
-                          <FichaTecnica rutaYa={ya.ruta} rutaIndicador={indicador.ruta} />
+          datos.map((ya, i) => (
+            <div id={ya.ruta} class={`contenedorYa${i === 0 ? ' visible' : ''}`}>
+              {ya.indicadores.map((indicador, j) => {
+                const datosArchivo = pesos[indicador.archivo];
+
+                return (
+                  <div class="indicador">
+                    <div class="columna">
+                      <p class="enlace">
+                        {datosArchivo ? (
+                          <a href={`${import.meta.env.BASE_URL}/datos/descarga/${datosArchivo.nombre}`}>
+                            <span class="nombre">{indicador.nombre}</span>
+                            <span class="peso">({datosArchivo.peso})</span>
+                          </a>
+                        ) : (
+                          <span class="nombre">{indicador.nombre}</span>
+                        )}
+                      </p>
+
+                      {datosArchivo && (
+                        <a class="botonCaja" href={`${import.meta.env.BASE_URL}/datos/descarga/${datosArchivo.nombre}`}>
+                          <img
+                            class="iconoDescarga"
+                            src={`${import.meta.env.BASE_URL}/imagenes/icono-descarga.svg`}
+                            alt="Icono Descarga"
+                          />{' '}
+                          .xlsx
+                        </a>
+                      )}
+
+                      <span class="abrirFicha botonCaja" data-ficha={`ya${i}i${j}`}>
+                        Ficha técnica
+                      </span>
+                    </div>
+
+                    <div class="columna definicion">
+                      <p set:html={urlsAEnlacesHTML(indicador.definicion)} />
+                    </div>
+
+                    <div id={`ya${i}i${j}`} class="contenedorFicha">
+                      <FichaTecnica rutaYa={ya.ruta} rutaIndicador={indicador.ruta} />
+                      {!datosArchivo && (
+                        <div class="contenedorSugerenciasDatos">
+                          <div class="aviso">
+                            No hay información suficiente para reconstruir este indicador. Proponemos algunas
+                            sugerencias de cómo podría trabajarse.
+                          </div>
+
+                          <div class="sugerencia">
+                            <h4 class="titulo">Responsables de medición</h4>
+                            <p class="texto">{indicador.responsable}</p>
+                          </div>
+                          <div class="sugerencia">
+                            <h4 class="titulo">A quién le compete</h4>
+                            <p class="texto">{indicador.compete_a}</p>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              )
-          )
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ))
         }
       </div>
     </div>
@@ -70,10 +104,11 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
 </Plantilla>
 
 <script>
-  const selector = document.getElementById('selector') as HTMLFormElement;
-  const opciones = document.getElementById('opciones') as HTMLSelectElement;
   const contenedor = document.getElementById('indicadores') as HTMLDivElement;
   const botones = document.querySelectorAll<HTMLSpanElement>('.abrirFicha');
+  const botonesYa = document.querySelectorAll<HTMLDivElement>('.botonYaDatos');
+  const botonesCerrar = document.querySelectorAll('.cerrarFicha');
+
   let fichaAbierta: HTMLDivElement;
 
   botones.forEach((boton) => {
@@ -92,28 +127,51 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     }
   });
 
-  selector.onchange = () => {
-    if (opciones.value) {
-      const contenedorYa = document.getElementById(opciones.value);
-      const visible = contenedor.querySelector<HTMLDivElement>('.visible') as HTMLDivElement;
-      visible.classList.remove('visible');
-      contenedorYa.classList.add('visible');
-    }
-  };
+  if (botonesYa && botonesYa.length) {
+    botonesYa.forEach((boton) => {
+      if (boton.classList.contains('desactivado')) return;
+      const contenedorYa = document.getElementById(boton.dataset.ya);
+
+      boton.addEventListener('click', () => {
+        if (boton.classList.contains('activo')) return;
+
+        const visible = contenedor.querySelector<HTMLDivElement>('.visible') as HTMLDivElement;
+        visible.classList.remove('visible');
+        contenedorYa.classList.add('visible');
+
+        const activo = document.querySelector('.botonYaDatos.activo');
+
+        if (activo) activo.classList.remove('activo');
+
+        boton.classList.add('activo');
+      });
+    });
+  }
 
   // Cerrar ficha al hacer click afuera
   document.body.addEventListener('click', (evento) => {
     if (!fichaAbierta) return;
     const elemento = evento.target as HTMLElement;
+
     if (elemento.classList.contains('abrirFicha')) return;
 
     if (!(elemento.classList.contains('contenedorFicha') || fichaAbierta.contains(elemento))) {
       fichaAbierta.classList.remove('abierta');
     }
   });
+
+  // Cerrar fichas desde botón cerrar
+  botonesCerrar.forEach((boton) => {
+    boton.addEventListener('click', (evento) => {
+      const elemento = evento.target as HTMLElement;
+      const contenedorFicha = elemento.parentElement.parentElement;
+      contenedorFicha.classList.remove('abierta');
+    });
+  });
 </script>
 
 <style lang="scss">
+  @use 'sass:color';
   @import '@/scss/constantes';
 
   .contenedorDatos {
@@ -121,13 +179,17 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   }
 
   .contenedorFicha {
+    flex-direction: column;
     display: none;
-    position: absolute;
-    justify-content: space-around;
+    position: fixed;
     background-color: var(--blancoMarfil);
-    top: 0;
-    left: 0;
-    width: 93%;
+    top: 20px;
+    padding: 2em;
+    width: fit-content;
+    height: 100vh;
+    justify-content: flex-start;
+    overflow: auto;
+    z-index: 7;
     &.abierta {
       display: flex;
     }
@@ -137,6 +199,45 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     width: 60vw;
     max-width: 1300px;
     margin: 0 auto 7em auto;
+  }
+
+  .botonesSubMenu {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.75em;
+
+    .botonYaDatos {
+      width: calc(50% - 10px);
+      text-align: center;
+      border: 1px solid;
+      padding: 0 0.5em 0.5em 0.5em;
+      margin-bottom: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: color.adjust(#7600db, $lightness: 70%);
+      }
+
+      &.activo {
+        background-color: var(--uvaNinezYa);
+        color: var(--blancoMarfil);
+        cursor: default;
+
+        .iconoYa {
+          background-position-x: -48px;
+        }
+      }
+
+      &.desactivado {
+        display: none;
+      }
+    }
+
+    .iconoYa {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   #tituloPagina {
@@ -149,6 +250,9 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     font-size: 1em;
     font-family: var(--fuente);
     color: var(--azulViejo);
+    /*    height: 100vh;
+    overflow: auto;
+    padding-bottom: 3em; */
     font-variation-settings:
       'MONO' 0,
       'CASL' 0,
@@ -193,21 +297,27 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
   }
 
   .iconoDescarga {
-    width: 22px;
-    margin-left: 0.5em;
+    width: 14px;
     vertical-align: bottom;
   }
 
   #indicadores {
-    // width: 70vw;
     margin-top: 2em;
   }
 
   .indicador {
-    // width: 70vw;
     margin: 0.4em 0;
     border: 1px dotted;
-    position: relative;
+    display: flex;
+    width: 70vw;
+    overflow-wrap: anywhere;
+    .definicion {
+      font-size: 0.85em;
+      font-size: 0.85em;
+      width: 65%;
+      padding: 1em;
+    }
+    // position: relative;
   }
 
   .contenedorYa {
@@ -218,45 +328,127 @@ import pesos from '@/datosVisibles/pesosArchivos.json';
     }
   }
 
-  .abrirFicha {
-    display: block;
-    position: relative;
-    left: 95%;
-    bottom: 10px;
+  .botonCaja {
+    display: inline-block;
     background-color: var(--blancoMarfil);
-    border-radius: 50%;
-    padding: 0.18em 0.2em;
-    width: 1.4em;
-    height: 1.4em;
+    border-radius: 3px;
+    border: solid 1px var(--azulViejo);
+    padding: 0.4em;
+    margin: 0 1em 1em 0;
     text-align: center;
     font-size: 0.8em;
-    border: solid 1px var(--azulViejo);
     color: var(--azulViejo);
     cursor: pointer;
+
+    &:hover {
+      color: var(--blancoMarfil);
+      background-color: var(--color22);
+    }
+  }
+
+  .contenedorSugerenciasDatos {
+    display: flex;
+    font-size: 0.9em;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 70vw;
+    padding-bottom: 2em;
+
+    .aviso {
+      font-size: 1em;
+      padding: 1.5em 0;
+    }
+
+    .sugerencia {
+      width: 100%;
+      .titulo {
+        background-color: var(--uvaProfunda);
+        color: var(--blancoMarfil);
+        padding: 2em 2em 1.5em 2em;
+        border-radius: 10px 10px 0 0;
+        margin-bottom: 0;
+      }
+      .texto {
+        background-color: var(--blancoMarfil);
+        color: var(--azulViejo);
+        border: solid 2px var(--uvaProfunda);
+        margin: 0;
+        padding: 2em 2em 1.5em 2em;
+      }
+    }
   }
 
   /// ✂️ Cortes pantalla
   @media screen and (min-width: $corte1) {
+    .contenedorFicha {
+      max-width: 80vw;
+      left: 10vw;
+    }
+    .indicador {
+      width: 100%;
+    }
   }
   @media screen and (min-width: $corte2) {
+    .contenedorFicha {
+      flex-direction: row;
+
+      top: 3vw;
+      left: 12vw;
+    }
+    .fichaTecnica {
+      width: 50vw;
+    }
+    .contenedorSugerenciasDatos {
+      padding-right: 2em;
+      flex-direction: row;
+      margin-left: 2em;
+      height: 80vh;
+      overflow: auto;
+    }
   }
 
   @media screen and (min-width: $corte3) {
-    .contenedorFicha {
-      width: 70%;
+    .botonesSubMenu {
+      .botonYaDatos {
+        width: calc(20% - 10px);
+
+        &.desactivado {
+          opacity: 0.4;
+          cursor: default;
+          display: block;
+
+          .explicacion {
+            font-family: Arial Helvetica sans-serif;
+            display: block;
+            font-style: italic;
+            margin-top: 0.6em;
+          }
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
     }
   }
 
   @media screen and (min-width: $corte4) {
+    .contenedorFicha {
+    }
     .contenedorDatos {
       width: 40vw;
       max-width: 1000px;
       margin: 0 auto 7em auto;
     }
 
+    .contenedorSugerenciasDatos {
+      width: 50%;
+      padding-right: 2em;
+    }
+
     .contenedorFicha {
-      left: 100%;
-      justify-content: flex-start;
+      //justify-content: flex-start;
     }
   }
 </style>

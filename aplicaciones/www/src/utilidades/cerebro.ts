@@ -1,8 +1,9 @@
 import { atom, map } from 'nanostores';
 import type { FeatureCollection, Polygon, MultiPolygon, Position } from 'geojson';
-import type { DatosIndicador, DatosIndicadorNal, DatosPorAñoOrdenado, FuncionColor, LugarSeleccionado } from '@/tipos';
+import type { DatosIndicador, DatosPorAñoOrdenado, FuncionColor, LugarSeleccionado } from '@/tipos';
 import { definirMedidasMax, escalaColores, obtenerVariableCSS, pedirDatos } from './ayudas';
 import { colorNegativo, colorNeutro, colorPositivo } from './constantes';
+import type { DatosIndicadorNal } from '@/tiposCompartidos/compartidos';
 
 export const listaAños = atom<DatosPorAñoOrdenado>([]);
 export const datosDep = map<DatosIndicador>(null);
@@ -12,6 +13,7 @@ export const nivel = atom<string>(null);
 export const añoSeleccionado = atom<string | null>(null);
 export const datosColombia = map<{ dep?: FeatureCollection; mun?: FeatureCollection }>({});
 export const lugaresSeleccionados = atom<LugarSeleccionado[]>([]);
+export const sinMunicipios = atom<boolean>(false);
 export let color: FuncionColor;
 export let valorMaxY = 0;
 export let valorMaxColor = 0;
@@ -49,7 +51,7 @@ export async function datosIndicadorMunicipio(año?: string) {
     if (cargando) cargador.classList.add('visible');
   }, 150);
 
-  const respuesta = await pedirDatos<DatosIndicador>(`https://enflujo.com/bodega/ninezya/${nombreArchivo}-mun.json`);
+  const respuesta = await pedirDatos<DatosIndicador>(`${import.meta.env.BASE_URL}/datos/${nombreArchivo}-mun.json`);
   datosMun.set(respuesta);
   cargando = false;
   cargador.classList.remove('visible');
@@ -64,7 +66,7 @@ export async function datosIndicadorDep(año?: string) {
     if (cargando) cargador.classList.add('visible');
   }, 150);
 
-  const respuesta = await pedirDatos<DatosIndicador>(`https://enflujo.com/bodega/ninezya/${nombreArchivo}-dep.json`);
+  const respuesta = await pedirDatos<DatosIndicador>(`${import.meta.env.BASE_URL}/datos/${nombreArchivo}-dep.json`);
   datosDep.set(respuesta);
   cargando = false;
   cargador.classList.remove('visible');
@@ -111,13 +113,18 @@ export async function cargarDatos() {
 
   try {
     // Cargar datos indicador nacionales para linea de tiempo
-    const nal = await pedirDatos<DatosIndicadorNal>(`https://enflujo.com/bodega/ninezya/${nombreArchivo}-nal.json`);
+    const nal = await pedirDatos<DatosIndicadorNal>(`${import.meta.env.BASE_URL}/datos/${nombreArchivo}-nal.json`);
 
     const maximos = definirMedidasMax(nal, nombreArchivo);
     valorMaxY = maximos.y;
     valorMaxColor = maximos.color;
     color = definirColor(nal.ascendente);
     datosNal.set(nal);
+
+    // Quitar botón de municipios si este indicador no tiene datos municipales.
+    if (!nal.datosMunicipio) {
+      sinMunicipios.set(true);
+    }
   } catch (error) {
     cargando = false;
   }

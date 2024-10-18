@@ -5,14 +5,21 @@ interface Props {
   img: string;
   archivos: { titulo: string; archivo: string; umbral?: number; ruta: string }[];
   hayDatos: boolean;
+  descripcionAbierta: boolean;
+  anchoCompleto: boolean;
 }
-const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
+const { img, titulo, definicion, archivos, hayDatos, descripcionAbierta, anchoCompleto } = Astro.props;
 ---
 
-<div id="descripcionYa">
-  <div class="cerrarDescripcion">X</div>
-  <div id="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/${img}.svg)`}></div>
-
+<div
+  id="descripcionYa"
+  class=`${descripcionAbierta ? '' : 'cerrado'} ${anchoCompleto ? 'anchoCompleto' : ''}`
+  data-anchoCompleto=`${anchoCompleto}`
+>
+  {!anchoCompleto && <div class="cerrarDescripcion">X</div>}
+  <div class="seccionSuperior">
+    <div id="iconoYa" style={`background-image:url(${import.meta.env.BASE_URL}/iconos/${img}.svg)`}></div>
+  </div>
   <section class="definicion">
     <h2>{titulo}</h2>
     <p>{definicion}</p>
@@ -39,9 +46,9 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
 </div>
 
 <script>
-  import type { DatosIndicadorNal, DatosPorAñoOrdenado } from '@/tipos';
+  import type { DatosPorAñoOrdenado } from '@/tipos';
+  import type { DatosIndicadorNal } from '@/tiposCompartidos/compartidos';
   import { definirMedidasMax, pedirDatos } from '@/utilidades/ayudas';
-  import { lugaresSeleccionados } from '@/utilidades/cerebro';
   import { colorPositivo } from '@/utilidades/constantes';
   import { convertirEscala } from '@enflujo/alquimia';
 
@@ -49,7 +56,6 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
   const cerrar = document.querySelector<HTMLDivElement>('.cerrarDescripcion') as HTMLDivElement;
   const icono = document.getElementById('iconoYa') as HTMLDivElement;
   const contenedores = document.querySelectorAll<HTMLDivElement>('.descContenedorIndicador');
-  let cerradoAlMenosUna = false;
 
   if (contenedores) {
     for await (const elemento of contenedores) {
@@ -64,9 +70,11 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     }
   }
 
-  cerrar.onclick = () => {
-    contenedor.classList.add('cerrado');
-  };
+  if (cerrar) {
+    cerrar.onclick = () => {
+      contenedor.classList.add('cerrado');
+    };
+  }
 
   icono.onclick = () => {
     if (contenedor.classList.contains('cerrado')) {
@@ -79,7 +87,7 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     if (!svg) return;
 
     const respuesta = await pedirDatos<DatosIndicadorNal>(
-      `https://enflujo.com/bodega/ninezya/${nombreArchivo}-nal.json`
+      `${import.meta.env.BASE_URL}/datos/${nombreArchivo}-nal.json`
     );
 
     if (respuesta) {
@@ -148,15 +156,6 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
       linea.setAttribute('d', datosLinea);
     }
   }
-
-  lugaresSeleccionados.subscribe((lugares) => {
-    if (lugares.length) {
-      cerradoAlMenosUna = true;
-      contenedor.classList.add('cerrado');
-    } else if (cerradoAlMenosUna) {
-      contenedor.classList.remove('cerrado');
-    }
-  });
 </script>
 
 <style lang="scss" is:global>
@@ -187,18 +186,22 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
   #descripcionYa {
     position: fixed;
     top: $altoMenuSuperior;
-    width: 90%;
+    width: 87%;
     height: calc(100% - $altoMenuSuperior);
-    background-color: var(--uvaNinezYa);
-    color: var(--blancoMarfil);
-    z-index: 8;
+    background-color: var(--moradoPandito);
+    color: var(--negroCasi);
     right: 0;
     transition: all 0.25s ease-in-out;
     overflow: auto;
     opacity: 0.95;
+    z-index: 8;
+
+    h2 {
+      color: var(--uvaNinezYa);
+    }
 
     &.cerrado {
-      right: -90%;
+      right: -100%;
 
       #iconoYa {
         position: fixed;
@@ -206,30 +209,31 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
         background-color: var(--uvaNinezYa);
         width: 40px;
         height: 40px;
+        background-position-x: 100%; // usar el ícono claro
         cursor: pointer;
+        z-index: 12;
       }
     }
   }
 
   #iconoYa {
     background-repeat: no-repeat;
-    width: 200px;
-    height: 200px;
+    width: 111px;
+    height: 88px;
     background-size: 200%;
-    background-position: 100%;
+    background-position-x: 0; // usar el ícono oscuro
     margin: 1em auto 0 auto;
   }
 
   h2 {
     text-align: center;
     width: 100%;
-    font-size: 3em;
-    margin-top: 0;
+    font-size: 1.8em;
+    margin-top: 1em;
   }
 
   h3 {
-    // text-align: center;
-    font-size: 1.3em;
+    font-size: 0.89em;
     font-variation-settings:
       'MONO' 1,
       'CASL' 0,
@@ -244,7 +248,7 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     margin-bottom: 2em;
 
     p {
-      font-size: 1.6em;
+      font-size: 1.2em;
       font-variation-settings:
         'MONO' 0,
         'CASL' 0,
@@ -258,10 +262,12 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     cursor: pointer;
     display: inline-block;
     transition: transform 0.2s ease-out;
-    padding: 0.5em;
-    font-size: 2.5em;
+    padding: 8px 15px;
+    font-size: 2em;
     position: absolute;
-    right: 15px;
+    right: 11px;
+    top: 0;
+    color: var(--uvaNinezYa);
 
     &:hover {
       transform: rotate(180deg);
@@ -271,7 +277,8 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
   #contenedorLineasIndicadores {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 4em;
+    background-color: var(--uvaNinezYa);
+    justify-content: center;
   }
 
   .descContenedorIndicador {
@@ -292,36 +299,16 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
 
   @media screen and (min-width: $corte1) {
     #descripcionYa {
-      &.cerrado {
-        #iconoYa {
-          width: 60px;
-          height: 60px;
-        }
-      }
-    }
-    h2 {
-      font-size: 2.5em;
-    }
-    h3 {
-      font-size: 1.2em;
-    }
-    .definicion {
-      p {
-        font-size: 1.55em;
-      }
+      width: 93%;
     }
     .cerrarDescripcion {
       font-size: 2.5em;
-    }
-
-    #contenedorLineasIndicadores {
-      margin-left: 4.5em;
     }
   }
 
   @media screen and (min-width: $corte2) {
     #descripcionYa {
-      width: 80%;
+      width: 95%;
       &.cerrado {
         #iconoYa {
           width: 40px;
@@ -329,14 +316,7 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
         }
       }
     }
-    #iconoYa {
-      background-repeat: no-repeat;
-      width: 150px;
-      height: 150px;
-      background-size: 200%;
-      background-position: 100%;
-      margin: 1em auto 0 auto;
-    }
+
     h2 {
       font-size: 2em;
     }
@@ -351,18 +331,24 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
     .cerrarDescripcion {
       font-size: 1.8em;
     }
-    #contenedorLineasIndicadores {
-      margin-left: 7.5vw;
-    }
   }
   @media screen and (min-width: $corte3) {
     #descripcionYa {
       width: 60%;
       &.cerrado {
         #iconoYa {
-          width: 45px;
-          height: 45px;
+          width: 35px;
+          height: 35px;
         }
+      }
+      &.anchoCompleto {
+        width: 81vw;
+      }
+      .descContenedorIndicador {
+        width: 30%;
+      }
+      #contenedorLineasIndicadores {
+        padding: 0 calc((100% - 600px) / 2);
       }
     }
     h2 {
@@ -374,20 +360,24 @@ const { img, titulo, definicion, archivos, hayDatos } = Astro.props;
         font-size: 1em;
       }
     }
-
-    #contenedorLineasIndicadores {
-      margin-left: 5.5vw;
-    }
   }
   @media screen and (min-width: $corte4) {
     #descripcionYa {
-      width: 40%;
+      width: 50%;
+      &.anchoCompleto {
+        width: calc(100vw - 440px);
+      }
+
+      .definicion {
+        width: 25vw;
+        min-width: 500px;
+      }
+      #contenedorLineasIndicadores {
+        padding: 0 calc((100% - 600px) / 2);
+      }
     }
     .cerrarDescripcion {
       font-size: 1.5em;
-    }
-    #contenedorLineasIndicadores {
-      margin-left: 4vw;
     }
   }
 </style>

@@ -10,13 +10,19 @@ const { ya, indicador } = Astro.params;
       datos.map((datosYa, i) => {
         return (
           <li class={`ya ${datosYa.imagen}${datosYa.ruta === ya ? ' abierto' : ''}`}>
-            <span
-              class={`iconoYa${datosYa.ruta === ya ? ' actual' : ''}`}
-              style={`background-image: url('${import.meta.env.BASE_URL}/iconos/${datosYa.imagen}.svg')`}
-            />
-            <p class={`nombreYa${datosYa.ruta === ya ? ' ungido' : ''}`}>
-              {i + 1}. {datosYa.nombre}
-            </p>
+            <a href={`${import.meta.env.BASE_URL}/${datosYa.ruta}`}>
+              <span
+                class={`iconoYa${datosYa.ruta === ya ? ' actual' : ''}`}
+                style={`background-image: url('${import.meta.env.BASE_URL}/iconos/${datosYa.imagen}.svg')`}
+              />
+              <p class={`nombreYa${datosYa.ruta === ya ? ' ungido' : ''}`}>
+                {' '}
+                {i + 1}. {datosYa.nombre}
+              </p>
+            </a>
+
+            <span class="desplegarIndicadores">︾</span>
+
             <ul class="indicadores">
               {datosYa.indicadores.map((datosIndicador) => {
                 return (
@@ -43,12 +49,14 @@ const { ya, indicador } = Astro.params;
 
   if (menu) {
     const yas = document.querySelectorAll<HTMLElement>('.ya');
+    const descripcionYa = document.getElementById('descripcionYa');
+
     let enCelular = false;
 
     // Abrir sub menú de indicadores al hacer clic en un 'ya'
     yas.forEach((contenedorYa) => {
       const nombreYa = contenedorYa.querySelector<HTMLElement>('.nombreYa');
-      const icono = contenedorYa.querySelector<HTMLSpanElement>('.iconoYa');
+      const botonDesplegar = contenedorYa.querySelector<HTMLSpanElement>('.desplegarIndicadores');
 
       nombreYa.addEventListener('click', () => {
         const actualmenteAbierto = menu.querySelector('.abierto');
@@ -60,9 +68,10 @@ const { ya, indicador } = Astro.params;
 
         contenedorYa.classList.toggle('abierto');
         nombreYa.classList.toggle('ungido');
+        descripcionYa.classList.remove('cerrado');
       });
 
-      icono.addEventListener('click', () => {
+      botonDesplegar.addEventListener('click', () => {
         if (enCelular) {
           const yasAbierto = document.querySelectorAll<HTMLElement>('.abierto');
           const nombresUngidos = document.querySelectorAll<HTMLElement>('.ungido');
@@ -91,13 +100,16 @@ const { ya, indicador } = Astro.params;
         enCelular = false;
       }
     }
-
-    document.body.addEventListener('click', (evento) => {
-      if (!(menu === evento.target || menu.contains(evento.target as Node))) {
-        menu.classList.remove('visible');
-      }
-    });
   }
+
+  // Cerrar menú de años al hacer click por fuera
+  document.body.addEventListener('click', (evento) => {
+    if (!menu) return;
+
+    if (!(menu === evento.target || menu.contains(evento.target as Node))) {
+      menu.classList.remove('visible');
+    }
+  });
 </script>
 
 <style lang="scss">
@@ -110,8 +122,8 @@ const { ya, indicador } = Astro.params;
     background-color: var(--moradoPandito);
     height: calc(100vh - $altoMenuSuperior);
     position: fixed;
-    z-index: 99;
-    width: 50vw;
+    z-index: 9;
+    width: 70vw;
 
     font-variation-settings:
       'MONO' 0,
@@ -129,27 +141,44 @@ const { ya, indicador } = Astro.params;
       list-style: none;
       height: 50px;
 
+      a {
+        text-decoration: none;
+        color: var(--azulViejo);
+      }
+
       .iconoYa {
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 50px;
-        height: 50px;
-        display: inline-block;
         position: absolute;
         top: 0;
         right: -97px;
         z-index: 9;
-        background-position: 2px;
+      }
 
-        &.actual {
-          background-color: var(--uvaNinezYa);
-          background-position-x: -48px;
+      .desplegarIndicadores {
+        display: block;
+        position: absolute;
+        color: var(--uvaNinezYa);
+        font-size: 1.4em;
+        width: 50px;
+        text-align: center;
+        height: 33px;
+        background-color: var(--aguaMarinaNinezYa);
+        padding-top: 0.4em;
+        border: 1px solid var(--uvaNinezYa);
+        &:hover {
+          color: var(--color9);
         }
       }
 
       &.abierto {
+        height: 75px;
         .indicadores {
           display: block;
+        }
+
+        .desplegarIndicadores {
+          z-index: 2;
+          right: -97px;
+          top: 45px;
         }
       }
     }
@@ -177,6 +206,10 @@ const { ya, indicador } = Astro.params;
 
         &.abierto .iconoYa {
           background-position-x: -17.5px;
+        }
+
+        .desplegarIndicadores {
+          display: none;
         }
       }
     }
@@ -266,12 +299,24 @@ const { ya, indicador } = Astro.params;
       }
     }
   }
+
+  @media screen and (min-width: $corte1) {
+    #menu {
+      width: 35vw;
+    }
+  }
+
+  @media screen and (min-width: $corte2) {
+  }
+
   @media screen and (min-width: $corte3) {
     #menu {
       width: 19vw;
       .ya {
         height: auto;
-
+        .desplegarIndicadores {
+          display: none;
+        }
         .iconoYa {
           width: 1.2em;
           height: 1.2em;
@@ -285,6 +330,7 @@ const { ya, indicador } = Astro.params;
         }
 
         &.abierto {
+          height: auto;
           .iconoYa {
             background-position-x: -17.5px;
           }

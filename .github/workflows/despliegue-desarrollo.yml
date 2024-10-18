@@ -2,7 +2,7 @@ name: 🐘 Despliegue para revisar avances
 
 on:
   push:
-    branches: ["version-2"]
+    branches: ['version-2']
   workflow_dispatch:
 
 permissions:
@@ -11,12 +11,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: 'pages'
   cancel-in-progress: false
 
 env:
-  BUILD_PATH: "./aplicaciones/www" # default value when not using subfolders
-  # BUILD_PATH: subfolder
+  BUILD_PATH: '.'
 
 jobs:
   build:
@@ -25,6 +24,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: 🐜 Activar Corepack
+        run: corepack enable
+
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -44,28 +47,31 @@ jobs:
             echo "Unable to determine package manager"
             exit 1
           fi
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 'lts/*'
           cache: ${{ steps.detect-package-manager.outputs.manager }}
           cache-dependency-path: ${{ env.BUILD_PATH }}/${{ steps.detect-package-manager.outputs.lockfile }}
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
+
       - name: Build with Astro
         run: |
-          ${{ steps.detect-package-manager.outputs.runner }} astro build \
-            --site "${{ steps.pages.outputs.origin }}" \
-            --base "${{ steps.pages.outputs.base_path }}"
+          ${{ steps.detect-package-manager.outputs.runner }} armar:dev
         working-directory: ${{ env.BUILD_PATH }}
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ env.BUILD_PATH }}/publico
+          path: ${{ env.BUILD_PATH }}/aplicaciones/www/publico
 
   deploy:
     environment:

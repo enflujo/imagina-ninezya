@@ -57,30 +57,24 @@ export type RespuestaNumDenNal = {
   [año: string]: [numerador: number, denominador: number];
 };
 
-export type RespuestaNacional = {
-  ascendente: boolean;
-  estructura: EstructurasMatematicas;
-  unidadMedida: number;
-  datos: { [año: string]: number | [variable1: number, variable2: number] };
-  maxNal: number;
-  minNal: number;
-  maxMun: number;
-  minMun: number;
-  maxDep: number;
-  minDep: number;
-};
-
 export type VariableValorSingular =
   | 'codmpio'
+  | 'coddepto'
   | 'anno'
   | 'tacued'
   | 'talcan'
-  | 'tasa_mortalidad_infantil'
+  | 'tasa_mortalidad_menores_5'
   | 'controles_prenatales'
+  | 'desnutricion'
   | 'bajo_peso'
-  | 'cobertura_bruta_transicion'
+  | 'tasa_EDA'
+  | 'tasa_IRA'
+  | 'neta_transicion'
   | 'cobertura_bruta_media'
-  | 'cobertura_bruta_primaria'
+  | 'neta_primaria'
+  | 'neta_media'
+  | 'reprobacion_primaria'
+  | 'reprobacion_media'
   | 'reprobacion_transicion'
   | 'repitencia_transicion'
   | 'desercion_transicion'
@@ -100,7 +94,6 @@ export type VariableValorSingular =
   | 'tasa_desercion'
   | 'concentracion'
   | 'repitencia'
-  | 'desnutricion'
   | 'o_acto_terror'
   | 'o_minas_anti'
   | 'e_delito_sex'
@@ -112,11 +105,19 @@ export type VariableValorSingular =
   | 'Alumnos_primaria_O'
   | 'Alumnos_primaria_N_O'
   | 'reclu'
-  | 'tasa'
+  | 'intrafamiliar'
   | 'delito'
   | 'secu'
-  | 'GINI'
-  | 'pobreza';
+  | 'gini'
+  | 'pobreza_monetaria'
+  | 'homicidios'
+  | 'sexual'
+  | 'interpersonal'
+  | 'tasa'
+  | 'tasa_mortalidad_neonatal'
+  | 'tasa_mortalidad_menores_1_año'
+  | 'tasa_mortalidad_desnutricion_5_años'
+  | 'porcentaje_marco_integral';
 
 export type VariablesSingulares = {
   [llave in VariableValorSingular]: number;
