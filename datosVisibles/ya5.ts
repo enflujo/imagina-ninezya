@@ -120,7 +120,7 @@ export const ya5: DatosYa = {
         ['Niñero/a', 'Con empleado/a o niñero/a en la casa'],
         ['Mayor', 'Al cuidado de un/a pariente de 18 años o más'],
         ['Menor', 'Al cuidado de un/a pariente menor de 18 años'],
-        ['Sólo', 'En casa solo'],
+        ['Solo', 'En casa solo'],
         ['Otro', 'Otro'],
       ],
     },

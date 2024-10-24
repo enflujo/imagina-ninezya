@@ -126,7 +126,7 @@ export async function cargarDatos() {
       }
     }
 
-    console.log(nal.categorias);
+    //console.log(nal.categorias);
     if (nal.categorias) {
       color = definirColorCategorias();
     } else {

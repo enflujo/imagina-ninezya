@@ -187,10 +187,14 @@ const { ancho, alto } = Astro.props;
       datos.forEach(([codigo, valor]) => {
         const zona = zonas[codigo];
         if (zona) {
-          console.log(valor);
           if (valor) {
-            zona.svg.setAttribute('style', `fill: ${color(valor)}`);
-            zona.valor = +valor;
+            if (datosNal.value.categorias) {
+              zona.svg.setAttribute('style', `fill: ${color(valor)}`);
+              zona.valor = valor;
+            } else {
+              zona.svg.setAttribute('style', `fill: ${color(valor)}`);
+              zona.valor = +valor;
+            }
           } else {
             zona.svg.setAttribute('style', 'fill: url(#sinInfo)');
             zona.valor = null;
@@ -256,7 +260,16 @@ const { ancho, alto } = Astro.props;
             const textoInfo = !valor ? 'Sin datos' : `${valor}${descripcion}`;
 
             if (datosNal.value.categorias) {
-              informacion.innerText = 'Un HTML';
+              informacion.classList.add('categorias');
+              informacion.innerHTML = `<p class="negrita">${lugar.properties.nombre}</p> 
+              <p>Colegio: ${valor.c1 ? valor.c1 : 'Sin datos'}</p>
+              <p>Casa: ${valor.c2 ? valor.c2 : 'Sin datos'}</p>
+              <p>Trabajo: ${valor.c3 ? valor.c3 : 'Sin datos'}</p>
+              <p>Niñero/a: ${valor.c4 ? valor.c4 : 'Sin datos'}</p>
+              <p>Mayor: ${valor.c5 ? valor.c5 : 'Sin datos'}</p>
+              <p>Menor: ${valor.c6 ? valor.c6 : 'Sin datos'}</p>
+              <p>Solo: ${valor.c7 ? valor.c7 : 'Sin datos'}</p>
+              <p>Otro: ${valor.c8 ? valor.c8 : 'Sin datos'}</p>`;
             } else {
               if (nivel.get() === 'mun') {
                 informacion.innerText = `${lugar.properties.nombre} (${lugar.properties.dep}): ${textoInfo}`;
@@ -380,6 +393,16 @@ const { ancho, alto } = Astro.props;
     .seleccionada {
       stroke-opacity: 1;
       stroke-width: 2px;
+    }
+  }
+
+  #informacion {
+    p {
+      margin: 0;
+    }
+
+    .negrita {
+      font-weight: bold;
     }
   }
 
