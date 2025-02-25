@@ -148,13 +148,11 @@ export default class MapaDetalle extends HTMLElement {
     const seleccionadosMun = municipiosSeleccionados.get();
 
     municipiosSeleccionados.subscribe((nuevos) => {
-      console.log(nuevos);
-
-      // for (const forma in this.formas) {
-      //   if (this.formas[forma].svg) {
-      //     this.formas[forma].svg.setAttribute('class', '');
-      //   }
-      // }
+      for (const forma in this.formas) {
+        if (this.formas[forma].svg) {
+          this.formas[forma].svg.setAttribute('class', '');
+        }
+      }
 
       nuevos.forEach((lugar) => {
         const forma = this.formas[lugar.codigoMun];

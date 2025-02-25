@@ -88,6 +88,7 @@ const { ancho, alto } = Astro.props;
   } from '@/utilidades/cerebro';
   import type { IMapearCoordenadas } from '@enflujo/alquimia/libreria/modulos/tipos';
   import { colorNegativo, colorNeutro, colorPositivo } from '@/utilidades/constantes';
+  import type { Categorias } from '@/tiposCompartidos/compartidos';
 
   const contenedorMapa = document.getElementById('contenedorMapa');
 
@@ -106,7 +107,8 @@ const { ancho, alto } = Astro.props;
     const visualizaciones = document.getElementById('visualizaciones');
     const unidad = visualizaciones.dataset.unidad.toLocaleLowerCase();
 
-    let zonas = {};
+    let zonas: { [codigo: number]: { svg: SVGPathElement; valor: number | Categorias | null; valores?: number[] } } =
+      {};
     let ancho = 0;
     let alto = 0;
     let coordenadasAncho = 0;
@@ -305,13 +307,14 @@ const { ancho, alto } = Astro.props;
           colombia.appendChild(zona);
 
           zona.onmouseenter = () => {
-            const valor = zonas[lugar.properties.codigo].valor;
+            const valor = zonas[lugar.properties.codigo].valor as Categorias;
             informacion.classList.add('visible');
 
             // Cuando es por categorías
             if (datosNal.value.categorias) {
               if (valor) {
                 const colores = { c1: '', c2: '', c3: '', c4: '', c5: '', c6: '', c7: '', c8: '' };
+
                 for (const categoria in coloresCategorias) {
                   colores[categoria] = `rgb(${coloresCategorias[categoria].join(',')})`;
                 }
@@ -376,7 +379,7 @@ const { ancho, alto } = Astro.props;
 
               const textoInfo = !valor
                 ? 'Sin datos'
-                : `${valores ? '#: ' : ''}${new Intl.NumberFormat('es-CO').format(valor)}${descripcion}`;
+                : `${valores ? '#: ' : ''}${typeof valor === 'number' ? new Intl.NumberFormat('es-CO').format(valor) : valor}${descripcion}`;
               if (nivel.get() === 'mun') {
                 informacion.innerHTML = `${lugar.properties.nombre} (${lugar.properties.dep}): ${textoInfo}`;
               } else {
@@ -438,32 +441,36 @@ const { ancho, alto } = Astro.props;
     }
 
     lugaresSeleccionados.subscribe((lugares) => {
+      const nivelActual = nivel.value;
+      if (nivelActual !== 'dep') return;
       const elmentosSeleccionados = seleccionados.querySelectorAll<SVGPathElement>('.lugar');
 
       if (elmentosSeleccionados.length) {
         elmentosSeleccionados.forEach(quitarSeleccionZona);
       }
 
-      const nivelActual = nivel.value;
+      if (lugares.length) {
+        lugares.forEach((lugar) => {
+          const zona = zonas[lugar.codigoDep].svg;
+          seleccionarZona(zona);
+        });
+      }
+    });
 
-      if (nivelActual === 'dep') {
-        if (lugares.length) {
-          lugares.forEach((lugar) => {
-            const zona = zonas[lugar.codigoDep].svg;
-            seleccionarZona(zona);
-          });
-        }
-      } else {
-        const params = new URLSearchParams(window.location.search);
-        const muns = params.get('muns');
-        if (muns) {
-          muns.split(',').forEach((codigo) => {
-            const zona = zonas[codigo];
-            if (zona) {
-              seleccionarZona(zona.svg);
-            }
-          });
-        }
+    municipiosSeleccionados.subscribe((municipios) => {
+      const elmentosSeleccionados = seleccionados.querySelectorAll<SVGPathElement>('.lugar');
+
+      if (elmentosSeleccionados.length) {
+        elmentosSeleccionados.forEach(quitarSeleccionZona);
+      }
+
+      if (municipios.length) {
+        municipios.forEach((municipio) => {
+          const zona = zonas[municipio.codigoMun];
+          if (zona) {
+            seleccionarZona(zona.svg);
+          }
+        });
       }
     });
 

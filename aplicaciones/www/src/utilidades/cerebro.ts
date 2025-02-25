@@ -307,8 +307,6 @@ export function revisarMunicipios(parametros?: URLSearchParams) {
         }
       });
       municipiosSeleccionados.set(lugares);
-
-      // lugaresSeleccionados.set(lugares);
     } else {
       console.error('no se han cargado los datos');
     }
@@ -320,6 +318,7 @@ export function revisarMunicipios(parametros?: URLSearchParams) {
 export function revisarDepartamentos(parametros?: URLSearchParams) {
   const params = parametros || new URLSearchParams(window.location.search);
   const deps = params.get('deps');
+  revisarMunicipios(params);
 
   if (deps) {
     const codigos = deps.split(',');
@@ -341,8 +340,6 @@ export function revisarDepartamentos(parametros?: URLSearchParams) {
           });
         }
       });
-
-      revisarMunicipios(params);
 
       lugaresSeleccionados.set(lugares);
     } else {
