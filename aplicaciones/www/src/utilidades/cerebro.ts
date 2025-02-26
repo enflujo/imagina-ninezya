@@ -13,6 +13,7 @@ export const nivel = atom<string>(null);
 export const añoSeleccionado = atom<string | null>(null);
 export const datosColombia = map<{ dep?: FeatureCollection; mun?: FeatureCollection }>({});
 export const lugaresSeleccionados = atom<LugarSeleccionado[]>([]);
+export const municipiosSeleccionados = atom<LugarSeleccionado[]>([]);
 export const sinMunicipios = atom<boolean>(false);
 export let color: FuncionColor;
 export let valorMaxColor = 0;
@@ -98,7 +99,7 @@ export async function cargarDatos() {
   const deps = await pedirDatos<FeatureCollection<Polygon | MultiPolygon>>(
     `${import.meta.env.BASE_URL}/datos-geo/departamentos.json`
   );
-  console.log(deps);
+
   deps.features.forEach((dep, i) => {
     dep.properties.color = obtenerVariableCSS(`--color${i}`);
     if (dep.properties.codigo === '88') {
@@ -121,6 +122,8 @@ export async function cargarDatos() {
     }
   });
   datosColombia.setKey('dep', deps);
+
+  await datosMapaMunicipio();
 
   try {
     // Cargar datos indicador nacionales para linea de tiempo
@@ -278,9 +281,44 @@ function revisarNivel(parametros?: URLSearchParams) {
   }
 }
 
+export function revisarMunicipios(parametros?: URLSearchParams) {
+  const params = parametros || new URLSearchParams(window.location.search);
+  const muns = params.get('muns');
+
+  if (muns) {
+    const codigos = muns.split(',');
+    const datosMuns = datosColombia.value.mun;
+
+    if (datosMuns) {
+      const lugares: LugarSeleccionado[] = [];
+
+      codigos.forEach((codigo) => {
+        const lugarI = datosMuns.features.findIndex((obj) => obj.properties.codigo === codigo);
+
+        if (lugarI >= 0) {
+          const lugar = datosMuns.features[lugarI];
+
+          lugares.push({
+            nombre: lugar.properties.nombre,
+            codigoDep: lugar.properties.dep,
+            codigoMun: codigo,
+            color: lugar.properties.color,
+          });
+        }
+      });
+      municipiosSeleccionados.set(lugares);
+    } else {
+      console.error('no se han cargado los datos');
+    }
+  } else {
+    municipiosSeleccionados.set([]);
+  }
+}
+
 export function revisarDepartamentos(parametros?: URLSearchParams) {
   const params = parametros || new URLSearchParams(window.location.search);
   const deps = params.get('deps');
+  revisarMunicipios(params);
 
   if (deps) {
     const codigos = deps.split(',');

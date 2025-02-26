@@ -354,3 +354,9 @@ main {
 .pOficial {
   font-size: 0.85em;
 }
+
+path.seleccionada {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.4));
+}

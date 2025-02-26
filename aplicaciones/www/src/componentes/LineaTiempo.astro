@@ -66,6 +66,9 @@ const { alto, meta, umbral } = Astro.props;
     añoSeleccionado,
     listaCategorias,
     coloresCategorias,
+    nivel,
+    datosIndicadorMunicipio,
+    municipiosSeleccionados,
   } from '@/utilidades/cerebro';
   import { colorPositivo, dimsLineaTiempo as dimsVis } from '@/utilidades/constantes';
   import { convertirEscala } from '@enflujo/alquimia';
@@ -411,6 +414,35 @@ const { alto, meta, umbral } = Astro.props;
           if (linea.nombre !== 'Colombia') lineas.splice(i, 1);
         }
       });
+
+      if (!lugares.length) return;
+
+      if (municipiosSeleccionados.value.length) {
+        const datos = (await datosIndicadorMunicipio()) as DatosIndicador;
+
+        lineas.forEach((linea) => {
+          linea.eliminar();
+        });
+
+        municipiosSeleccionados.value.forEach((lugar) => {
+          const municipioPorAño: DatosPorAñoOrdenado = [];
+
+          for (const año in datos) {
+            const datosLugar = datos[año].find(([codigo]) => codigo === lugar.codigoMun);
+            municipioPorAño.push({ año, valor: datosLugar ? datosLugar[1] : null });
+          }
+
+          const existeLinea = lineas.find((linea) => linea.nombre === lugar.nombre);
+
+          if (existeLinea) {
+            existeLinea.agregar();
+          } else {
+            const linea = new Linea(contenedorLineas, lugar.nombre, municipioPorAño, lugar.color, estructura, 'mun');
+            linea.agregar().actualizar(posicionX, posicionY);
+            lineas.push(linea);
+          }
+        });
+      }
 
       // Lugares seleccionados es una lista de departamentos. Si cambiara a que se vean municipios, toca cambiar esto:
       const datos = (await datosIndicadorDep()) as DatosIndicador;

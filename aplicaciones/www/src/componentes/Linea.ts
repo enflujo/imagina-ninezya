@@ -13,19 +13,31 @@ export default class Linea {
   activo: boolean;
   color: string;
   unidad?: string;
+  tipo: 'mun' | 'dep';
 
-  constructor(contenedor: SVGGElement, nombre: string, datos: DatosPorAñoOrdenado, color: string, unidad: string) {
+  constructor(
+    contenedor: SVGGElement,
+    nombre: string,
+    datos: DatosPorAñoOrdenado,
+    color: string,
+    unidad: string,
+    tipo: 'mun' | 'dep' = 'dep'
+  ) {
     this.contenedor = contenedor;
     this.nombre = nombre;
     this.datos = datos;
     this.puntos = [];
     this.activo = false;
+    this.tipo = tipo;
 
     this.grupo = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     this.linea = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
     this.grupo.setAttribute('class', 'lineaTiempo');
     this.linea.setAttribute('class', 'linea');
+    if (tipo === 'mun') {
+      this.linea.setAttribute('stroke-dasharray', '5, 5');
+    }
     this.linea.setAttribute('stroke', color);
 
     this.grupo.appendChild(this.linea);
