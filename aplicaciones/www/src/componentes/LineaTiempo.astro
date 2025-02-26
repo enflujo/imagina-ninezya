@@ -420,6 +420,10 @@ const { alto, meta, umbral } = Astro.props;
       if (municipiosSeleccionados.value.length) {
         const datos = (await datosIndicadorMunicipio()) as DatosIndicador;
 
+        lineas.forEach((linea) => {
+          linea.eliminar();
+        });
+
         municipiosSeleccionados.value.forEach((lugar) => {
           const municipioPorAño: DatosPorAñoOrdenado = [];
 

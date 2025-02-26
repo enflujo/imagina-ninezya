@@ -170,10 +170,10 @@ export default class MapaDetalle extends HTMLElement {
         formaMunicipio.setAttribute('style', 'fill: url(#sinInfo)');
         formaMunicipio.setAttribute('shape-rendering', 'geometricPrecision');
         const seleccionado = seleccionadosMun.find((obj) => obj.codigoMun === lugar.properties.codigo);
-
+        formaMunicipio.setAttribute('stroke', lugar.properties.color);
         if (seleccionado) {
           formaMunicipio.setAttribute('class', `seleccionada`);
-          formaMunicipio.setAttribute('stroke', lugar.properties.color);
+          // formaMunicipio.setAttribute('stroke', lugar.properties.color);
         }
 
         formaMunicipio.onmousemove = (evento) => {
@@ -221,6 +221,26 @@ export default class MapaDetalle extends HTMLElement {
 
         formaMunicipio.onmouseleave = () => {
           informacion.classList.remove('visible');
+        };
+
+        formaMunicipio.onclick = () => {
+          const codigoMun = lugar.properties.codigo;
+          const params = new URLSearchParams(window.location.search);
+          const parametros: { nombre: string; valor: string }[] = [];
+          const muns = params.get('muns');
+          const codigosMun = muns ? muns.split(',') : [];
+
+          const posicionLugar = codigosMun.findIndex((codigo) => codigo === codigoMun);
+
+          if (posicionLugar >= 0) {
+            codigosMun.splice(posicionLugar, 1);
+          } else {
+            codigosMun.push(codigoMun);
+          }
+
+          parametros.push({ nombre: 'muns', valor: codigosMun.join(',') });
+          actualizarUrl(parametros);
+          revisarDepartamentos();
         };
 
         this.formas[lugar.properties.codigo] = { svg: formaMunicipio, valor: null };
