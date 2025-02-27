@@ -33,28 +33,30 @@ async function vaciarCarpetaDescarga() {
   }
 }
 
+const nombreTabla = 'datos';
+
 async function procesarDatos() {
   /** 1 */
   const ya11 = new VariableSingular('tacued', true, 'porcentaje');
-  await ya11.procesar('1.1: salud - acueducto', 'YA_1.1', 'Export', 'ya1-1');
+  await ya11.procesar('1.1: salud - acueducto', 'YA_1.1', nombreTabla, 'ya1-1');
   const ya12 = new VariableSingular('talcan', true, 'porcentaje');
-  await ya12.procesar('1.2: salud - alcantarillado', 'YA_1.2', 'Export', 'ya1-2');
+  await ya12.procesar('1.2: salud - alcantarillado', 'YA_1.2', nombreTabla, 'ya1-2');
   const ya13 = new VariableSingular('tasa_mortalidad_menores_5', false, 'tasa');
-  await ya13.procesar('1.3: mortalidad menores', 'YA_1.3', 'Sheet 1', 'ya1-3');
-  const ya14 = new VariableSingular('controles_prenatales', true, 'porcentaje');
-  await ya14.procesar('1.4: controles prenatales', 'YA_1.4', 'Sheet 1', 'ya1-4');
-  const ya15 = new VariableSingular('tasa_desnutricion_menores_5', false, 'tasa', 100000);
-  await ya15.procesar('1.5: desnutrición', 'YA_1.5', 'Sheet 1', 'ya1-5');
-  const ya16 = new VariableSingular('bajo_peso', false, 'porcentaje');
-  await ya16.procesar('1.6: bajo peso', 'YA_1.6', 'Sheet 1', 'ya1-6');
+  await ya13.procesar('1.3: mortalidad menores', 'YA_1.3', nombreTabla, 'ya1-3');
+  const ya14 = new VariableSingular('proporcion_controles_prenatales', true, 'porcentaje');
+  await ya14.procesar('1.4: controles prenatales', 'YA_1.4', nombreTabla, 'ya1-4');
+  const ya15 = new VariableSingular('proporcion_desnutricion_menores_5', false, 'tasa', 100000);
+  await ya15.procesar('1.5: desnutrición', 'YA_1.5', nombreTabla, 'ya1-5');
+  const ya16 = new VariableSingular('proporcion_bajo_peso_nacer', false, 'porcentaje');
+  await ya16.procesar('1.6: bajo peso', 'YA_1.6', nombreTabla, 'ya1-6');
   const ya17 = new VariableSingular('tasa_mortalidad_neonatal', false, 'tasa', 1000);
-  await ya17.procesar('1.7: tasa mortalidad neonatal', 'YA_1.7', 'Sheet 1', 'ya1-7');
+  await ya17.procesar('1.7: tasa mortalidad neonatal', 'YA_1.7', nombreTabla, 'ya1-7');
   const ya18 = new VariableSingular('tasa_mortalidad_menores_1_año', false, 'tasa', 1000);
-  await ya18.procesar('1.8: tasa mortalidad menores 1 año', 'YA_1.8', 'Sheet 1', 'ya1-8');
-  const ya19 = new VariableSingular('tasa_mortalidad_desnutricion_5_años', false, 'tasa', 100000);
-  await ya19.procesar('1.9: tasa mortalidad desnutrición', 'YA_1.9', 'Sheet 1', 'ya1-9');
+  await ya18.procesar('1.8: tasa mortalidad menores 1 año', 'YA_1.8', nombreTabla, 'ya1-8');
+  const ya19 = new VariableSingular('tasa_mortalidad_desnutricion_5', false, 'tasa', 100000);
+  await ya19.procesar('1.9: tasa mortalidad desnutrición', 'YA_1.9', nombreTabla, 'ya1-9');
   const ya10 = new VariableSingular('porcentaje_nacidos_vivos_personal_calificado', true, 'porcentaje');
-  await ya10.procesar('1.10: partos', 'YA_1.10', 'Sheet 1', 'ya1-10');
+  await ya10.procesar('1.10: partos', 'YA_1.10', nombreTabla, 'ya1-10');
 
   /** 2 */
   const ya21 = new VariableSingular('neta_transicion', true, 'porcentaje');
