@@ -129,7 +129,7 @@ export type VariableValorSingular =
   | 'porcentaje_marco_integral'
   | 'porcentaje'
   | 'P51'
-  | 'educ_inicial_icbf'
+  | 'ninos_educacion_inicial_integral'
   | 'porcentaje_nacidos_vivos_personal_calificado'
   | '#_estudiantes';
 

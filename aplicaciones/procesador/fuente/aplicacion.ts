@@ -60,19 +60,19 @@ async function procesarDatos() {
 
   /** 2 */
   const ya21 = new VariableSingular('neta_transicion', true, 'porcentaje');
-  await ya21.procesar('2.1: cobertura transición', 'YA_2.1', 'Sheet 1', 'ya2-1');
+  await ya21.procesar('2.1: cobertura transición', 'YA_2.1', nombreTabla, 'ya2-1');
   const ya22 = new VariableSingular('reprobacion_transicion', false, 'porcentaje');
-  await ya22.procesar('2.2: cobertura transición', 'YA_2.2', 'Sheet 1', 'ya2-2');
+  await ya22.procesar('2.2: cobertura transición', 'YA_2.2', nombreTabla, 'ya2-2');
   const ya23 = new VariableSingular('repitencia_transicion', false, 'porcentaje');
-  await ya23.procesar('2.3: repitencia transición', 'YA_2.3', 'Sheet 1', 'ya2-3');
+  await ya23.procesar('2.3: repitencia transición', 'YA_2.3', nombreTabla, 'ya2-3');
   const ya24 = new VariableSingular('desercion_transicion', false, 'porcentaje');
-  await ya24.procesar('2.4: deserción transición', 'YA_2.4', 'Sheet 1', 'ya2-4');
+  await ya24.procesar('2.4: deserción transición', 'YA_2.4', nombreTabla, 'ya2-4');
   const ya25 = new VariableSingular('porcentaje_marco_integral', true, 'porcentaje');
-  await ya25.procesar('2.5: porcentaje marco integral', 'YA_2.5', 'Sheet 1', 'ya2-5');
-  const ya26 = new VariableSingular('educ_inicial_icbf', true, 'conteo');
-  await ya26.procesar('2.6: educación inicial icbf', 'YA_2.6', 'Sheet 1', 'ya2-6');
+  await ya25.procesar('2.5: porcentaje marco integral', 'YA_2.5', nombreTabla, 'ya2-5');
+  const ya26 = new VariableSingular('ninos_educacion_inicial_integral', true, 'conteo');
+  await ya26.procesar('2.6: educación inicial icbf', 'YA_2.6', nombreTabla, 'ya2-6');
   const ya27 = new VariableDoble('#_estudiantes', true, 'conteo', 1);
-  await ya27.procesar('2.7: matriculados', 'YA_2.7', 'Sheet1', 'ya2-7');
+  await ya27.procesar('2.7: matriculados', 'YA_2.7', nombreTabla, 'ya2-7');
 
   /** 3 */
   const ya31 = new VariableSingular('promedio_matematicas', true, 'promedio');
