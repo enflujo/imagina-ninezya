@@ -98,7 +98,7 @@ export const ya1: DatosYa = {
         'Un valor del 7.4% indica que 7,4 de cada 100 nacidos vivos tuvieron 4 o más controles prenatales en un momento y territorio específicos.',
     },
     {
-      nombre: 'Proporción de menores de 5 años con Desnutrición Aguda',
+      nombre: 'Prevalencia de desnutrición aguda en niños menores de cinco años',
       ruta: 'desnutricion',
       archivo: 'ya1-5',
       hay_datos: true,
@@ -107,10 +107,9 @@ export const ya1: DatosYa = {
         'De acuerdo con el Plan Decenal de Salud Pública, a 2031, el 100% de Niños y niñas tendrán adecuado estado nutricional de acuerdo a su edad.',
       explicacion: 'Indica la proporción de niños menores de 5 años que padecen de desnutrición aguda.',
       definicion:
-        'Indica el número de niños menores de 5 años por cada 100.000 que padecen de desnutrición aguda en un momento y territorio determinado.',
-      metodologia:
+'Proporción de menores de 5 años que padecen de desnutrición aguda en un momento y territorio determinado.',      metodologia:
         'No. total de niños menores de 5 años que sufren de desnutrición aguda en un periodo y territorio específicos / No. total de nacidos vivos menores de 5 años en el mismo periodo y territorio',
-      unidad: 'Por cada 100.000 nacidos vivos',
+      unidad: 'Porcentaje',
       fuente_numerador: 'SIVIGILA',
       fuente_denominador: 'CUBO INDICADORES EEVV',
       desagregacion: 'Municipal',
