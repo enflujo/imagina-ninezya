@@ -76,29 +76,29 @@ async function procesarDatos() {
 
   /** 3 */
   const ya31 = new VariableSingular('promedio_matematicas', true, 'promedio');
-  await ya31.procesar('3.1: saber 11 matemáticas', 'YA_3.1', 'Sheet 1', 'ya3-1');
+  await ya31.procesar('3.1: saber 11 matemáticas', 'YA_3.1', nombreTabla, 'ya3-1');
   const ya32 = new VariableSingular('promedio_lectura', true, 'promedio');
-  await ya32.procesar('3.2: saber 11 lectura', 'YA_3.2', 'Sheet 1', 'ya3-2');
+  await ya32.procesar('3.2: saber 11 lectura', 'YA_3.2', nombreTabla, 'ya3-2');
   const ya33 = new VariableSingular('promedio_sociales', true, 'promedio');
-  await ya33.procesar('3.3: saber 11 sociales', 'YA_3.3', 'Sheet 1', 'ya3-3');
+  await ya33.procesar('3.3: saber 11 sociales', 'YA_3.3', nombreTabla, 'ya3-3');
   const ya34 = new VariableSingular('promedio_puntaje_global', true, 'promedio');
-  await ya34.procesar('3.4: saber 11 global', 'YA_3.4', 'Sheet 1', 'ya3-4');
+  await ya34.procesar('3.4: saber 11 global', 'YA_3.4', nombreTabla, 'ya3-4');
   const ya35 = new VariableSingular('neta_primaria', true, 'porcentaje');
-  await ya35.procesar('3.5: cobertura bruta primaria', 'YA_3.5', 'Sheet 1', 'ya3-5');
+  await ya35.procesar('3.5: cobertura bruta primaria', 'YA_3.5', nombreTabla, 'ya3-5');
   const ya36 = new VariableSingular('neta_media', true, 'porcentaje');
-  await ya36.procesar('3.6: cobertura bruta secundaria', 'YA_3.6', 'Sheet 1', 'ya3-6');
+  await ya36.procesar('3.6: cobertura bruta secundaria', 'YA_3.6', nombreTabla, 'ya3-6');
   const ya37 = new VariableSingular('reprobacion_primaria', false, 'porcentaje');
-  await ya37.procesar('3.7: reprobacion primaria', 'YA_3.7', 'Sheet 1', 'ya3-7');
+  await ya37.procesar('3.7: reprobacion primaria', 'YA_3.7', nombreTabla, 'ya3-7');
   const ya38 = new VariableSingular('reprobacion_media', false, 'porcentaje');
-  await ya38.procesar('3.8: reprobación media', 'YA_3.8', 'Sheet 1', 'ya3-8');
+  await ya38.procesar('3.8: reprobación media', 'YA_3.8', nombreTabla, 'ya3-8');
   const ya39 = new VariableSingular('repitencia_primaria', false, 'porcentaje');
-  await ya39.procesar('3.9: repitencia primaria', 'YA_3.9', 'Sheet 1', 'ya3-9');
+  await ya39.procesar('3.9: repitencia primaria', 'YA_3.9', nombreTabla, 'ya3-9');
   const ya310 = new VariableSingular('repitencia_media', false, 'porcentaje');
-  await ya310.procesar('3.10: repitencia media', 'YA_3.10', 'Sheet 1', 'ya3-10');
+  await ya310.procesar('3.10: repitencia media', 'YA_3.10', nombreTabla, 'ya3-10');
   const ya311 = new VariableSingular('desercion_primaria', false, 'porcentaje');
-  await ya311.procesar('3.11: desercion primaria', 'YA_3.11', 'Sheet 1', 'ya3-11');
+  await ya311.procesar('3.11: desercion primaria', 'YA_3.11', nombreTabla, 'ya3-11');
   const ya312 = new VariableSingular('desercion_media', false, 'porcentaje');
-  await ya312.procesar('3.12: deserción media', 'YA_3.12', 'Sheet 1', 'ya3-12');
+  await ya312.procesar('3.12: deserción media', 'YA_3.12', nombreTabla, 'ya3-12');
 
   /** 4 */
   const ya41 = new VariableSingular('tasa_EDA', false, 'tasa');
