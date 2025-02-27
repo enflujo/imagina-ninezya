@@ -107,7 +107,8 @@ export const ya1: DatosYa = {
         'De acuerdo con el Plan Decenal de Salud Pública, a 2031, el 100% de Niños y niñas tendrán adecuado estado nutricional de acuerdo a su edad.',
       explicacion: 'Indica la proporción de niños menores de 5 años que padecen de desnutrición aguda.',
       definicion:
-'Proporción de menores de 5 años que padecen de desnutrición aguda en un momento y territorio determinado.',      metodologia:
+        'Proporción de menores de 5 años que padecen de desnutrición aguda en un momento y territorio determinado.',
+      metodologia:
         'No. total de niños menores de 5 años que sufren de desnutrición aguda en un periodo y territorio específicos / No. total de nacidos vivos menores de 5 años en el mismo periodo y territorio',
       unidad: 'Porcentaje',
       fuente_numerador: 'SIVIGILA',
