@@ -6,8 +6,8 @@ export default defineConfig({
   publicDir: './estaticos',
   compressHTML: true,
   outDir: './publico',
-  site: 'https://imagina.uniandes.edu.co',
-  base: '/especiales/siya',
+  site: 'https://enflujo.github.io',
+  base: '/imagina-ninezya/especiales/siya',
   integrations: [sitemap(), robotsTxt()],
   build: {
     assets: 'estaticos',
