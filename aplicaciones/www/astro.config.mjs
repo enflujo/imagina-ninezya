@@ -7,7 +7,7 @@ export default defineConfig({
   compressHTML: true,
   outDir: './publico',
   site: 'https://enflujo.github.io',
-  base: '/imagina-ninezya/especiales/siya',
+  base: '/imagina-ninezya',
   integrations: [sitemap(), robotsTxt()],
   build: {
     assets: 'estaticos',
