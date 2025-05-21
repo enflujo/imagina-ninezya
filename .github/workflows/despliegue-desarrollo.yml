@@ -2,7 +2,7 @@ name: 🐘 Despliegue para revisar avances
 
 on:
   push:
-    branches: ['version-2']
+    branches: ['main']
   workflow_dispatch:
 
 permissions:
