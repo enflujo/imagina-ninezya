@@ -37,10 +37,10 @@ const nombreTabla = 'datos';
 
 async function procesarDatos() {
   /** 1 */
-  // const ya11 = new VariableSingular('tacued', true, 'porcentaje');
-  // await ya11.procesar('1.1: salud - acueducto', 'YA_1.1', nombreTabla, 'ya1-1');
-  // const ya12 = new VariableSingular('talcan', true, 'porcentaje');
-  // await ya12.procesar('1.2: salud - alcantarillado', 'YA_1.2', nombreTabla, 'ya1-2');
+  const ya11 = new VariableSingular('tacued', true, 'porcentaje');
+  await ya11.procesar('1.1: salud - acueducto', 'YA_1.1', nombreTabla, 'ya1-1');
+  const ya12 = new VariableSingular('talcan', true, 'porcentaje');
+  await ya12.procesar('1.2: salud - alcantarillado', 'YA_1.2', nombreTabla, 'ya1-2');
   const ya13 = new VariableSingular('tasa_mortalidad_menores_5', false, 'tasa');
   await ya13.procesar('1.3: mortalidad menores', 'YA_1.3', nombreTabla, 'ya1-3');
   const ya14 = new VariableSingular('proporcion_controles_prenatales', true, 'porcentaje');
@@ -67,8 +67,8 @@ async function procesarDatos() {
   await ya23.procesar('2.3: repitencia transición', 'YA_2.3', nombreTabla, 'ya2-3');
   const ya24 = new VariableSingular('desercion_transicion', false, 'porcentaje');
   await ya24.procesar('2.4: deserción transición', 'YA_2.4', nombreTabla, 'ya2-4');
-  // const ya25 = new VariableSingular('porcentaje_marco_integral', true, 'porcentaje');
-  // await ya25.procesar('2.5: porcentaje marco integral', 'YA_2.5', nombreTabla, 'ya2-5');
+  const ya25 = new VariableSingular('porcentaje_marco_integral', true, 'porcentaje');
+  await ya25.procesar('2.5: porcentaje marco integral', 'YA_2.5', nombreTabla, 'ya2-5');
   const ya26 = new VariableSingular('ninos_educacion_inicial_integral', true, 'conteo');
   await ya26.procesar('2.6: educación inicial icbf', 'YA_2.6', nombreTabla, 'ya2-6');
   const ya27 = new VariableDoble('#_estudiantes', true, 'conteo', 1);
@@ -105,14 +105,14 @@ async function procesarDatos() {
   await ya41.procesar('4.1: mortalidad EDA', 'YA_4.1', nombreTabla, 'ya4-1');
   const ya42 = new VariableSingular('tasa_IRA', false, 'tasa');
   await ya42.procesar('4.2: mortalidad IRA', 'YA_4.2', nombreTabla, 'ya4-2');
-  // const ya43 = new VariableSingular('tacued', true, 'porcentaje');
-  // await ya43.procesar('4.3: acceso agua potable', 'YA_4.3', nombreTabla, 'ya4-3');
+  const ya43 = new VariableSingular('tacued', true, 'porcentaje');
+  await ya43.procesar('4.3: acceso agua potable', 'YA_1.1', nombreTabla, 'ya4-3');
   // const ya44 = new VariableSingular('concentracion', false, 'escala');
   // await ya44.procesar('4.4: calidad aire', 'YA_4.4', nombreTabla, 'ya4-4');
 
   // /** 5 */
-  // const ya51 = new JuegoCategorias('porcentaje', true, 'porcentaje');
-  // ya51.procesar('5.1 juego', 'YA_5.1', nombreTabla, 'ya5-1');
+  const ya51 = new JuegoCategorias('porcentaje', true, 'porcentaje');
+  ya51.procesar('5.1 juego', 'YA_5.1', nombreTabla, 'ya5-1');
 
   // /** 7 */
   const ya71 = new VariableSingular('gini', false, 'coeficiente', 1.0);

@@ -19,9 +19,17 @@
     "peso": "49.83 kB",
     "nombre": "ya10-5-menores-secuestrados.xlsx"
   },
+  "ya1-1": {
+    "peso": "195.06 kB",
+    "nombre": "ya1-1-acueducto.xlsx"
+  },
   "ya1-10": {
     "peso": "709.5 kB",
     "nombre": "ya1-10-partos-calificado.xlsx"
+  },
+  "ya1-2": {
+    "peso": "162.67 kB",
+    "nombre": "ya1-2-alcantarillado.xlsx"
   },
   "ya1-3": {
     "peso": "717.82 kB",
@@ -68,7 +76,7 @@
     "nombre": "ya2-4-desercion-transicion.xlsx"
   },
   "ya2-5": {
-    "peso": "183.62 kB",
+    "peso": "163.14 kB",
     "nombre": "ya2-5-marco-integral.xlsx"
   },
   "ya2-6": {
@@ -144,7 +152,7 @@
     "nombre": "ya4-4-calidad-aire.xlsx"
   },
   "ya5-1": {
-    "peso": "40.83 kB",
+    "peso": "71.63 kB",
     "nombre": "ya5-1-tiempo-permanencia-semana.xlsx"
   },
   "ya7-1": {
