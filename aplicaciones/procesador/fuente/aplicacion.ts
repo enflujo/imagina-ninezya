@@ -107,8 +107,8 @@ async function procesarDatos() {
   await ya42.procesar('4.2: mortalidad IRA', 'YA_4.2', nombreTabla, 'ya4-2');
   const ya43 = new VariableSingular('tacued', true, 'porcentaje');
   await ya43.procesar('4.3: acceso agua potable', 'YA_1.1', nombreTabla, 'ya4-3');
-  // const ya44 = new VariableSingular('concentracion', false, 'escala');
-  // await ya44.procesar('4.4: calidad aire', 'YA_4.4', nombreTabla, 'ya4-4');
+  const ya44 = new VariableSingular('concentracion', false, 'escala'); // TEMPORAL
+  await ya44.procesar('4.4: calidad aire', 'ya4-4_TEMP', nombreTabla, 'ya4-4');
 
   // /** 5 */
   const ya51 = new JuegoCategorias('porcentaje', true, 'porcentaje');
@@ -131,14 +131,14 @@ async function procesarDatos() {
   await ya84.procesar('8.4: violencia interpersonal', 'YA_8.4', nombreTabla, 'ya8-4');
 
   // /** 9 */
-  // const ya91 = new VariableSingular('tasa', false, 'porcentaje');
-  // await ya91.procesar('9.1: detención no privativa', 'YA_9.1', nombreTabla, 'ya9-1');
-  // const ya92 = new VariableSingular('tasa', false, 'porcentaje');
-  // await ya92.procesar('9.2: tiempo de reclutamiento', 'YA_9.2', nombreTabla, 'ya9-2');
-  // const ya93 = new VariableSingular('tasa', false, 'porcentaje');
-  // await ya93.procesar('9.3: justicia restaurativa', 'YA_9.3', nombreTabla, 'ya9-3');
-  // const ya94 = new VariableSingular('tasa', false, 'porcentaje');
-  // await ya94.procesar('9.4: acceso educativo', 'YA_9.4', nombreTabla, 'ya9-4');
+  const ya91 = new VariableSingular('tasa', false, 'porcentaje'); //TEMPORAL
+  await ya91.procesar('9.1: detención no privativa', 'ya9-1_TEMP', nombreTabla, 'ya9-1');
+  const ya92 = new VariableSingular('tasa', false, 'porcentaje'); //TEMPORAL
+  await ya92.procesar('9.2: tiempo de reclutamiento', 'ya9-2_TEMP', nombreTabla, 'ya9-2');
+  const ya93 = new VariableSingular('tasa', false, 'porcentaje'); //TEMPORAL
+  await ya93.procesar('9.3: justicia restaurativa', 'ya9-3_TEMP', nombreTabla, 'ya9-3');
+  const ya94 = new VariableSingular('tasa', false, 'porcentaje'); //TEMPORAL
+  await ya94.procesar('9.4: acceso educativo', 'ya9-4_TEMP', nombreTabla, 'ya9-4');
 
   // /** 10 */
   const ya101 = new VariableSingular('e_delito_sex', false, 'conteo', 1);
