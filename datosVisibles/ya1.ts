@@ -55,7 +55,7 @@ export const ya1: DatosYa = {
         'Un valor del 90% significa que existen 90 familias que cuentan con acceso real a alcantarillado por cada 100 familias en un territorio y momento específicos. <br/><br/>Más información sobre alcantarillado y saneamiento: https://www.un.org/sustainabledevelopment/es/water-and-sanitation/#:~:text=Alcanzar%20la%20cobertura%20universal%20para,y%20tres%20para%20la%20higiene.',
     },
     {
-      nombre: 'Mortalidad en niños menores de 5 años (cualquier condición)',
+      nombre: 'Tasa de mortalidad en niños menores de 5 años (cualquier condición)',
       ruta: 'mortalidad',
       archivo: 'ya1-3',
       hay_datos: true,

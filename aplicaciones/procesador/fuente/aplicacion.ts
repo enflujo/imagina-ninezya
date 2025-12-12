@@ -58,7 +58,7 @@ async function procesarDatos() {
   const ya10 = new VariableSingular('porcentaje_nacidos_vivos_personal_calificado', true, 'porcentaje');
   await ya10.procesar('1.10: partos', 'YA_1.10', nombreTabla, 'ya1-10');
 
-  /** 2 */
+  // /** 2 */
   const ya21 = new VariableSingular('neta_transicion', true, 'porcentaje');
   await ya21.procesar('2.1: cobertura transición', 'YA_2.1', nombreTabla, 'ya2-1');
   const ya22 = new VariableSingular('reprobacion_transicion', false, 'porcentaje');
@@ -74,7 +74,7 @@ async function procesarDatos() {
   const ya27 = new VariableDoble('#_estudiantes', true, 'conteo', 1);
   await ya27.procesar('2.7: matriculados', 'YA_2.7', nombreTabla, 'ya2-7');
 
-  /** 3 */
+  // /** 3 */
   const ya31 = new VariableSingular('promedio_matematicas', true, 'promedio');
   await ya31.procesar('3.1: saber 11 matemáticas', 'YA_3.1', nombreTabla, 'ya3-1');
   const ya32 = new VariableSingular('promedio_lectura', true, 'promedio');
@@ -100,21 +100,21 @@ async function procesarDatos() {
   const ya312 = new VariableSingular('desercion_media', false, 'porcentaje');
   await ya312.procesar('3.12: deserción media', 'YA_3.12', nombreTabla, 'ya3-12');
 
-  /** 4 */
+  // /** 4 */
   const ya41 = new VariableSingular('tasa_EDA', false, 'tasa');
   await ya41.procesar('4.1: mortalidad EDA', 'YA_4.1', nombreTabla, 'ya4-1');
   const ya42 = new VariableSingular('tasa_IRA', false, 'tasa');
   await ya42.procesar('4.2: mortalidad IRA', 'YA_4.2', nombreTabla, 'ya4-2');
   const ya43 = new VariableSingular('tacued', true, 'porcentaje');
-  await ya43.procesar('4.3: acceso agua potable', 'YA_4.3', nombreTabla, 'ya4-3');
-  const ya44 = new VariableSingular('concentracion', false, 'escala');
-  await ya44.procesar('4.4: calidad aire', 'YA_4.4', nombreTabla, 'ya4-4');
+  await ya43.procesar('4.3: acceso agua potable', 'YA_1.1', nombreTabla, 'ya4-3');
+  const ya44 = new VariableSingular('concentracion', false, 'escala'); // TEMPORAL
+  await ya44.procesar('4.4: calidad aire', 'ya4-4_TEMP', nombreTabla, 'ya4-4');
 
-  /** 5 */
+  // /** 5 */
   const ya51 = new JuegoCategorias('porcentaje', true, 'porcentaje');
   ya51.procesar('5.1 juego', 'YA_5.1', nombreTabla, 'ya5-1');
 
-  /** 7 */
+  // /** 7 */
   const ya71 = new VariableSingular('gini', false, 'coeficiente', 1.0);
   await ya71.procesar('7.1: GINI', 'YA_7.1', nombreTabla, 'ya7-1');
   const ya72 = new VariableSingular('pobreza_monetaria', false, 'porcentaje');
@@ -130,17 +130,17 @@ async function procesarDatos() {
   const ya84 = new VariableSingular('interpersonal', false, 'tasa', 100000);
   await ya84.procesar('8.4: violencia interpersonal', 'YA_8.4', nombreTabla, 'ya8-4');
 
-  /** 9 */
-  const ya91 = new VariableSingular('tasa', false, 'porcentaje');
-  await ya91.procesar('9.1: detención no privativa', 'YA_9.1', nombreTabla, 'ya9-1');
-  const ya92 = new VariableSingular('tasa', false, 'porcentaje');
-  await ya92.procesar('9.2: tiempo de reclutamiento', 'YA_9.2', nombreTabla, 'ya9-2');
-  const ya93 = new VariableSingular('tasa', false, 'porcentaje');
-  await ya93.procesar('9.3: justicia restaurativa', 'YA_9.3', nombreTabla, 'ya9-3');
-  const ya94 = new VariableSingular('tasa', false, 'porcentaje');
-  await ya94.procesar('9.4: acceso educativo', 'YA_9.4', nombreTabla, 'ya9-4');
+  // /** 9 */
+  const ya91 = new VariableSingular('tasa', false, 'porcentaje'); //TEMPORAL
+  await ya91.procesar('9.1: detención no privativa', 'ya9-1_TEMP', nombreTabla, 'ya9-1');
+  const ya92 = new VariableSingular('tasa', false, 'porcentaje'); //TEMPORAL
+  await ya92.procesar('9.2: tiempo de reclutamiento', 'ya9-2_TEMP', nombreTabla, 'ya9-2');
+  const ya93 = new VariableSingular('tasa', false, 'porcentaje'); //TEMPORAL
+  await ya93.procesar('9.3: justicia restaurativa', 'ya9-3_TEMP', nombreTabla, 'ya9-3');
+  const ya94 = new VariableSingular('tasa', false, 'porcentaje'); //TEMPORAL
+  await ya94.procesar('9.4: acceso educativo', 'ya9-4_TEMP', nombreTabla, 'ya9-4');
 
-  /** 10 */
+  // /** 10 */
   const ya101 = new VariableSingular('e_delito_sex', false, 'conteo', 1);
   await ya101.procesar('10.1: delito sexual', 'YA10_10.1', nombreTabla, 'ya10-1');
   const ya102 = new VariableSingular('reclu', false, 'conteo', 1);
