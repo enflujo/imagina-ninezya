@@ -22,6 +22,15 @@ const datosIndicador = datosYa.indicadores.find((instancia) => instancia.ruta ==
     <p class="texto" set:html={datosIndicador.definicion} />
   </div>
 
+  {
+    datosIndicador.anotacion && (
+      <div class="seccion">
+        <h4 class="titulo">Anotación</h4>
+        <p class="texto textoAnotacion" set:html={urlsAEnlacesHTML(datosIndicador.anotacion)} />
+      </div>
+    )
+  }
+
   <h3 class="tituloSeccion">Información técnica</h3>
 
   <section class="inferior">
@@ -195,6 +204,10 @@ const datosIndicador = datosYa.indicadores.find((instancia) => instancia.ruta ==
         overflow-wrap: anywhere;
         flex-direction: column;
         justify-content: center;
+      }
+
+      .textoAnotacion {
+        white-space: pre-line;
       }
     }
   }

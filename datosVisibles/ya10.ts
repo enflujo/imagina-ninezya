@@ -7,12 +7,19 @@ export const ya10: DatosYa = {
 
   definicion: `Es crucial que los menores de edad en Colombia participen en la construcción de una cultura de paz, reconociendo sus experiencias y dándoles voz activa en el diseño de acciones para la reconciliación. Los gobiernos locales, especialmente en los 170 municipios afectados por el conflicto, deben proporcionarles espacio, priorizando la restitución de derechos y el interés superior de la niñez, según normativas nacionales e internacionales.
   
-  Se utilizó la base de datos Integración de datos y estimación estadística de víctimas en el marco del conflicto armado, reconocida por su consenso en la identificación de víctimas. En el contexto del Acuerdo Final entre el Gobierno de Colombia y las FARC-EP, se creó la Comisión para el Esclarecimiento de la Verdad, la Convivencia y la No Repetición, como parte del Sistema Integral de Verdad, Justicia, Reparación y No Repetición (SIVJRNR), con el propósito de esclarecer las violaciones en el conflicto armado y ofrecer una explicación amplia de su complejidad a la sociedad.`,
+  Se utilizó la base de datos Integración de datos y estimación estadística de víctimas en el marco del conflicto armado, reconocida por su consenso en la identificación de víctimas. En el contexto del Acuerdo Final entre el Gobierno de Colombia y las FARC-EP, se creó la Comisión para el Esclarecimiento de la Verdad, la Convivencia y la No Repetición, como parte del Sistema Integral de Verdad, Justicia, Reparación y No Repetición (SIVJRNR), con el propósito de esclarecer las violaciones en el conflicto armado y ofrecer una explicación amplia de su complejidad a la sociedad.
+  
+  Para los cinco indicadores que componen el YA 10. Cultura de paz, reconciliación y convivencia, se utilizan las cifras del ejercicio de integración estadística DANE-JEP del Informe Final de la Comisión de la Verdad. Esta fuente, avalada por el DANE, representa la base más robusta disponible al depurar registros y corregir subregistros.
+
+  Si bien el horizonte general del informe llega a 2021, la disponibilidad de datos varía según el fenómeno: los indicadores de menores secuestrados presentan corte a 2018 y los de reclutamiento a 2017. Dado que este ejercicio de integración no ha sido replicado con la misma solidez técnica en periodos más recientes, se prioriza el uso de esta base por su consistencia y comparabilidad. En futuras actualizaciones se explorarán fuentes alternativas que permitan robustecer la vigencia de la información sin sacrificar su rigor.`,
   hay_datos: true,
   indicadores: [
     {
       nombre: 'Delitos contra la libertad y la integridad sexual en el desarrollo del conflicto',
       ruta: 'delito-sexual-conflicto',
+      anotacion: `Para los cinco indicadores que componen el YA 10. Cultura de paz, reconciliación y convivencia, se utilizan las cifras del ejercicio de integración estadística DANE-JEP del Informe Final de la Comisión de la Verdad. Esta fuente, avalada por el DANE, representa la base más robusta disponible al depurar registros y corregir subregistros.
+
+      Si bien el horizonte general del informe llega a 2021, la disponibilidad de datos varía según el fenómeno: los indicadores de menores secuestrados presentan corte a 2018 y los de reclutamiento a 2017. Dado que este ejercicio de integración no ha sido replicado con la misma solidez técnica en periodos más recientes, se prioriza el uso de esta base por su consistencia y comparabilidad. En futuras actualizaciones se explorarán fuentes alternativas que permitan robustecer la vigencia de la información sin sacrificar su rigor.`,
       archivo: 'ya10-1',
       hay_datos: true,
       umbral: 0,
@@ -33,10 +40,13 @@ export const ya10: DatosYa = {
         'Una razón de 7 significa que 7 de cada 100.000 menores de edad o mujeres fueron víctimas de un delitos en contra de su integridad sexual en un momento y territorio determinados.',
     },
     {
-      nombre: 'Reclutamiento de menores',
+      nombre: 'Reclutamiento de menores de edad',
       ruta: 'reclutamiento-menores',
       archivo: 'ya10-2',
       hay_datos: true,
+      anotacion: `Para los cinco indicadores que componen el YA 10. Cultura de paz, reconciliación y convivencia, se utilizan las cifras del ejercicio de integración estadística DANE-JEP del Informe Final de la Comisión de la Verdad. Esta fuente, avalada por el DANE, representa la base más robusta disponible al depurar registros y corregir subregistros.
+
+      Si bien el horizonte general del informe llega a 2021, la disponibilidad de datos varía según el fenómeno: los indicadores de menores secuestrados presentan corte a 2018 y los de reclutamiento a 2017. Dado que este ejercicio de integración no ha sido replicado con la misma solidez técnica en periodos más recientes, se prioriza el uso de esta base por su consistencia y comparabilidad. En futuras actualizaciones se explorarán fuentes alternativas que permitan robustecer la vigencia de la información sin sacrificar su rigor.`,
       umbral: 0,
       explicacion_umbral:
         'De acuerdo con el Plan Nacional de Desarrollo 2022 - 2026 no hay una meta para este indicador. Sin embargo el umbral debe ser cero.',
@@ -59,6 +69,9 @@ export const ya10: DatosYa = {
       ruta: 'ataques-armados',
       archivo: 'ya10-3',
       hay_datos: true,
+      anotacion: `Para los cinco indicadores que componen el YA 10. Cultura de paz, reconciliación y convivencia, se utilizan las cifras del ejercicio de integración estadística DANE-JEP del Informe Final de la Comisión de la Verdad. Esta fuente, avalada por el DANE, representa la base más robusta disponible al depurar registros y corregir subregistros.
+
+      Si bien el horizonte general del informe llega a 2021, la disponibilidad de datos varía según el fenómeno: los indicadores de menores secuestrados presentan corte a 2018 y los de reclutamiento a 2017. Dado que este ejercicio de integración no ha sido replicado con la misma solidez técnica en periodos más recientes, se prioriza el uso de esta base por su consistencia y comparabilidad. En futuras actualizaciones se explorarán fuentes alternativas que permitan robustecer la vigencia de la información sin sacrificar su rigor.`,
       umbral: 0,
       explicacion_umbral:
         'De acuerdo con el Plan Nacional de Desarrollo 2022 - 2026 no hay una meta para este indicador. Sin embargo el umbral debe ser cero.',
@@ -83,6 +96,9 @@ export const ya10: DatosYa = {
       ruta: 'artefactos-explosivos',
       archivo: 'ya10-4',
       hay_datos: true,
+      anotacion: `Para los cinco indicadores que componen el YA 10. Cultura de paz, reconciliación y convivencia, se utilizan las cifras del ejercicio de integración estadística DANE-JEP del Informe Final de la Comisión de la Verdad. Esta fuente, avalada por el DANE, representa la base más robusta disponible al depurar registros y corregir subregistros.
+
+      Si bien el horizonte general del informe llega a 2021, la disponibilidad de datos varía según el fenómeno: los indicadores de menores secuestrados presentan corte a 2018 y los de reclutamiento a 2017. Dado que este ejercicio de integración no ha sido replicado con la misma solidez técnica en periodos más recientes, se prioriza el uso de esta base por su consistencia y comparabilidad. En futuras actualizaciones se explorarán fuentes alternativas que permitan robustecer la vigencia de la información sin sacrificar su rigor.`,
       umbral: 0,
       explicacion_umbral:
         'De acuerdo con el Plan Nacional de Desarrollo 2022 - 2026 no hay una meta para este indicador. Sin embargo el umbral debe ser cero.',
@@ -106,6 +122,9 @@ export const ya10: DatosYa = {
       ruta: 'menores-secuestrados',
       archivo: 'ya10-5',
       hay_datos: true,
+      anotacion: `Para los cinco indicadores que componen el YA 10. Cultura de paz, reconciliación y convivencia, se utilizan las cifras del ejercicio de integración estadística DANE-JEP del Informe Final de la Comisión de la Verdad. Esta fuente, avalada por el DANE, representa la base más robusta disponible al depurar registros y corregir subregistros.
+
+      Si bien el horizonte general del informe llega a 2021, la disponibilidad de datos varía según el fenómeno: los indicadores de menores secuestrados presentan corte a 2018 y los de reclutamiento a 2017. Dado que este ejercicio de integración no ha sido replicado con la misma solidez técnica en periodos más recientes, se prioriza el uso de esta base por su consistencia y comparabilidad. En futuras actualizaciones se explorarán fuentes alternativas que permitan robustecer la vigencia de la información sin sacrificar su rigor.`,
       umbral: 0,
       explicacion_umbral:
         'De acuerdo con el Plan Nacional de Desarrollo 2022 - 2026 no hay una meta para este indicador. Sin embargo el umbral debe ser cero.',

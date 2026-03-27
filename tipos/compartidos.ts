@@ -23,6 +23,7 @@ export interface IndicadoresDatos extends IndicadoresDatosComunes {
   responsable?: string;
   compete_a?: string;
   categorias?: Categoria[];
+  anotacion?: string;
 }
 
 export interface DatosYa extends IndicadoresDatosComunes {

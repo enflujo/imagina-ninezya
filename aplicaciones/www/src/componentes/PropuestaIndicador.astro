@@ -31,6 +31,14 @@ import { urlsAEnlacesHTML } from '@enflujo/alquimia';
     <div class="seccion">
       <h4 class="titulo">Definición</h4><p class="texto" set:html={urlsAEnlacesHTML(datosIndicador.definicion)} />
     </div>
+    {
+      datosIndicador.anotacion && (
+        <div class="seccion">
+          <h4 class="titulo">Anotación</h4>
+          <p class="texto textoAnotacion" set:html={urlsAEnlacesHTML(datosIndicador.anotacion)} />
+        </div>
+      )
+    }
     <h3 class="tituloSeccion">Información técnica</h3>
     <section class="inferior">
       <div class="seccion"><h4 class="titulo">Unidad de medida</h4><p class="texto">{datosIndicador.unidad}</p></div>
@@ -135,6 +143,10 @@ import { urlsAEnlacesHTML } from '@enflujo/alquimia';
           overflow-wrap: anywhere;
           flex-direction: column;
           justify-content: center;
+        }
+
+        .textoAnotacion {
+          white-space: pre-line;
         }
       }
     }
