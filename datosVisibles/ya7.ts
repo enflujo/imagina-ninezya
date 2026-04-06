@@ -1,7 +1,7 @@
 import type { DatosYa } from '../tipos/compartidos';
 
 export const ya7: DatosYa = {
-  nombre: 'Fortalecimiento Familiar del cuidado y la crianza de la niñez',
+  nombre: 'Familias con capacidades para cuidar y proteger',
   imagen: 'ya7',
   ruta: 'fortalecimiento-familiar',
   definicion:
